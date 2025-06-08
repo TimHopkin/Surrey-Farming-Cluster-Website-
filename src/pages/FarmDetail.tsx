@@ -180,8 +180,16 @@ const FarmDetail: React.FC = () => {
                   
                   <div className="mt-6 bg-white p-6 rounded-lg shadow-md">
                     <h3 className="text-xl font-semibold text-gray-900 mb-4">Location</h3>
-                    <div className="bg-gray-200 h-48 rounded-lg flex items-center justify-center">
-                      <p className="text-gray-500">Interactive map coming soon</p>
+                    <div className="bg-gray-200 h-48 rounded-lg overflow-hidden">
+                      <img 
+                        src={`https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v12/static/${farm.location.lng},${farm.location.lat},13/400x192?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw`}
+                        alt={`Map of ${farm.name} location`}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.src = 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=400&h=192&fit=crop&auto=format';
+                        }}
+                      />
                     </div>
                     <p className="text-gray-600 mt-2 text-sm">
                       📍 {farm.location.address}
