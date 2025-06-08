@@ -131,7 +131,7 @@ The key is starting with technologies that solve real problems on your farm, the
     publishDate: '2024-01-15',
     category: 'Technology',
     tags: ['precision agriculture', 'technology', 'IoT', 'data analytics', 'GPS'],
-    image: 'https://images.unsplash.com/photo-1530587191325-3db32d826c18?w=800&h=400&fit=crop&auto=format',
+    image: 'https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=800&h=400&fit=crop&auto=format',
     readTime: 8,
     featured: true
   },

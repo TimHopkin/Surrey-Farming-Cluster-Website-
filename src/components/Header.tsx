@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Logo from './Logo';
 
 const Header: React.FC = () => {
   return (
@@ -8,12 +9,7 @@ const Header: React.FC = () => {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
-              <div className="w-10 h-10 bg-cluster-green rounded-full flex items-center justify-center mr-3">
-                <span className="text-white font-bold text-lg">SFC</span>
-              </div>
-              <span className="font-secondary font-semibold text-xl text-cluster-green">
-                Surrey Farming Cluster
-              </span>
+              <Logo className="h-14" />
             </Link>
           </div>
           
