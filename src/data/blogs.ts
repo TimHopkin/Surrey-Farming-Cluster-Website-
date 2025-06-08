@@ -25,13 +25,13 @@ Regenerative agriculture is a holistic farming approach that seeks to restore so
 
 ## Core Principles
 
-**1. Minimize Soil Disturbance**
+**1. Minimise Soil Disturbance**
 Reducing tillage helps preserve soil structure and protects beneficial microorganisms. No-till or minimal tillage practices maintain soil aggregates and prevent erosion.
 
 **2. Keep Soil Covered**
 Cover crops protect soil from erosion, suppress weeds, and add organic matter. They also provide habitat for beneficial insects and improve soil fertility.
 
-**3. Maximize Plant Diversity**
+**3. Maximise Plant Diversity**
 Diverse crop rotations and polycultures create more resilient systems. Different plants contribute various nutrients and support different soil microorganisms.
 
 **4. Integrate Livestock**
@@ -44,7 +44,7 @@ Year-round living roots feed soil microbes and maintain soil structure. This inc
 
 **Improved Soil Health**: Increased organic matter leads to better water retention and nutrient availability.
 
-**Reduced Input Costs**: Less need for synthetic fertilizers and pesticides as soil biology improves.
+**Reduced Input Costs**: Less need for synthetic fertilisers and pesticides as soil biology improves.
 
 **Enhanced Biodiversity**: More diverse farms support wildlife and beneficial insects.
 
@@ -57,7 +57,7 @@ Year-round living roots feed soil microbes and maintain soil structure. This inc
 Begin with small changes like introducing cover crops or reducing tillage on a portion of your land. Join our cluster's regenerative agriculture working group to connect with other farmers making this transition.
 
 The journey to regenerative agriculture is gradual, but the long-term benefits for your farm, your community, and the environment are substantial.`,
-    author: 'Dr. Sarah Mitchell',
+    author: 'Tim Hopkin',
     publishDate: '2024-01-20',
     category: 'Sustainable Farming',
     tags: ['regenerative agriculture', 'soil health', 'sustainability', 'cover crops'],
@@ -68,7 +68,7 @@ The journey to regenerative agriculture is gradual, but the long-term benefits f
   {
     id: '2',
     title: 'Smart Technology in Modern Farming: A Practical Guide',
-    excerpt: 'Explore how precision agriculture, IoT sensors, and data analytics can optimize your farming operations and increase profitability.',
+    excerpt: 'Explore how precision agriculture, IoT sensors, and data analytics can optimise your farming operations and increase profitability.',
     content: `The agricultural technology revolution is transforming how we farm, offering unprecedented opportunities to increase efficiency, reduce costs, and improve environmental outcomes. Here's your practical guide to implementing smart farming technology.
 
 ## Precision Agriculture Technologies
@@ -77,7 +77,7 @@ The journey to regenerative agriculture is gradual, but the long-term benefits f
 GPS-guided tractors reduce overlap, save fuel, and enable precise application of inputs. Auto-steering systems can pay for themselves within a few seasons through reduced input costs and improved efficiency.
 
 **Variable Rate Technology (VRT)**
-Apply fertilizers, seeds, and pesticides only where needed. Soil testing combined with VRT can reduce input costs by 10-15% while maintaining or improving yields.
+Apply fertilisers, seeds, and pesticides only where needed. Soil testing combined with VRT can reduce input costs by 10-15% while maintaining or improving yields.
 
 **Drone Technology**
 Drones provide real-time crop monitoring, pest detection, and field mapping. They're particularly useful for identifying problem areas early and assessing crop damage.
@@ -85,7 +85,7 @@ Drones provide real-time crop monitoring, pest detection, and field mapping. The
 ## Internet of Things (IoT) in Agriculture
 
 **Soil Sensors**
-Monitor soil moisture, temperature, and nutrient levels in real-time. This data helps optimize irrigation and fertilization schedules.
+Monitor soil moisture, temperature, and nutrient levels in real-time. This data helps optimise irrigation and fertilization schedules.
 
 **Weather Stations**
 On-farm weather data improves decision-making for spraying, harvesting, and field operations.
@@ -96,7 +96,7 @@ Smart collars and ear tags track animal health, breeding cycles, and location, i
 ## Data Management and Analytics
 
 **Farm Management Software**
-Platforms like Climate FieldView or Trimble Ag Software help analyze field performance, track inputs, and plan future operations.
+Platforms like Climate FieldView or Trimble Ag Software help analyse field performance, track inputs, and plan future operations.
 
 **Yield Mapping**
 Understanding field variability enables targeted management and investment decisions.
@@ -107,7 +107,7 @@ Understanding field variability enables targeted management and investment decis
 
 **Calculate ROI**: Focus on technologies with clear payback periods.
 
-**Training**: Invest in operator training to maximize technology benefits.
+**Training**: Invest in operator training to maximise technology benefits.
 
 **Data Integration**: Choose compatible systems that can share data.
 
@@ -127,7 +127,7 @@ The Surrey Farming Cluster offers:
 - Peer-to-peer learning sessions
 
 The key is starting with technologies that solve real problems on your farm, then expanding as you see results and gain confidence with digital tools.`,
-    author: 'James Turner',
+    author: 'Molly Biddell',
     publishDate: '2024-01-15',
     category: 'Technology',
     tags: ['precision agriculture', 'technology', 'IoT', 'data analytics', 'GPS'],
@@ -228,7 +228,7 @@ The Surrey Farming Cluster provides:
 **Plan for Legacy**: Explain how benefits will continue beyond the funding period.
 
 Remember, grant funding is competitive, but with proper preparation and the right support, it can transform your farming operation and contribute to Surrey's agricultural future.`,
-    author: 'Emma Roberts',
+    author: 'Jenna Emmerton',
     publishDate: '2024-01-10',
     category: 'Funding',
     tags: ['grants', 'funding', 'SFI', 'countryside stewardship', 'applications'],
@@ -269,7 +269,7 @@ Surrey farmers face increasing challenges from:
 - Increase organic matter for better water retention
 - Reduce compaction through controlled traffic
 - Use mulching to conserve moisture
-- Practice conservation tillage
+- Practise conservation tillage
 
 ## Flood Management
 
@@ -317,7 +317,7 @@ Spreading risk across multiple enterprises:
 ## Insurance and Risk Management
 
 **Crop Insurance**
-Understanding and utilizing available insurance products:
+Understanding and utilising available insurance products:
 - Multi-peril crop insurance
 - Livestock mortality coverage
 - Business interruption insurance
@@ -349,7 +349,7 @@ Working together on:
 
 **Climate Adaptation Funding**
 - Environmental Land Management schemes
-- Flood defense grants
+- Flood defence grants
 - Renewable energy incentives
 - Research and development support
 
@@ -368,7 +368,7 @@ Working together on:
 - Soil health monitoring
 
 The key to climate resilience is preparation, diversification, and continuous adaptation. Start with the most pressing risks on your farm and build resilience systematically over time.`,
-    author: 'Dr. Michael Green',
+    author: 'Ben Habgood',
     publishDate: '2024-01-05',
     category: 'Climate Adaptation',
     tags: ['climate change', 'resilience', 'drought', 'flooding', 'adaptation'],
@@ -402,7 +402,7 @@ Environmental Land Management schemes provide significant payments for biodivers
 ## Creating Wildlife Corridors
 
 **Field Margins**
-- 6-meter wildlife strips along field edges
+- 6-metre wildlife strips along field edges
 - Native wildflower mixes for pollinators
 - Grass margins for ground-nesting birds
 - Scrub areas for small mammals
@@ -519,7 +519,7 @@ The Surrey Farming Cluster provides:
 - Connection with ecology specialists
 
 Creating effective wildlife corridors requires planning, but the benefits – financial, environmental, and operational – make it a worthwhile investment for Surrey farms.`,
-    author: 'Dr. Lucy Watson',
+    author: 'Angus Stovold',
     publishDate: '2023-12-28',
     category: 'Biodiversity',
     tags: ['biodiversity', 'wildlife corridors', 'habitats', 'pollinators', 'conservation'],
@@ -565,7 +565,7 @@ Agriculture's seasonal nature requires careful cash flow planning:
 Understanding true profitability by enterprise:
 - Gross margin analysis by crop/livestock
 - Fixed cost allocation
-- Labor cost tracking
+- Labour cost tracking
 - Return on investment calculations
 
 **Capital Investment Planning**
@@ -701,7 +701,7 @@ The Surrey Farming Cluster offers:
 Accurate record-keeping is essential:
 - Financial records and analysis
 - Production data collection
-- Time and labor tracking
+- Time and labour tracking
 - Environmental monitoring
 
 **Regular Updates**
@@ -719,7 +719,7 @@ Build adaptability into plans:
 - Opportunity evaluation processes
 
 Successful farm businesses combine traditional agricultural knowledge with modern business practices, creating resilient enterprises that can thrive in challenging and changing conditions.`,
-    author: 'Robert Davies',
+    author: 'Tim Hopkin',
     publishDate: '2023-12-20',
     category: 'Business Planning',
     tags: ['business planning', 'financial management', 'diversification', 'succession planning'],

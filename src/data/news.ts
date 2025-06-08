@@ -21,7 +21,7 @@ export interface Event {
   registrationLink?: string;
   cost?: string;
   capacity?: number;
-  organizer: string;
+  organiser: string;
 }
 
 export const newsArticles: NewsArticle[] = [
@@ -46,7 +46,7 @@ The grant will fund several key initiatives:
 "This grant represents a significant step forward for agriculture in Surrey," said cluster facilitator Sarah Johnson. "It will enable us to demonstrate how technology and collaboration can drive both productivity and environmental benefits."
 
 The project will begin implementation in early 2024 and is expected to benefit all 45 member farms within the cluster.`,
-    author: 'Sarah Johnson',
+    author: 'Molly Biddell',
     publishDate: '2024-01-15',
     category: 'Funding',
     image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=300&fit=crop&auto=format',
@@ -75,7 +75,7 @@ The workshops will be led by expert practitioners and researchers from the Unive
 Each session includes both theoretical learning and practical demonstrations, with opportunities for participants to visit working farms implementing these techniques.
 
 Registration is free for cluster members, with limited spaces available for non-members. All participants will receive comprehensive resource packs and ongoing support.`,
-    author: 'Dr. Michael Green',
+    author: 'Ben Habgood',
     publishDate: '2024-01-10',
     category: 'Education',
     image: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=600&h=300&fit=crop&auto=format',
@@ -104,7 +104,7 @@ Located in Guildford, Greenfield Organic Farm has been a cluster member since ou
 The installation has also opened new opportunities for the farm, including educational visits and consultancy work helping other farms implement similar systems.
 
 Greenfield Organic Farm is now planning phase two of their renewable energy program, which will include a small wind turbine and expanded battery storage.`,
-    author: 'Emma Thompson',
+    author: 'Jenna Emmerton',
     publishDate: '2024-01-05',
     category: 'Success Story',
     image: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&h=300&fit=crop&auto=format',
@@ -139,7 +139,7 @@ The meeting will be held at the Surrey Agricultural Centre from 9:00 AM to 4:00 
 Registration is required for catering purposes. The event is free for all cluster members and £25 for non-members (including lunch).
 
 This is an excellent opportunity to network with fellow farmers, learn about new opportunities, and contribute to shaping the cluster's future direction.`,
-    author: 'Surrey Farming Cluster Admin',
+    author: 'Angus Stovold',
     publishDate: '2024-01-01',
     category: 'Events',
     image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&h=300&fit=crop&auto=format',
@@ -159,7 +159,7 @@ export const upcomingEvents: Event[] = [
     registrationLink: '/events/register/1',
     cost: 'Free for members, £50 for non-members',
     capacity: 25,
-    organizer: 'Surrey Farming Cluster'
+    organiser: 'Surrey Farming Cluster'
   },
   {
     id: '2',
@@ -172,7 +172,7 @@ export const upcomingEvents: Event[] = [
     registrationLink: '/events/register/2',
     cost: 'Free for members',
     capacity: 30,
-    organizer: 'Surrey Farming Cluster'
+    organiser: 'Surrey Farming Cluster'
   },
   {
     id: '3',

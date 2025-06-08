@@ -15,7 +15,7 @@ const Logo: React.FC<LogoProps> = ({ className = "h-12", showText = true }) => {
         
         {/* Main wheat stalks in a cluster formation */}
         <g transform="translate(25, 20)">
-          {/* Center wheat stalk */}
+          {/* Centre wheat stalk */}
           <path d="M15 5 L15 35" stroke="#6B8E23" strokeWidth="2" fill="none"/>
           <ellipse cx="15" cy="8" rx="3" ry="8" fill="#DAA520"/>
           
@@ -55,7 +55,7 @@ const Logo: React.FC<LogoProps> = ({ className = "h-12", showText = true }) => {
       
       {/* Main wheat stalks in a cluster formation */}
       <g transform="translate(25, 20)">
-        {/* Center wheat stalk */}
+        {/* Centre wheat stalk */}
         <path d="M15 5 L15 35" stroke="#6B8E23" strokeWidth="2" fill="none"/>
         <ellipse cx="15" cy="8" rx="3" ry="8" fill="#DAA520"/>
         

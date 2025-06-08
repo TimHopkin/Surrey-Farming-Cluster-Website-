@@ -106,7 +106,7 @@ const About: React.FC = () => {
                 </div>
                 <h3 className="text-xl font-semibold mb-3">Data & Analytics</h3>
                 <p className="text-gray-600">
-                  Collecting and analyzing farm data to improve decision-making and demonstrate impact.
+                  Collecting and analysing farm data to improve decision-making and demonstrate impact.
                 </p>
               </div>
             </div>

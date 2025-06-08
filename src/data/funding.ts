@@ -131,7 +131,7 @@ export const successStories: SuccessStory[] = [
       '15% increase in milk yield per hectare',
       '30% improvement in soil organic matter',
       'Significant increase in bird species count',
-      'Reduced reliance on artificial fertilizers'
+      'Reduced reliance on artificial fertilisers'
     ],
     image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=300&h=200&fit=crop&auto=format'
   },
@@ -144,7 +144,7 @@ export const successStories: SuccessStory[] = [
     fundingSource: 'Innovation in Agriculture Fund',
     year: '2022',
     impact: [
-      '20% reduction in fertilizer use',
+      '20% reduction in fertiliser use',
       '12% increase in crop yields',
       'Improved data-driven decision making',
       '£8,000 annual cost savings'

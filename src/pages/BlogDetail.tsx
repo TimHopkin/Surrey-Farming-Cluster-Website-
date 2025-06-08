@@ -173,7 +173,7 @@ const BlogDetail: React.FC = () => {
             <div className="mt-8 p-6 bg-gray-50 rounded-lg">
               <h3 className="text-lg font-semibold text-gray-900 mb-2">About the Author</h3>
               <p className="text-gray-700">
-                <strong>{post.author}</strong> is a specialist in {post.category.toLowerCase()} and contributes regularly to the Surrey Farming Cluster knowledge hub.
+                <strong>{post.author}</strong> is a team member of Surrey Farming Cluster and contributes expertise in {post.category.toLowerCase()} to our knowledge hub.
               </p>
             </div>
 
