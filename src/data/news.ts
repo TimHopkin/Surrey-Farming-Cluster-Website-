@@ -185,7 +185,7 @@ export const upcomingEvents: Event[] = [
     registrationLink: '/events/register/3',
     cost: 'Free',
     capacity: 40,
-    organizer: 'Surrey Farming Cluster & AgTech Partners'
+    organiser: 'Surrey Farming Cluster & AgTech Partners'
   },
   {
     id: '4',
@@ -198,6 +198,6 @@ export const upcomingEvents: Event[] = [
     registrationLink: '/events/register/4',
     cost: 'Free for members, £15 for non-members',
     capacity: 20,
-    organizer: 'Surrey Farming Cluster & Natural England'
+    organiser: 'Surrey Farming Cluster & Natural England'
   }
 ];
