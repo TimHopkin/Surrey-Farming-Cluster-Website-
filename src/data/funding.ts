@@ -117,7 +117,7 @@ export const successStories: SuccessStory[] = [
       '25-tonne CO2 reduction per year',
       'Enhanced farm sustainability profile'
     ],
-    image: '/api/placeholder/300/200'
+    image: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=300&h=200&fit=crop&auto=format'
   },
   {
     id: '2',
@@ -133,7 +133,7 @@ export const successStories: SuccessStory[] = [
       'Significant increase in bird species count',
       'Reduced reliance on artificial fertilizers'
     ],
-    image: '/api/placeholder/300/200'
+    image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=300&h=200&fit=crop&auto=format'
   },
   {
     id: '3',
@@ -149,6 +149,6 @@ export const successStories: SuccessStory[] = [
       'Improved data-driven decision making',
       '£8,000 annual cost savings'
     ],
-    image: '/api/placeholder/300/200'
+    image: 'https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=300&h=200&fit=crop&auto=format'
   }
 ];

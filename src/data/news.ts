@@ -49,7 +49,7 @@ The project will begin implementation in early 2024 and is expected to benefit a
     author: 'Sarah Johnson',
     publishDate: '2024-01-15',
     category: 'Funding',
-    image: '/api/placeholder/600/300',
+    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=300&fit=crop&auto=format',
     featured: true
   },
   {
@@ -78,7 +78,7 @@ Registration is free for cluster members, with limited spaces available for non-
     author: 'Dr. Michael Green',
     publishDate: '2024-01-10',
     category: 'Education',
-    image: '/api/placeholder/600/300',
+    image: 'https://images.unsplash.com/photo-1594736797933-d0b22267b8e6?w=600&h=300&fit=crop&auto=format',
     featured: false
   },
   {
@@ -107,7 +107,7 @@ Greenfield Organic Farm is now planning phase two of their renewable energy prog
     author: 'Emma Thompson',
     publishDate: '2024-01-05',
     category: 'Success Story',
-    image: '/api/placeholder/600/300',
+    image: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&h=300&fit=crop&auto=format',
     featured: true
   },
   {
@@ -142,7 +142,7 @@ This is an excellent opportunity to network with fellow farmers, learn about new
     author: 'Surrey Farming Cluster Admin',
     publishDate: '2024-01-01',
     category: 'Events',
-    image: '/api/placeholder/600/300',
+    image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&h=300&fit=crop&auto=format',
     featured: false
   }
 ];

@@ -30,7 +30,7 @@ export const sampleFarms: Farm[] = [
       lng: -0.5704
     },
     products: ['Organic Vegetables', 'Free-range Eggs', 'Heritage Pork'],
-    image: '/api/placeholder/400/300',
+    image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400&h=300&fit=crop&auto=format',
     contact: {
       email: 'info@greenfieldorganic.co.uk',
       website: 'www.greenfieldorganic.co.uk'
@@ -48,7 +48,7 @@ export const sampleFarms: Farm[] = [
       lng: -0.3347
     },
     products: ['Fresh Milk', 'Artisan Cheese', 'Butter', 'Yogurt'],
-    image: '/api/placeholder/400/300',
+    image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&fit=crop&auto=format',
     contact: {
       email: 'hello@surreydairy.com',
       phone: '01306 123456'
@@ -66,7 +66,7 @@ export const sampleFarms: Farm[] = [
       lng: -0.7981
     },
     products: ['Wheat', 'Barley', 'Rapeseed', 'Field Beans'],
-    image: '/api/placeholder/400/300',
+    image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=400&h=300&fit=crop&auto=format',
     isPublic: true
   },
   {
@@ -80,7 +80,7 @@ export const sampleFarms: Farm[] = [
       lng: -0.2044
     },
     products: ['Seasonal Vegetables', 'Herbs', 'Cut Flowers', 'Salad Leaves'],
-    image: '/api/placeholder/400/300',
+    image: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=300&fit=crop&auto=format',
     contact: {
       email: 'orders@woodlandedge.farm'
     },
