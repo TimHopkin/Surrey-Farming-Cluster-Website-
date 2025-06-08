@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { fundingOpportunities, successStories, FundingOpportunity } from '../data/funding';
+import { fundingOpportunities, successStories } from '../data/funding';
 
 const Funding: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
