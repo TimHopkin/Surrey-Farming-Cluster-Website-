@@ -78,7 +78,7 @@ Registration is free for cluster members, with limited spaces available for non-
     author: 'Dr. Michael Green',
     publishDate: '2024-01-10',
     category: 'Education',
-    image: 'https://images.unsplash.com/photo-1594736797933-d0b22267b8e6?w=600&h=300&fit=crop&auto=format',
+    image: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=600&h=300&fit=crop&auto=format',
     featured: false
   },
   {

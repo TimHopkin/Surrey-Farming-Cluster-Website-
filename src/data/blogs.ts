@@ -131,7 +131,7 @@ The key is starting with technologies that solve real problems on your farm, the
     publishDate: '2024-01-15',
     category: 'Technology',
     tags: ['precision agriculture', 'technology', 'IoT', 'data analytics', 'GPS'],
-    image: 'https://images.unsplash.com/photo-1581092335878-1e5687c5b3e4?w=800&h=400&fit=crop&auto=format',
+    image: 'https://images.unsplash.com/photo-1530587191325-3db32d826c18?w=800&h=400&fit=crop&auto=format',
     readTime: 8,
     featured: true
   },
@@ -523,7 +523,7 @@ Creating effective wildlife corridors requires planning, but the benefits – fi
     publishDate: '2023-12-28',
     category: 'Biodiversity',
     tags: ['biodiversity', 'wildlife corridors', 'habitats', 'pollinators', 'conservation'],
-    image: 'https://images.unsplash.com/photo-1445731814801-33a2c17d045b?w=800&h=400&fit=crop&auto=format',
+    image: 'https://images.unsplash.com/photo-1464207687429-7505649dae38?w=800&h=400&fit=crop&auto=format',
     readTime: 8,
     featured: false
   },
