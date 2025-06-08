@@ -9,6 +9,8 @@ import FarmDetail from './pages/FarmDetail';
 import Map from './pages/Map';
 import Funding from './pages/Funding';
 import News from './pages/News';
+import Blog from './pages/Blog';
+import BlogDetail from './pages/BlogDetail';
 import Join from './pages/Join';
 
 function App() {
@@ -25,6 +27,8 @@ function App() {
             <Route path="/funding" element={<Funding />} />
             <Route path="/map" element={<Map />} />
             <Route path="/news" element={<News />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:id" element={<BlogDetail />} />
             <Route path="/join" element={<Join />} />
           </Routes>
         </main>

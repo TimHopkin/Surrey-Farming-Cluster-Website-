@@ -56,6 +56,12 @@ const Header: React.FC = () => {
                 News
               </Link>
               <Link 
+                to="/blog" 
+                className="text-gray-700 hover:text-cluster-green px-3 py-2 rounded-md text-sm font-medium"
+              >
+                Blog
+              </Link>
+              <Link 
                 to="/join" 
                 className="bg-cluster-green text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700"
               >
