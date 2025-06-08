@@ -7,7 +7,7 @@ const Home: React.FC = () => {
 
   return (
     <div className="min-h-screen">
-      <section className="relative bg-gradient-to-r from-cluster-green to-cluster-blue text-white py-20">
+      <section className="relative text-white py-20 bg-cover bg-center bg-no-repeat" style={{backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1920&h=1080&fit=crop&auto=format')"}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-secondary font-bold mb-6">
