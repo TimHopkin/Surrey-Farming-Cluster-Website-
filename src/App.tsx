@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { AuthProvider } from './contexts/AuthContext';
+import { AuthProvider } from './contexts/OptimizedAuthContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -15,11 +15,11 @@ import Blog from './pages/Blog';
 import BlogDetail from './pages/BlogDetail';
 import Join from './pages/Join';
 import FarmProfile from './pages/FarmProfile';
-import SimpleDashboard from './pages/SimpleDashboard';
+import FastDashboard from './pages/FastDashboard';
 import Test from './pages/Test';
 import SystemTest from './pages/SystemTest';
-import SimpleLogin from './pages/SimpleLogin';
-import ProtectedRoute from './components/ProtectedRoute';
+import FastLogin from './pages/FastLogin';
+import SimpleProtectedRoute from './components/SimpleProtectedRoute';
 import ErrorBoundary from './components/ErrorBoundary';
 
 function App() {
@@ -43,18 +43,18 @@ function App() {
                 <Route path="/blog/:id" element={<BlogDetail />} />
                 <Route path="/join" element={<Join />} />
                 <Route path="/profile" element={
-                  <ProtectedRoute>
+                  <SimpleProtectedRoute>
                     <FarmProfile />
-                  </ProtectedRoute>
+                  </SimpleProtectedRoute>
                 } />
                 <Route path="/dashboard" element={
-                  <ProtectedRoute>
-                    <SimpleDashboard />
-                  </ProtectedRoute>
+                  <SimpleProtectedRoute>
+                    <FastDashboard />
+                  </SimpleProtectedRoute>
                 } />
                 <Route path="/test" element={<Test />} />
                 <Route path="/system-test" element={<SystemTest />} />
-                <Route path="/login" element={<SimpleLogin />} />
+                <Route path="/login" element={<FastLogin />} />
               </Routes>
             </main>
             <Footer />
