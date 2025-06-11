@@ -5,6 +5,7 @@ import Logo from './Logo';
 const Header: React.FC = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <header className="bg-white shadow-md">
@@ -69,8 +70,8 @@ const Header: React.FC = () => {
             </div>
           </div>
           
-          {/* Portal Access Buttons */}
-          <div className="flex items-center space-x-4">
+          {/* Desktop Portal Access Buttons */}
+          <div className="hidden md:flex items-center space-x-4">
             <button
               onClick={() => setShowLoginModal(true)}
               className="text-gray-700 hover:text-cluster-green px-3 py-2 text-sm font-medium"
@@ -84,7 +85,103 @@ const Header: React.FC = () => {
               <i className="fas fa-user-plus mr-2"></i>Member Portal
             </button>
           </div>
+
+          {/* Mobile menu button */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="text-gray-700 hover:text-cluster-green p-2"
+            >
+              <i className={`fas ${mobileMenuOpen ? 'fa-times' : 'fa-bars'} text-xl`}></i>
+            </button>
+          </div>
         </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden border-t border-gray-200">
+            <div className="px-2 pt-2 pb-3 space-y-1 bg-white">
+              <Link 
+                to="/" 
+                className="text-gray-700 hover:text-cluster-green block px-3 py-2 rounded-md text-base font-medium"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Home
+              </Link>
+              <Link 
+                to="/about" 
+                className="text-gray-700 hover:text-cluster-green block px-3 py-2 rounded-md text-base font-medium"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                About
+              </Link>
+              <Link 
+                to="/farms" 
+                className="text-gray-700 hover:text-cluster-green block px-3 py-2 rounded-md text-base font-medium"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Farms
+              </Link>
+              <Link 
+                to="/funding" 
+                className="text-gray-700 hover:text-cluster-green block px-3 py-2 rounded-md text-base font-medium"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Funding
+              </Link>
+              <Link 
+                to="/map" 
+                className="text-gray-700 hover:text-cluster-green block px-3 py-2 rounded-md text-base font-medium"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Map
+              </Link>
+              <Link 
+                to="/news" 
+                className="text-gray-700 hover:text-cluster-green block px-3 py-2 rounded-md text-base font-medium"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                News
+              </Link>
+              <Link 
+                to="/blog" 
+                className="text-gray-700 hover:text-cluster-green block px-3 py-2 rounded-md text-base font-medium"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Blog
+              </Link>
+              <Link 
+                to="/join" 
+                className="bg-cluster-green text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-green-700"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Join Us
+              </Link>
+              
+              {/* Mobile Portal Access */}
+              <div className="pt-4 border-t border-gray-200">
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    setShowLoginModal(true);
+                  }}
+                  className="text-gray-700 hover:text-cluster-green block px-3 py-2 text-base font-medium w-full text-left"
+                >
+                  <i className="fas fa-sign-in-alt mr-2"></i>Login
+                </button>
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    setShowSignupModal(true);
+                  }}
+                  className="bg-cluster-blue text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700 transition-colors w-full text-left mt-2"
+                >
+                  <i className="fas fa-user-plus mr-2"></i>Member Portal
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* Login Modal */}
