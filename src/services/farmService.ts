@@ -105,13 +105,22 @@ export const getUserFarm = async (ownerId: string): Promise<Farm | null> => {
 };
 
 export const getAllFarms = (callback: (farms: Farm[]) => void) => {
-  const unsubscribe = onSnapshot(collection(db, 'farms'), (snapshot) => {
-    const farms: Farm[] = [];
-    snapshot.forEach((doc) => {
-      farms.push({ id: doc.id, ...doc.data() } as Farm);
+  try {
+    const unsubscribe = onSnapshot(collection(db, 'farms'), (snapshot) => {
+      const farms: Farm[] = [];
+      snapshot.forEach((doc) => {
+        farms.push({ id: doc.id, ...doc.data() } as Farm);
+      });
+      callback(farms.filter(farm => farm.isPublic));
+    }, (error) => {
+      console.error('Error fetching farms:', error);
+      callback([]); // Return empty array on error
     });
-    callback(farms.filter(farm => farm.isPublic));
-  });
-  
-  return unsubscribe;
+    
+    return unsubscribe;
+  } catch (error) {
+    console.error('Error setting up farms listener:', error);
+    callback([]); // Return empty array on error
+    return () => {}; // Return empty unsubscribe function
+  }
 };
