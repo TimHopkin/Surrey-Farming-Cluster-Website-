@@ -1,0 +1,183 @@
+```mermaid
+graph TB
+    %% Main Application Layer
+    subgraph "React Application Layer"
+        App[App.tsx<br/>🔍 Test: App.test.tsx<br/>❌ Outdated test]
+        Router[React Router<br/>🔍 Test: None<br/>❌ No test coverage]
+        
+        %% Core Components
+        subgraph "Core Components"
+            Header[Header.tsx<br/>🔍 Test: None<br/>❌ No test coverage<br/>📱 Modal state management]
+            Footer[Footer.tsx<br/>🔍 Test: None<br/>❌ No test coverage]
+            Logo[Logo.tsx<br/>🔍 Test: None<br/>❌ No test coverage]
+            FarmMap[FarmMap.tsx<br/>🔍 Test: None<br/>❌ No test coverage<br/>🗺️ Leaflet integration]
+        end
+        
+        %% Page Components
+        subgraph "Page Components"
+            Home[Home.tsx<br/>🔍 Test: None<br/>❌ No test coverage<br/>🔄 Portal integration]
+            About[About.tsx<br/>🔍 Test: None<br/>❌ No test coverage]
+            Farms[Farms.tsx<br/>🔍 Test: None<br/>❌ No test coverage]
+            FarmDetail[FarmDetail.tsx<br/>🔍 Test: None<br/>❌ No test coverage]
+            Funding[Funding.tsx<br/>🔍 Test: None<br/>❌ No test coverage]
+            Blog[Blog.tsx<br/>🔍 Test: None<br/>❌ No test coverage]
+            BlogDetail[BlogDetail.tsx<br/>🔍 Test: None<br/>❌ No test coverage]
+            News[News.tsx<br/>🔍 Test: None<br/>❌ No test coverage]
+            Map[Map.tsx<br/>🔍 Test: None<br/>❌ No test coverage]
+            Join[Join.tsx<br/>🔍 Test: None<br/>❌ No test coverage]
+        end
+    end
+    
+    %% Data Layer
+    subgraph "Data Layer"
+        FarmsData[farms.ts<br/>🔍 Test: None<br/>❌ No data validation tests]
+        FundingData[funding.ts<br/>🔍 Test: None<br/>❌ No data validation tests]
+        BlogsData[blogs.ts<br/>🔍 Test: None<br/>❌ No data validation tests]
+        NewsData[news.ts<br/>🔍 Test: None<br/>❌ No data validation tests]
+    end
+    
+    %% Portal Layer (Static HTML)
+    subgraph "Portal Layer (Prototypes)"
+        FarmerPortal[Farmer Portal<br/>🔍 Test: None<br/>❌ No E2E tests<br/>📱 HTML/CSS/JS prototype]
+        AdminPortal[Admin Portal<br/>🔍 Test: None<br/>❌ No E2E tests<br/>📱 HTML/CSS/JS prototype]
+        BrandSystem[Brand System<br/>🔍 Test: None<br/>❌ No style tests<br/>🎨 CSS component library]
+    end
+    
+    %% External Dependencies
+    subgraph "External Dependencies"
+        ReactLeaflet[React Leaflet<br/>🔍 Test: None<br/>❌ Mock needed for map tests]
+        ReactRouter[React Router DOM<br/>🔍 Test: None<br/>❌ Navigation tests needed]
+        TailwindCSS[Tailwind CSS<br/>🔍 Test: None<br/>⚠️ Style regression tests needed]
+        FontAwesome[Font Awesome<br/>🔍 Test: None<br/>⚠️ Icon loading tests needed]
+    end
+    
+    %% Brand System Integration
+    subgraph "Brand System"
+        BrandCSS[brand-system.css<br/>🔍 Test: None<br/>❌ No CSS tests]
+        ComponentsCSS[components.css<br/>🔍 Test: None<br/>❌ No CSS tests]
+        BrandAssets[Brand Assets<br/>🔍 Test: None<br/>❌ No asset tests]
+    end
+    
+    %% Data Flow Connections
+    App --> Router
+    Router --> Header
+    Router --> Footer
+    Router --> Home
+    Router --> About
+    Router --> Farms
+    Router --> FarmDetail
+    Router --> Funding
+    Router --> Blog
+    Router --> BlogDetail
+    Router --> News
+    Router --> Map
+    Router --> Join
+    
+    %% Component Dependencies
+    Header --> Logo
+    Home --> FarmsData
+    Farms --> FarmsData
+    FarmDetail --> FarmsData
+    Funding --> FundingData
+    Blog --> BlogsData
+    BlogDetail --> BlogsData
+    News --> NewsData
+    Map --> FarmMap
+    FarmMap --> ReactLeaflet
+    
+    %% Portal Integration
+    Header -.-> FarmerPortal
+    Header -.-> AdminPortal
+    Footer -.-> BrandSystem
+    Home -.-> FarmerPortal
+    Home -.-> AdminPortal
+    
+    %% External Dependencies
+    App --> ReactRouter
+    Map --> ReactLeaflet
+    App --> TailwindCSS
+    BrandSystem --> FontAwesome
+    
+    %% Brand System Dependencies
+    FarmerPortal --> BrandCSS
+    AdminPortal --> BrandCSS
+    BrandSystem --> ComponentsCSS
+    BrandSystem --> BrandAssets
+    
+    %% Critical Testing Scenarios
+    subgraph "Critical Testing Scenarios"
+        E2E1[🧪 Portal Navigation Flow<br/>❌ Missing: Header modals → Portal pages]
+        E2E2[🧪 Farm Directory Flow<br/>❌ Missing: Farms list → Farm detail]
+        E2E3[🧪 Content Navigation<br/>❌ Missing: Blog/News → Detail pages]
+        E2E4[🧪 Map Interaction<br/>❌ Missing: Map component functionality]
+        E2E5[🧪 Responsive Design<br/>❌ Missing: Mobile/tablet layout tests]
+        E2E6[🧪 Brand System Integration<br/>❌ Missing: CSS loading and styling]
+    end
+    
+    %% Testing Infrastructure
+    subgraph "Testing Infrastructure"
+        Jest[Jest Test Runner<br/>✅ Configured<br/>⚠️ Limited coverage]
+        TestingLibrary[React Testing Library<br/>✅ Configured<br/>⚠️ Limited usage]
+        UserEvent[User Event<br/>✅ Configured<br/>❌ Not used]
+        JestDOM[Jest DOM<br/>✅ Configured<br/>⚠️ Basic matchers only]
+    end
+    
+    %% Missing Test Files (Recommended)
+    subgraph "Recommended Test Coverage"
+        HeaderTest[Header.test.tsx<br/>❌ Missing<br/>🎯 Modal state, portal links]
+        FooterTest[Footer.test.tsx<br/>❌ Missing<br/>🎯 Navigation links, brand link]
+        HomeTest[Home.test.tsx<br/>❌ Missing<br/>🎯 Portal showcase, data display]
+        FarmsTest[Farms.test.tsx<br/>❌ Missing<br/>🎯 Farm listing, filtering]
+        FarmMapTest[FarmMap.test.tsx<br/>❌ Missing<br/>🎯 Map rendering, markers]
+        DataTest[data/*.test.ts<br/>❌ Missing<br/>🎯 Data structure validation]
+        E2ETest[e2e/*.spec.ts<br/>❌ Missing<br/>🎯 Full user journeys]
+    end
+    
+    %% Mock Requirements
+    subgraph "Mock Requirements"
+        LeafletMock[Leaflet Mock<br/>❌ Missing<br/>🎯 Map component testing]
+        RouterMock[Router Mock<br/>❌ Missing<br/>🎯 Navigation testing]
+        WindowMock[Window Mock<br/>❌ Missing<br/>🎯 Portal window.open testing]
+        LocalStorageMock[LocalStorage Mock<br/>❌ Missing<br/>🎯 Portal auth testing]
+    end
+    
+    %% Integration Points
+    subgraph "Integration Test Points"
+        NavIntegration[Navigation Integration<br/>❌ Missing<br/>🎯 React Router + Links]
+        PortalIntegration[Portal Integration<br/>❌ Missing<br/>🎯 React → Static HTML]
+        DataIntegration[Data Integration<br/>❌ Missing<br/>🎯 Components + Data sources]
+        StyleIntegration[Style Integration<br/>❌ Missing<br/>🎯 Tailwind + Brand CSS]
+    end
+    
+    %% Testing Dependencies
+    Jest --> App
+    TestingLibrary --> HeaderTest
+    TestingLibrary --> FooterTest
+    TestingLibrary --> HomeTest
+    TestingLibrary --> FarmsTest
+    TestingLibrary --> FarmMapTest
+    UserEvent --> HeaderTest
+    JestDOM --> HomeTest
+    
+    %% Mock Dependencies
+    LeafletMock --> FarmMapTest
+    RouterMock --> NavIntegration
+    WindowMock --> HeaderTest
+    LocalStorageMock --> E2ETest
+    
+    %% Current Status Legend
+    classDef tested fill:#d4edda,stroke:#c3e6cb,color:#155724
+    classDef partial fill:#fff3cd,stroke:#ffeaa7,color:#856404
+    classDef untested fill:#f8d7da,stroke:#f5c6cb,color:#721c24
+    classDef missing fill:#e2e3e5,stroke:#d6d8db,color:#383d41
+    classDef external fill:#cce5ff,stroke:#99d6ff,color:#004085
+    
+    %% Apply styles
+    class App,Jest,TestingLibrary,UserEvent,JestDOM tested
+    class Router,TailwindCSS,FontAwesome partial
+    class Header,Footer,Logo,FarmMap,Home,About,Farms,FarmDetail,Funding,Blog,BlogDetail,News,Map,Join untested
+    class FarmsData,FundingData,BlogsData,NewsData,FarmerPortal,AdminPortal,BrandSystem untested
+    class HeaderTest,FooterTest,HomeTest,FarmsTest,FarmMapTest,DataTest,E2ETest missing
+    class LeafletMock,RouterMock,WindowMock,LocalStorageMock missing
+    class ReactLeaflet,ReactRouter external
+```

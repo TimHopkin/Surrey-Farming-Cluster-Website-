@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surrey Farming Cluster - Brand System Demo</title>
+    
+    <!-- Import Brand System -->
+    <link rel="stylesheet" href="brand-system.css">
+    <link rel="stylesheet" href="components.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Component Demo -->
+    <header class="site-header">
+        <div class="container">
+            <a href="../index.html" class="site-logo">
+                <i class="fas fa-seedling"></i>
+                <span class="logo-text">Surrey Farming Cluster</span>
+            </a>
+            <nav class="main-nav">
+                <a href="../index.html">← Back to Main Site</a>
+                <a href="BRAND_GUIDELINES.md" target="_blank">Brand Guidelines</a>
+                <a href="IMPLEMENTATION_GUIDE.md" target="_blank">Implementation Guide</a>
+            </nav>
+            <div class="header-actions">
+                <a href="../farmer/login.html" class="btn btn-secondary btn-sm">Farmer Portal</a>
+                <a href="../admin/login.html" class="btn btn-primary btn-sm">Admin Portal</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section Demo -->
+    <section class="hero-section" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1920&h=1080&fit=crop&auto=format')">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Brand System Demo</h1>
+                <p class="hero-subtitle">See all components and styling in action</p>
+                <div class="hero-actions">
+                    <button class="btn btn-accent btn-lg">Primary Action</button>
+                    <button class="btn btn-secondary btn-lg">Secondary Action</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Showcase Section -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-secondary font-bold text-cluster-green mb-4">Brand System Components</h2>
+                <p class="text-lg text-gray-600">All components using the central brand system</p>
+            </div>
+
+            <!-- Color Palette Demo -->
+            <div class="card mb-8">
+                <h3 class="text-xl font-semibold mb-6">Brand Colours</h3>
+                <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                    <div class="text-center">
+                        <div class="w-full h-20 bg-cluster-green rounded-lg mb-2"></div>
+                        <p class="font-medium">Cluster Green</p>
+                        <p class="text-sm text-gray-500">#2E7D32</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-full h-20 bg-cluster-brown rounded-lg mb-2"></div>
+                        <p class="font-medium">Cluster Brown</p>
+                        <p class="text-sm text-gray-500">#5D4037</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-full h-20 bg-cluster-gold rounded-lg mb-2"></div>
+                        <p class="font-medium">Cluster Gold</p>
+                        <p class="text-sm text-gray-500">#FBC02D</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-full h-20 bg-cluster-blue rounded-lg mb-2"></div>
+                        <p class="font-medium">Cluster Blue</p>
+                        <p class="text-sm text-gray-500">#0288D1</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button Components Demo -->
+            <div class="card mb-8">
+                <h3 class="text-xl font-semibold mb-6">Button Components</h3>
+                <div class="flex flex-wrap gap-4 mb-6">
+                    <button class="btn btn-primary">Primary Button</button>
+                    <button class="btn btn-secondary">Secondary Button</button>
+                    <button class="btn btn-accent">Accent Button</button>
+                    <button class="btn btn-info">Info Button</button>
+                    <button class="btn btn-admin">Admin Button</button>
+                </div>
+                <div class="flex flex-wrap gap-4">
+                    <button class="btn btn-primary btn-sm">Small</button>
+                    <button class="btn btn-primary">Regular</button>
+                    <button class="btn btn-primary btn-lg">Large</button>
+                </div>
+            </div>
+
+            <!-- Typography Demo -->
+            <div class="card mb-8">
+                <h3 class="text-xl font-semibold mb-6">Typography Scale</h3>
+                <div class="space-y-4">
+                    <div>
+                        <h1 class="text-6xl font-secondary font-bold text-cluster-green">Heading 1 (6xl)</h1>
+                        <p class="text-sm text-gray-500">font-secondary, font-bold, text-6xl</p>
+                    </div>
+                    <div>
+                        <h2 class="text-4xl font-secondary font-bold text-cluster-brown">Heading 2 (4xl)</h2>
+                        <p class="text-sm text-gray-500">font-secondary, font-bold, text-4xl</p>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-primary font-semibold">Heading 3 (2xl)</h3>
+                        <p class="text-sm text-gray-500">font-primary, font-semibold, text-2xl</p>
+                    </div>
+                    <div>
+                        <p class="text-base font-primary">Body text using Roboto font family. This demonstrates the primary font for readable content across the platform.</p>
+                        <p class="text-sm text-gray-500">font-primary, text-base</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Portal-Specific Styling Demo -->
+            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                <!-- Farmer Portal Demo -->
+                <div class="card portal-farmer">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold">Farmer Portal</h3>
+                        <span class="portal-badge">FARMER</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">Portal-specific styling for farmers with green primary color and blue accent.</p>
+                    <div class="space-y-3">
+                        <button class="btn btn-primary w-full">
+                            <i class="fas fa-tractor mr-2"></i>
+                            Farmer Action
+                        </button>
+                        <button class="btn btn-info w-full">
+                            <i class="fas fa-map-marked-alt mr-2"></i>
+                            Connect Land App
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Admin Portal Demo -->
+                <div class="card portal-admin">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold">Admin Portal</h3>
+                        <span class="portal-badge">ADMIN</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">Portal-specific styling for administrators with brown primary color and gold accent.</p>
+                    <div class="space-y-3">
+                        <button class="btn btn-admin w-full">
+                            <i class="fas fa-shield-alt mr-2"></i>
+                            Admin Action
+                        </button>
+                        <button class="btn btn-accent w-full">
+                            <i class="fas fa-chart-line mr-2"></i>
+                            View Analytics
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Status Components Demo -->
+            <div class="card mb-8">
+                <h3 class="text-xl font-semibold mb-6">Status Components</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-4">
+                        <span class="status status-success">
+                            <i class="fas fa-check mr-2"></i>
+                            Application Approved
+                        </span>
+                        <span class="status status-warning">
+                            <i class="fas fa-clock mr-2"></i>
+                            Pending Review
+                        </span>
+                        <span class="status status-info">
+                            <i class="fas fa-info mr-2"></i>
+                            More Info Needed
+                        </span>
+                        <span class="status status-error">
+                            <i class="fas fa-times mr-2"></i>
+                            Application Rejected
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Components Demo -->
+            <div class="card mb-8">
+                <h3 class="text-xl font-semibold mb-6">Form Components</h3>
+                <form class="space-y-6">
+                    <div class="form-group">
+                        <label class="form-label">Farm Name</label>
+                        <input type="text" class="form-input" placeholder="Enter your farm name">
+                        <p class="form-help">This will be displayed publicly on your profile</p>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Farm Type</label>
+                        <select class="form-select">
+                            <option>Select farm type</option>
+                            <option>Arable</option>
+                            <option>Livestock</option>
+                            <option>Mixed</option>
+                            <option>Organic</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Description</label>
+                        <textarea class="form-textarea" rows="4" placeholder="Describe your farming practices..."></textarea>
+                    </div>
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="terms">
+                        <label for="terms">I agree to the terms and conditions</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Application</button>
+                </form>
+            </div>
+
+            <!-- Stats Grid Demo -->
+            <div class="stats-grid mb-8">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon green">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Total Members</h3>
+                            <p>47</p>
+                        </div>
+                    </div>
+                    <div class="stat-trend positive">+12% from last month</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon blue">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Applications</h3>
+                            <p>8</p>
+                        </div>
+                    </div>
+                    <div class="stat-trend neutral">3 urgent</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon gold">
+                            <i class="fas fa-pound-sign"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Grants Secured</h3>
+                            <p>£127k</p>
+                        </div>
+                    </div>
+                    <div class="stat-trend positive">+£23k this month</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon green">
+                            <i class="fas fa-calendar"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Events</h3>
+                            <p>5</p>
+                        </div>
+                    </div>
+                    <div class="stat-trend neutral">Next: Workshop</div>
+                </div>
+            </div>
+
+            <!-- Feature Cards Demo -->
+            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                <div class="feature-card">
+                    <img src="https://images.unsplash.com/photo-1500076656116-558758c991c1?w=400&h=200&fit=crop&auto=format" alt="Farm">
+                    <div class="feature-card-content">
+                        <h3 class="feature-card-title">Green Acres Farm</h3>
+                        <p class="feature-card-description">Sustainable mixed farming with a focus on biodiversity and soil health.</p>
+                        <div class="feature-card-footer">
+                            <span class="feature-tag">Organic</span>
+                            <a href="#" class="feature-link">Learn More →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=200&fit=crop&auto=format" alt="Farm">
+                    <div class="feature-card-content">
+                        <h3 class="feature-card-title">Meadowbrook Organics</h3>
+                        <p class="feature-card-description">Award-winning organic vegetables and heritage livestock farming.</p>
+                        <div class="feature-card-footer">
+                            <span class="feature-tag">Livestock</span>
+                            <a href="#" class="feature-link">Learn More →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notification Demo -->
+            <div class="space-y-4">
+                <div class="notification success">
+                    <div class="notification-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-title">Application Approved!</div>
+                        <div class="notification-message">Your farm has been successfully added to the Surrey Farming Cluster.</div>
+                    </div>
+                </div>
+
+                <div class="notification info">
+                    <div class="notification-icon">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-title">New Grant Available</div>
+                        <div class="notification-message">FiPL Biodiversity Enhancement funding is now open for applications.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Demo -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-brand">
+                        <i class="fas fa-seedling"></i>
+                        <span class="brand-text">Surrey Farming Cluster</span>
+                    </div>
+                    <p class="footer-description">
+                        Growing together for a sustainable Surrey through collaboration, innovation, and shared knowledge.
+                    </p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Farms</a></li>
+                        <li><a href="#">News & Blog</a></li>
+                        <li><a href="#">Events</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Funding Opportunities</a></li>
+                        <li><a href="#">Best Practices</a></li>
+                        <li><a href="#">Research</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Connect</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Join the Cluster</a></li>
+                        <li><a href="#">Newsletter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Surrey Farming Cluster. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Demo Modal (Hidden by default) -->
+    <div id="demoModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Demo Modal</h3>
+                <button class="modal-close" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>This is a modal component using the brand system styling.</p>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="closeModal()">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('demoModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('demoModal').style.display = 'none';
+        }
+
+        // Add click handler to some buttons to show modal
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.btn-primary');
+            buttons[0].onclick = openModal; // First button opens modal
+        });
+    </script>
+</body>
+</html>

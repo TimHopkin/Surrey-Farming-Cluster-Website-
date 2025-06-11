@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Surrey Farming Cluster</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'cluster-green': '#2E7D32',
+                        'cluster-brown': '#5D4037',
+                        'cluster-gold': '#FBC02D',
+                        'cluster-blue': '#0288D1',
+                    },
+                    fontFamily: {
+                        'primary': ['Roboto', 'sans-serif'],
+                        'secondary': ['Lora', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 font-primary">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-seedling text-cluster-green text-2xl mr-3"></i>
+                        <span class="font-secondary font-bold text-xl text-gray-900">Surrey Farming Cluster</span>
+                        <span class="ml-3 px-2 py-1 text-xs bg-cluster-gold text-cluster-brown rounded-full">ADMIN</span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100">
+                        <i class="fas fa-bell text-lg"></i>
+                        <span class="absolute -mt-1 -ml-1 px-1 py-0.5 text-xs bg-red-500 text-white rounded-full">3</span>
+                    </button>
+                    <div class="flex items-center space-x-3">
+                        <img class="h-8 w-8 rounded-full bg-cluster-green flex items-center justify-center" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ctext x='16' y='20' text-anchor='middle' fill='white' font-family='Arial' font-size='12' font-weight='bold'%3ESJ%3C/text%3E%3C/svg%3E" alt="Admin">
+                        <div class="text-sm">
+                            <p class="font-medium text-gray-700" id="adminName">Sarah Johnson</p>
+                            <p class="text-gray-500">Platform Admin</p>
+                        </div>
+                        <button onclick="logout()" class="text-gray-400 hover:text-gray-500">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex h-screen bg-gray-100">
+        <!-- Sidebar -->
+        <div class="w-64 bg-white shadow-md">
+            <div class="p-4">
+                <nav class="space-y-2">
+                    <a href="#" onclick="showSection('overview')" class="nav-item active flex items-center px-4 py-3 text-sm font-medium rounded-md">
+                        <i class="fas fa-tachometer-alt mr-3"></i>
+                        Overview
+                    </a>
+                    <a href="#" onclick="showSection('analytics')" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-md">
+                        <i class="fas fa-chart-line mr-3"></i>
+                        Analytics & KPIs
+                    </a>
+                    <a href="#" onclick="showSection('content')" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-md">
+                        <i class="fas fa-edit mr-3"></i>
+                        Content Management
+                    </a>
+                    <a href="#" onclick="showSection('crm')" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-md">
+                        <i class="fas fa-users mr-3"></i>
+                        Farmer CRM
+                    </a>
+                    <a href="#" onclick="showSection('applications')" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-md">
+                        <i class="fas fa-file-alt mr-3"></i>
+                        Applications
+                    </a>
+                    <a href="#" onclick="showSection('messaging')" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-md">
+                        <i class="fas fa-envelope mr-3"></i>
+                        Messaging
+                    </a>
+                    <a href="#" onclick="showSection('settings')" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-md">
+                        <i class="fas fa-cog mr-3"></i>
+                        Settings
+                    </a>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 overflow-auto">
+            <div class="p-6">
+                <!-- Overview Section -->
+                <div id="overview-section" class="section active">
+                    <div class="mb-6">
+                        <h1 class="text-2xl font-bold text-gray-900 font-secondary">Dashboard Overview</h1>
+                        <p class="text-gray-600">Welcome back, Sarah. Here's what's happening with your farming cluster.</p>
+                    </div>
+
+                    <!-- Key Metrics -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-cluster-green bg-opacity-10">
+                                    <i class="fas fa-users text-cluster-green text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-600">Total Members</p>
+                                    <p class="text-2xl font-bold text-gray-900">47</p>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <span class="text-green-500 text-sm font-medium">+12% from last month</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-cluster-blue bg-opacity-10">
+                                    <i class="fas fa-file-alt text-cluster-blue text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-600">Pending Applications</p>
+                                    <p class="text-2xl font-bold text-gray-900">8</p>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <span class="text-orange-500 text-sm font-medium">3 urgent</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-cluster-gold bg-opacity-10">
+                                    <i class="fas fa-pound-sign text-cluster-brown text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-600">Grants Secured</p>
+                                    <p class="text-2xl font-bold text-gray-900">£127k</p>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <span class="text-green-500 text-sm font-medium">+£23k this month</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-green-100">
+                                    <i class="fas fa-calendar text-green-600 text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-600">Upcoming Events</p>
+                                    <p class="text-2xl font-bold text-gray-900">5</p>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <span class="text-blue-500 text-sm font-medium">Next: Sustainability Workshop</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-4">Recent Applications</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between p-3 bg-gray-50 rounded">
+                                    <div>
+                                        <p class="font-medium text-gray-900">Greenfield Farm Ltd</p>
+                                        <p class="text-sm text-gray-600">FiPL Funding Application</p>
+                                    </div>
+                                    <span class="px-2 py-1 text-xs bg-orange-100 text-orange-800 rounded-full">Pending</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-gray-50 rounded">
+                                    <div>
+                                        <p class="font-medium text-gray-900">Meadowbrook Organics</p>
+                                        <p class="text-sm text-gray-600">Membership Application</p>
+                                    </div>
+                                    <span class="px-2 py-1 text-xs bg-green-100 text-green-800 rounded-full">Approved</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-gray-50 rounded">
+                                    <div>
+                                        <p class="font-medium text-gray-900">Heritage Crops Co.</p>
+                                        <p class="text-sm text-gray-600">FiPL Funding Application</p>
+                                    </div>
+                                    <span class="px-2 py-1 text-xs bg-orange-100 text-orange-800 rounded-full">Under Review</span>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <button onclick="showSection('applications')" class="text-cluster-green hover:text-green-700 text-sm font-medium">
+                                    View all applications →
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
+                            <div class="grid grid-cols-1 gap-3">
+                                <button onclick="showSection('content')" class="flex items-center p-3 bg-cluster-green bg-opacity-10 hover:bg-opacity-20 rounded-lg transition-colors">
+                                    <i class="fas fa-plus-circle text-cluster-green mr-3"></i>
+                                    <span class="text-cluster-green font-medium">Create New Blog Post</span>
+                                </button>
+                                <button onclick="showSection('applications')" class="flex items-center p-3 bg-cluster-blue bg-opacity-10 hover:bg-opacity-20 rounded-lg transition-colors">
+                                    <i class="fas fa-eye text-cluster-blue mr-3"></i>
+                                    <span class="text-cluster-blue font-medium">Review Applications</span>
+                                </button>
+                                <button onclick="showSection('messaging')" class="flex items-center p-3 bg-cluster-gold bg-opacity-10 hover:bg-opacity-20 rounded-lg transition-colors">
+                                    <i class="fas fa-envelope text-cluster-brown mr-3"></i>
+                                    <span class="text-cluster-brown font-medium">Send Newsletter</span>
+                                </button>
+                                <button onclick="showSection('crm')" class="flex items-center p-3 bg-purple-100 hover:bg-purple-200 rounded-lg transition-colors">
+                                    <i class="fas fa-user-plus text-purple-600 mr-3"></i>
+                                    <span class="text-purple-600 font-medium">Add New Member</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analytics Section (Hidden by default) -->
+                <div id="analytics-section" class="section hidden">
+                    <div class="mb-6">
+                        <h1 class="text-2xl font-bold text-gray-900 font-secondary">Analytics & KPIs</h1>
+                        <p class="text-gray-600">Track engagement, growth, and platform performance metrics.</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-4">Member Growth</h3>
+                            <canvas id="memberGrowthChart" width="400" height="200"></canvas>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-4">Engagement Metrics</h3>
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-600">Monthly Active Users</span>
+                                    <span class="font-semibold text-gray-900">89%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-cluster-green h-2 rounded-full" style="width: 89%"></div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-600">Blog Engagement</span>
+                                    <span class="font-semibold text-gray-900">73%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-cluster-blue h-2 rounded-full" style="width: 73%"></div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-600">Event Attendance</span>
+                                    <span class="font-semibold text-gray-900">92%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-cluster-gold h-2 rounded-full" style="width: 92%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Management Section (Hidden by default) -->
+                <div id="content-section" class="section hidden">
+                    <div class="mb-6">
+                        <h1 class="text-2xl font-bold text-gray-900 font-secondary">Content Management</h1>
+                        <p class="text-gray-600">Manage blog posts, news articles, and events.</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow">
+                        <div class="border-b border-gray-200">
+                            <nav class="-mb-px flex space-x-8 px-6">
+                                <button onclick="showContentTab('blog')" class="content-tab active border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                                    <i class="fas fa-blog mr-2"></i>Blog Posts
+                                </button>
+                                <button onclick="showContentTab('news')" class="content-tab border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                                    <i class="fas fa-newspaper mr-2"></i>News
+                                </button>
+                                <button onclick="showContentTab('events')" class="content-tab border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                                    <i class="fas fa-calendar mr-2"></i>Events
+                                </button>
+                            </nav>
+                        </div>
+                        
+                        <div class="p-6">
+                            <div id="blog-content" class="content-tab-panel active">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h3 class="text-lg font-semibold text-gray-900">Blog Posts</h3>
+                                    <button onclick="openModal('newBlogModal')" class="bg-cluster-green text-white px-4 py-2 rounded-md hover:bg-green-700">
+                                        <i class="fas fa-plus mr-2"></i>New Post
+                                    </button>
+                                </div>
+                                <div class="space-y-4">
+                                    <div class="border border-gray-200 rounded-lg p-4">
+                                        <div class="flex justify-between items-start">
+                                            <div>
+                                                <h4 class="font-semibold text-gray-900">Sustainable Farming Practices in Surrey</h4>
+                                                <p class="text-gray-600 text-sm mt-1">Published 3 days ago • 247 views</p>
+                                            </div>
+                                            <div class="flex space-x-2">
+                                                <button class="text-cluster-blue hover:text-blue-700">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="text-red-500 hover:text-red-700">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="border border-gray-200 rounded-lg p-4">
+                                        <div class="flex justify-between items-start">
+                                            <div>
+                                                <h4 class="font-semibold text-gray-900">Winter Crop Planning Workshop Results</h4>
+                                                <p class="text-gray-600 text-sm mt-1">Published 1 week ago • 156 views</p>
+                                            </div>
+                                            <div class="flex space-x-2">
+                                                <button class="text-cluster-blue hover:text-blue-700">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="text-red-500 hover:text-red-700">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div id="news-content" class="content-tab-panel hidden">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h3 class="text-lg font-semibold text-gray-900">News Articles</h3>
+                                    <button onclick="openModal('newNewsModal')" class="bg-cluster-green text-white px-4 py-2 rounded-md hover:bg-green-700">
+                                        <i class="fas fa-plus mr-2"></i>New Article
+                                    </button>
+                                </div>
+                                <div class="space-y-4">
+                                    <div class="border border-gray-200 rounded-lg p-4">
+                                        <div class="flex justify-between items-start">
+                                            <div>
+                                                <h4 class="font-semibold text-gray-900">New Government Grants Available for Sustainable Agriculture</h4>
+                                                <p class="text-gray-600 text-sm mt-1">Published 2 days ago</p>
+                                            </div>
+                                            <div class="flex space-x-2">
+                                                <button class="text-cluster-blue hover:text-blue-700">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="text-red-500 hover:text-red-700">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div id="events-content" class="content-tab-panel hidden">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h3 class="text-lg font-semibold text-gray-900">Events</h3>
+                                    <button onclick="openModal('newEventModal')" class="bg-cluster-green text-white px-4 py-2 rounded-md hover:bg-green-700">
+                                        <i class="fas fa-plus mr-2"></i>New Event
+                                    </button>
+                                </div>
+                                <div class="space-y-4">
+                                    <div class="border border-gray-200 rounded-lg p-4">
+                                        <div class="flex justify-between items-start">
+                                            <div>
+                                                <h4 class="font-semibold text-gray-900">Sustainability Workshop</h4>
+                                                <p class="text-gray-600 text-sm mt-1">March 15, 2025 • 23 registrations</p>
+                                            </div>
+                                            <div class="flex space-x-2">
+                                                <button class="text-cluster-blue hover:text-blue-700">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="text-red-500 hover:text-red-700">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CRM Section (Hidden by default) -->
+                <div id="crm-section" class="section hidden">
+                    <div class="mb-6">
+                        <h1 class="text-2xl font-bold text-gray-900 font-secondary">Farmer CRM</h1>
+                        <p class="text-gray-600">Manage member relationships and communications.</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow">
+                        <div class="p-6 border-b border-gray-200">
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center space-x-4">
+                                    <input type="text" placeholder="Search members..." class="border border-gray-300 rounded-md px-3 py-2 w-64">
+                                    <select class="border border-gray-300 rounded-md px-3 py-2">
+                                        <option>All Status</option>
+                                        <option>Active</option>
+                                        <option>Pending</option>
+                                        <option>Inactive</option>
+                                    </select>
+                                </div>
+                                <button onclick="openModal('newMemberModal')" class="bg-cluster-green text-white px-4 py-2 rounded-md hover:bg-green-700">
+                                    <i class="fas fa-user-plus mr-2"></i>Add Member
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Member</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Farm</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Contact</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="h-10 w-10 rounded-full bg-cluster-green flex items-center justify-center text-white font-medium">JD</div>
+                                                <div class="ml-4">
+                                                    <div class="text-sm font-medium text-gray-900">John Davies</div>
+                                                    <div class="text-sm text-gray-500">john@greenacresfarm.co.uk</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Green Acres Farm</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2 days ago</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                            <button onclick="openMemberProfile('john-davies')" class="text-cluster-blue hover:text-blue-700 mr-3">View</button>
+                                            <button onclick="openMessageModal('john-davies')" class="text-cluster-green hover:text-green-700">Message</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="h-10 w-10 rounded-full bg-cluster-blue flex items-center justify-center text-white font-medium">SW</div>
+                                                <div class="ml-4">
+                                                    <div class="text-sm font-medium text-gray-900">Sarah Wilson</div>
+                                                    <div class="text-sm text-gray-500">sarah@meadowbrookorganics.co.uk</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Meadowbrook Organics</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Pending</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">5 days ago</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                            <button onclick="openMemberProfile('sarah-wilson')" class="text-cluster-blue hover:text-blue-700 mr-3">View</button>
+                                            <button onclick="openMessageModal('sarah-wilson')" class="text-cluster-green hover:text-green-700">Message</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Applications Section (Hidden by default) -->
+                <div id="applications-section" class="section hidden">
+                    <div class="mb-6">
+                        <h1 class="text-2xl font-bold text-gray-900 font-secondary">Applications</h1>
+                        <p class="text-gray-600">Review and manage membership and funding applications.</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow overflow-hidden">
+                        <div class="border-b border-gray-200">
+                            <nav class="-mb-px flex space-x-8 px-6">
+                                <button onclick="showAppTab('membership')" class="app-tab active border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                                    Membership Applications (3)
+                                </button>
+                                <button onclick="showAppTab('funding')" class="app-tab border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                                    FiPL Funding Applications (5)
+                                </button>
+                            </nav>
+                        </div>
+                        
+                        <div class="p-6">
+                            <div id="membership-apps" class="app-tab-panel active">
+                                <div class="space-y-4">
+                                    <div class="border border-gray-200 rounded-lg p-6">
+                                        <div class="flex justify-between items-start mb-4">
+                                            <div>
+                                                <h4 class="text-lg font-semibold text-gray-900">Greenfield Farm Ltd</h4>
+                                                <p class="text-gray-600">Applied 3 days ago</p>
+                                            </div>
+                                            <span class="px-3 py-1 text-sm bg-orange-100 text-orange-800 rounded-full">Pending Review</span>
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-4 text-sm">
+                                            <div><strong>Contact:</strong> Michael Thompson</div>
+                                            <div><strong>Location:</strong> Guildford, Surrey</div>
+                                            <div><strong>Farm Size:</strong> 45 hectares</div>
+                                            <div><strong>Primary Crops:</strong> Wheat, Barley, Oats</div>
+                                        </div>
+                                        <div class="mt-4 flex space-x-3">
+                                            <button onclick="reviewApplication('greenfield', 'approve')" class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700">
+                                                <i class="fas fa-check mr-2"></i>Approve
+                                            </button>
+                                            <button onclick="reviewApplication('greenfield', 'reject')" class="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700">
+                                                <i class="fas fa-times mr-2"></i>Reject
+                                            </button>
+                                            <button onclick="viewApplicationDetail('greenfield')" class="bg-gray-600 text-white px-4 py-2 rounded-md hover:bg-gray-700">
+                                                <i class="fas fa-eye mr-2"></i>View Details
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div id="funding-apps" class="app-tab-panel hidden">
+                                <div class="space-y-4">
+                                    <div class="border border-gray-200 rounded-lg p-6">
+                                        <div class="flex justify-between items-start mb-4">
+                                            <div>
+                                                <h4 class="text-lg font-semibold text-gray-900">Heritage Crops Co. - Biodiversity Enhancement Project</h4>
+                                                <p class="text-gray-600">Applied 2 days ago • Requesting £15,000</p>
+                                            </div>
+                                            <span class="px-3 py-1 text-sm bg-orange-100 text-orange-800 rounded-full">Under Review</span>
+                                        </div>
+                                        <div class="text-sm text-gray-700 mb-4">
+                                            <p>Project to establish wildflower meadows and hedgerow restoration to enhance biodiversity on 25 hectares of farmland.</p>
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-4 text-sm">
+                                            <div><strong>AI Risk Score:</strong> <span class="text-green-600">Low (12%)</span></div>
+                                            <div><strong>Environmental Impact:</strong> <span class="text-green-600">High</span></div>
+                                            <div><strong>Financial Viability:</strong> <span class="text-green-600">Strong</span></div>
+                                            <div><strong>Compliance Score:</strong> <span class="text-green-600">95%</span></div>
+                                        </div>
+                                        <div class="mt-4 flex space-x-3">
+                                            <button onclick="reviewFundingApp('heritage', 'approve')" class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700">
+                                                <i class="fas fa-check mr-2"></i>Approve Funding
+                                            </button>
+                                            <button onclick="reviewFundingApp('heritage', 'request-info')" class="bg-yellow-600 text-white px-4 py-2 rounded-md hover:bg-yellow-700">
+                                                <i class="fas fa-question mr-2"></i>Request More Info
+                                            </button>
+                                            <button onclick="viewFundingDetail('heritage')" class="bg-gray-600 text-white px-4 py-2 rounded-md hover:bg-gray-700">
+                                                <i class="fas fa-eye mr-2"></i>Full Application
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Messaging Section (Hidden by default) -->
+                <div id="messaging-section" class="section hidden">
+                    <div class="mb-6">
+                        <h1 class="text-2xl font-bold text-gray-900 font-secondary">Messaging Centre</h1>
+                        <p class="text-gray-600">Send newsletters, announcements, and direct messages to members.</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div class="lg:col-span-2">
+                            <div class="bg-white rounded-lg shadow p-6">
+                                <h3 class="text-lg font-semibold text-gray-900 mb-4">Compose New Message</h3>
+                                <form>
+                                    <div class="mb-4">
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Recipients</label>
+                                        <select class="w-full border border-gray-300 rounded-md px-3 py-2">
+                                            <option>All Active Members (47)</option>
+                                            <option>Pending Members (8)</option>
+                                            <option>Recent Applicants (12)</option>
+                                            <option>Custom List...</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+                                        <input type="text" class="w-full border border-gray-300 rounded-md px-3 py-2" placeholder="Enter email subject">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                                        <textarea rows="8" class="w-full border border-gray-300 rounded-md px-3 py-2" placeholder="Write your message here..."></textarea>
+                                    </div>
+                                    <div class="flex space-x-3">
+                                        <button type="button" class="bg-cluster-green text-white px-6 py-2 rounded-md hover:bg-green-700">
+                                            <i class="fas fa-paper-plane mr-2"></i>Send Now
+                                        </button>
+                                        <button type="button" class="bg-gray-500 text-white px-6 py-2 rounded-md hover:bg-gray-600">
+                                            <i class="fas fa-save mr-2"></i>Save Draft
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="bg-white rounded-lg shadow p-6">
+                                <h3 class="text-lg font-semibold text-gray-900 mb-4">Message Templates</h3>
+                                <div class="space-y-3">
+                                    <button onclick="loadTemplate('welcome')" class="w-full text-left p-3 bg-gray-50 hover:bg-gray-100 rounded border">
+                                        <div class="font-medium text-gray-900">Welcome Message</div>
+                                        <div class="text-sm text-gray-600">For new members</div>
+                                    </button>
+                                    <button onclick="loadTemplate('newsletter')" class="w-full text-left p-3 bg-gray-50 hover:bg-gray-100 rounded border">
+                                        <div class="font-medium text-gray-900">Monthly Newsletter</div>
+                                        <div class="text-sm text-gray-600">Regular updates</div>
+                                    </button>
+                                    <button onclick="loadTemplate('event')" class="w-full text-left p-3 bg-gray-50 hover:bg-gray-100 rounded border">
+                                        <div class="font-medium text-gray-900">Event Invitation</div>
+                                        <div class="text-sm text-gray-600">Workshop invites</div>
+                                    </button>
+                                </div>
+                                
+                                <h4 class="text-md font-semibold text-gray-900 mt-6 mb-3">Recent Messages</h4>
+                                <div class="space-y-2">
+                                    <div class="p-2 bg-gray-50 rounded text-sm">
+                                        <div class="font-medium">Sustainability Workshop Reminder</div>
+                                        <div class="text-gray-600 text-xs">Sent to 47 members • 2 days ago</div>
+                                    </div>
+                                    <div class="p-2 bg-gray-50 rounded text-sm">
+                                        <div class="font-medium">February Newsletter</div>
+                                        <div class="text-gray-600 text-xs">Sent to 47 members • 1 week ago</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings Section (Hidden by default) -->
+                <div id="settings-section" class="section hidden">
+                    <div class="mb-6">
+                        <h1 class="text-2xl font-bold text-gray-900 font-secondary">Platform Settings</h1>
+                        <p class="text-gray-600">Configure platform settings and preferences.</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">General Settings</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Platform Name</label>
+                                <input type="text" value="Surrey Farming Cluster" class="w-full border border-gray-300 rounded-md px-3 py-2">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Contact Email</label>
+                                <input type="email" value="admin@surreyfarmingcluster.co.uk" class="w-full border border-gray-300 rounded-md px-3 py-2">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Membership Fee (Annual)</label>
+                                <input type="text" value="£100" class="w-full border border-gray-300 rounded-md px-3 py-2">
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 pt-6 border-t border-gray-200">
+                            <h4 class="text-md font-semibold text-gray-900 mb-4">Notification Settings</h4>
+                            <div class="space-y-3">
+                                <label class="flex items-center">
+                                    <input type="checkbox" checked class="rounded border-gray-300 text-cluster-green focus:ring-cluster-green">
+                                    <span class="ml-2 text-sm text-gray-700">Email notifications for new applications</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" checked class="rounded border-gray-300 text-cluster-green focus:ring-cluster-green">
+                                    <span class="ml-2 text-sm text-gray-700">Daily summary reports</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded border-gray-300 text-cluster-green focus:ring-cluster-green">
+                                    <span class="ml-2 text-sm text-gray-700">SMS notifications for urgent matters</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6">
+                            <button class="bg-cluster-green text-white px-6 py-2 rounded-md hover:bg-green-700">
+                                Save Settings
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check authentication
+            if (localStorage.getItem('adminAuth') !== 'true') {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Load user info
+            const user = JSON.parse(localStorage.getItem('adminUser') || '{}');
+            if (user.name) {
+                document.getElementById('adminName').textContent = user.name;
+            }
+            
+            // Initialize charts
+            initializeCharts();
+        });
+
+        // Navigation functions
+        function showSection(sectionName) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.add('hidden');
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionName + '-section').classList.remove('hidden');
+            document.getElementById(sectionName + '-section').classList.add('active');
+            
+            // Update navigation
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+                item.classList.add('text-gray-600', 'hover:text-gray-900');
+                item.classList.remove('text-cluster-green', 'bg-green-50');
+            });
+            
+            event.target.classList.add('active');
+            event.target.classList.add('text-cluster-green', 'bg-green-50');
+            event.target.classList.remove('text-gray-600', 'hover:text-gray-900');
+        }
+
+        function showContentTab(tabName) {
+            // Hide all content panels
+            document.querySelectorAll('.content-tab-panel').forEach(panel => {
+                panel.classList.add('hidden');
+                panel.classList.remove('active');
+            });
+            
+            // Show selected panel
+            document.getElementById(tabName + '-content').classList.remove('hidden');
+            document.getElementById(tabName + '-content').classList.add('active');
+            
+            // Update tabs
+            document.querySelectorAll('.content-tab').forEach(tab => {
+                tab.classList.remove('active', 'border-cluster-green', 'text-cluster-green');
+                tab.classList.add('border-transparent', 'text-gray-500');
+            });
+            
+            event.target.classList.add('active', 'border-cluster-green', 'text-cluster-green');
+            event.target.classList.remove('border-transparent', 'text-gray-500');
+        }
+
+        function showAppTab(tabName) {
+            // Hide all app panels
+            document.querySelectorAll('.app-tab-panel').forEach(panel => {
+                panel.classList.add('hidden');
+                panel.classList.remove('active');
+            });
+            
+            // Show selected panel
+            document.getElementById(tabName + '-apps').classList.remove('hidden');
+            document.getElementById(tabName + '-apps').classList.add('active');
+            
+            // Update tabs
+            document.querySelectorAll('.app-tab').forEach(tab => {
+                tab.classList.remove('active', 'border-cluster-green', 'text-cluster-green');
+                tab.classList.add('border-transparent', 'text-gray-500');
+            });
+            
+            event.target.classList.add('active', 'border-cluster-green', 'text-cluster-green');
+            event.target.classList.remove('border-transparent', 'text-gray-500');
+        }
+
+        // Modal functions
+        function openModal(modalId) {
+            alert('Modal would open: ' + modalId);
+        }
+
+        function openMemberProfile(memberId) {
+            alert('Opening member profile for: ' + memberId);
+        }
+
+        function openMessageModal(memberId) {
+            alert('Opening message modal for: ' + memberId);
+        }
+
+        function reviewApplication(appId, action) {
+            alert('Action: ' + action + ' for application: ' + appId);
+        }
+
+        function reviewFundingApp(appId, action) {
+            alert('Funding action: ' + action + ' for application: ' + appId);
+        }
+
+        function viewApplicationDetail(appId) {
+            alert('Viewing application details for: ' + appId);
+        }
+
+        function viewFundingDetail(appId) {
+            alert('Viewing funding details for: ' + appId);
+        }
+
+        function loadTemplate(templateName) {
+            alert('Loading template: ' + templateName);
+        }
+
+        function logout() {
+            localStorage.removeItem('adminAuth');
+            localStorage.removeItem('adminUser');
+            window.location.href = 'login.html';
+        }
+
+        // Chart initialization
+        function initializeCharts() {
+            const ctx = document.getElementById('memberGrowthChart');
+            if (ctx) {
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                        datasets: [{
+                            label: 'New Members',
+                            data: [5, 8, 12, 15, 18, 23],
+                            borderColor: '#2E7D32',
+                            backgroundColor: '#2E7D32',
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        // Add active styles for navigation
+        const style = document.createElement('style');
+        style.textContent = `
+            .nav-item {
+                transition: all 0.2s ease-in-out;
+            }
+            .nav-item:hover {
+                background-color: #f3f4f6;
+            }
+            .nav-item.active {
+                background-color: #f0f9f0;
+                border-color: #2E7D32;
+                color: #2E7D32;
+            }
+            .content-tab.active {
+                border-color: #2E7D32 !important;
+                color: #2E7D32 !important;
+            }
+            .app-tab.active {
+                border-color: #2E7D32 !important;
+                color: #2E7D32 !important;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

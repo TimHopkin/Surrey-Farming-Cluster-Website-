@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surrey Farming Cluster - Growing Together for a Sustainable Surrey</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'cluster-green': '#2E7D32',
+                        'cluster-brown': '#5D4037',
+                        'cluster-gold': '#FBC02D',
+                        'cluster-blue': '#0288D1',
+                    },
+                    fontFamily: {
+                        'primary': ['Roboto', 'sans-serif'],
+                        'secondary': ['Lora', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-primary">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-seedling text-cluster-green text-2xl mr-3"></i>
+                        <span class="font-secondary font-bold text-xl text-gray-900">Surrey Farming Cluster</span>
+                    </div>
+                    <div class="hidden md:ml-10 md:flex md:space-x-8">
+                        <a href="#" class="text-gray-700 hover:text-cluster-green px-3 py-2 text-sm font-medium">About</a>
+                        <a href="#" class="text-gray-700 hover:text-cluster-green px-3 py-2 text-sm font-medium">Farms</a>
+                        <a href="#" class="text-gray-700 hover:text-cluster-green px-3 py-2 text-sm font-medium">News</a>
+                        <a href="#" class="text-gray-700 hover:text-cluster-green px-3 py-2 text-sm font-medium">Blog</a>
+                        <a href="#" class="text-gray-700 hover:text-cluster-green px-3 py-2 text-sm font-medium">Funding</a>
+                        <a href="#" class="text-gray-700 hover:text-cluster-green px-3 py-2 text-sm font-medium">Map</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button onclick="openLoginModal()" class="text-gray-700 hover:text-cluster-green px-3 py-2 text-sm font-medium">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Login
+                    </button>
+                    <button onclick="openSignupModal()" class="bg-cluster-green text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700 transition-colors">
+                        <i class="fas fa-user-plus mr-2"></i>Join Cluster
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative text-white py-20 bg-cover bg-center bg-no-repeat" style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1920&h=1080&fit=crop&auto=format')">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-6xl font-secondary font-bold mb-6">
+                    Surrey Farming Cluster
+                </h1>
+                <p class="text-xl md:text-2xl mb-8">
+                    Growing Together for a Sustainable Surrey
+                </p>
+                <div class="space-x-4">
+                    <button onclick="openSignupModal()" class="bg-cluster-gold text-cluster-brown px-8 py-3 rounded-lg font-semibold hover:bg-yellow-400 transition-colors inline-block">
+                        Join the Cluster
+                    </button>
+                    <a href="#farms" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-cluster-green transition-colors inline-block">
+                        Explore Our Farms
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Access Section -->
+    <section class="py-16 bg-gradient-to-r from-cluster-blue to-blue-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-secondary font-bold text-white mb-4">
+                    Access Your Platform
+                </h2>
+                <p class="text-lg text-blue-100 max-w-3xl mx-auto">
+                    Connect with our digital ecosystem: manage your farm, access grants, and collaborate with fellow farmers.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-cluster-green rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-tractor text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">Farmer Portal</h3>
+                        <p class="text-gray-600 mb-6">
+                            Access grants, connect with other farmers, manage your farm profile, and join our community.
+                        </p>
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center text-gray-700">
+                                <i class="fas fa-check text-cluster-green mr-3"></i>
+                                <span>AI-guided grant applications</span>
+                            </div>
+                            <div class="flex items-center text-gray-700">
+                                <i class="fas fa-check text-cluster-green mr-3"></i>
+                                <span>Farm boundary mapping</span>
+                            </div>
+                            <div class="flex items-center text-gray-700">
+                                <i class="fas fa-check text-cluster-green mr-3"></i>
+                                <span>Community networking</span>
+                            </div>
+                            <div class="flex items-center text-gray-700">
+                                <i class="fas fa-check text-cluster-green mr-3"></i>
+                                <span>Land App integration</span>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <a href="farmer/login.html" class="w-full bg-cluster-green text-white px-6 py-3 rounded-md font-medium hover:bg-green-700 transition-colors inline-block">
+                                <i class="fas fa-sign-in-alt mr-2"></i>Farmer Login
+                            </a>
+                            <a href="farmer/register.html" class="w-full border-2 border-cluster-green text-cluster-green px-6 py-3 rounded-md font-medium hover:bg-green-50 transition-colors inline-block">
+                                <i class="fas fa-user-plus mr-2"></i>Join as Farmer
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-cluster-brown rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-cogs text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">Admin Portal</h3>
+                        <p class="text-gray-600 mb-6">
+                            Manage the cluster, review applications, track analytics, and communicate with members.
+                        </p>
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center text-gray-700">
+                                <i class="fas fa-check text-cluster-brown mr-3"></i>
+                                <span>Member management</span>
+                            </div>
+                            <div class="flex items-center text-gray-700">
+                                <i class="fas fa-check text-cluster-brown mr-3"></i>
+                                <span>Application review</span>
+                            </div>
+                            <div class="flex items-center text-gray-700">
+                                <i class="fas fa-check text-cluster-brown mr-3"></i>
+                                <span>Analytics dashboard</span>
+                            </div>
+                            <div class="flex items-center text-gray-700">
+                                <i class="fas fa-check text-cluster-brown mr-3"></i>
+                                <span>Content management</span>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <a href="admin/login.html" class="w-full bg-cluster-brown text-white px-6 py-3 rounded-md font-medium hover:bg-amber-800 transition-colors inline-block">
+                                <i class="fas fa-shield-alt mr-2"></i>Admin Login
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-secondary font-bold text-gray-900 mb-4">
+                    Our Mission
+                </h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    The Surrey Farming Cluster brings together farmers, partners, and stakeholders to promote 
+                    collaboration, sustainability, and innovation across Surrey's diverse agricultural landscape.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-cluster-green rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-users text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Collaboration</h3>
+                    <p class="text-gray-600">
+                        Connecting farmers to share knowledge, resources, and opportunities across Surrey.
+                    </p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-cluster-green rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-leaf text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Sustainability</h3>
+                    <p class="text-gray-600">
+                        Promoting environmentally responsible farming practices for future generations.
+                    </p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-cluster-green rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-lightbulb text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Innovation</h3>
+                    <p class="text-gray-600">
+                        Embracing new technologies and methods to enhance agricultural productivity.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Farms Section -->
+    <section id="farms" class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-secondary font-bold text-gray-900 mb-4">
+                    Featured Farms
+                </h2>
+                <p class="text-lg text-gray-600">
+                    Discover some of our member farms and their contributions to Surrey's agricultural community.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1500076656116-558758c991c1?w=400&h=200&fit=crop&auto=format" alt="Green Acres Farm" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Green Acres Farm</h3>
+                        <p class="text-gray-600 mb-4">Sustainable mixed farming with a focus on biodiversity and soil health.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="bg-cluster-green text-white px-3 py-1 rounded-full text-sm">Organic</span>
+                            <a href="#" class="text-cluster-blue hover:text-blue-700 font-medium">Learn More →</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=200&fit=crop&auto=format" alt="Meadowbrook Organics" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Meadowbrook Organics</h3>
+                        <p class="text-gray-600 mb-4">Award-winning organic vegetables and heritage livestock farming.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="bg-cluster-green text-white px-3 py-1 rounded-full text-sm">Livestock</span>
+                            <a href="#" class="text-cluster-blue hover:text-blue-700 font-medium">Learn More →</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=400&h=200&fit=crop&auto=format" alt="Heritage Crops Co." class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Heritage Crops Co.</h3>
+                        <p class="text-gray-600 mb-4">Preserving traditional varieties and innovative growing techniques.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="bg-cluster-green text-white px-3 py-1 rounded-full text-sm">Arable</span>
+                            <a href="#" class="text-cluster-blue hover:text-blue-700 font-medium">Learn More →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="bg-cluster-green text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors">
+                    View All Farms
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Map Section -->
+    <section class="py-16 bg-cluster-gold">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-secondary font-bold text-cluster-brown mb-4">
+                    Interactive Farm Map
+                </h2>
+                <p class="text-lg text-cluster-brown mb-8">
+                    Explore all our member farms across Surrey with our interactive map.
+                </p>
+                <a href="#" class="bg-cluster-brown text-white px-8 py-3 rounded-lg font-semibold hover:bg-amber-800 transition-colors">
+                    View Map
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-secondary font-bold text-gray-900 mb-4">
+                    Latest News & Updates
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-semibold mb-2">New DEFRA Funding Opportunities</h3>
+                        <p class="text-gray-600 mb-4">
+                            Learn about the latest government funding schemes available to Surrey farmers.
+                        </p>
+                        <span class="text-cluster-blue font-medium">Read More →</span>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-semibold mb-2">Cluster Annual Meeting 2024</h3>
+                        <p class="text-gray-600 mb-4">
+                            Join us for our annual meeting to discuss the year's achievements and future plans.
+                        </p>
+                        <span class="text-cluster-blue font-medium">Read More →</span>
+                    </div>
+                </div>
+                <div class="mt-8">
+                    <a href="#" class="text-cluster-blue hover:text-blue-700 font-medium">
+                        View All News →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-cluster-brown text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-seedling text-cluster-gold text-2xl mr-3"></i>
+                        <span class="font-secondary font-bold text-xl">Surrey Farming Cluster</span>
+                    </div>
+                    <p class="text-yellow-100">
+                        Growing together for a sustainable Surrey through collaboration, innovation, and shared knowledge.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-yellow-100 hover:text-white">About Us</a></li>
+                        <li><a href="#" class="text-yellow-100 hover:text-white">Our Farms</a></li>
+                        <li><a href="#" class="text-yellow-100 hover:text-white">News & Blog</a></li>
+                        <li><a href="#" class="text-yellow-100 hover:text-white">Events</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-yellow-100 hover:text-white">Funding Opportunities</a></li>
+                        <li><a href="#" class="text-yellow-100 hover:text-white">Best Practices</a></li>
+                        <li><a href="#" class="text-yellow-100 hover:text-white">Research</a></li>
+                        <li><a href="#" class="text-yellow-100 hover:text-white">Support</a></li>
+                        <li><a href="brand/DEMO.html" class="text-yellow-100 hover:text-white flex items-center">
+                            <i class="fas fa-palette mr-2"></i>Brand Components
+                        </a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Connect</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-yellow-100 hover:text-white">Contact Us</a></li>
+                        <li><a href="#" class="text-yellow-100 hover:text-white">Join the Cluster</a></li>
+                        <li><a href="#" class="text-yellow-100 hover:text-white">Newsletter</a></li>
+                        <li class="flex space-x-4 pt-2">
+                            <a href="#" class="text-yellow-100 hover:text-white"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-yellow-100 hover:text-white"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="text-yellow-100 hover:text-white"><i class="fab fa-linkedin"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-yellow-700 mt-8 pt-8 text-center">
+                <p class="text-yellow-100">
+                    &copy; 2025 Surrey Farming Cluster. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg p-8 max-w-md w-full">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-semibold text-gray-900">Choose Portal</h3>
+                    <button onclick="closeLoginModal()" class="text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                <div class="space-y-4">
+                    <a href="farmer/login.html" class="w-full flex items-center justify-center px-6 py-3 bg-cluster-green text-white rounded-md hover:bg-green-700 transition-colors">
+                        <i class="fas fa-tractor mr-3"></i>
+                        Farmer Portal Login
+                    </a>
+                    <a href="admin/login.html" class="w-full flex items-center justify-center px-6 py-3 bg-cluster-brown text-white rounded-md hover:bg-amber-800 transition-colors">
+                        <i class="fas fa-shield-alt mr-3"></i>
+                        Admin Portal Login
+                    </a>
+                </div>
+                <div class="mt-6 text-center">
+                    <p class="text-sm text-gray-600">
+                        New to Surrey Farming Cluster?
+                        <button onclick="openSignupModal(); closeLoginModal();" class="text-cluster-green hover:text-green-700 font-medium">
+                            Join here
+                        </button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg p-8 max-w-md w-full">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-semibold text-gray-900">Join Surrey Farming Cluster</h3>
+                    <button onclick="closeSignupModal()" class="text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                <div class="text-center mb-6">
+                    <p class="text-gray-600">Choose how you'd like to join our community</p>
+                </div>
+                <div class="space-y-4">
+                    <a href="farmer/register.html" class="w-full flex items-center justify-center px-6 py-3 bg-cluster-green text-white rounded-md hover:bg-green-700 transition-colors">
+                        <i class="fas fa-tractor mr-3"></i>
+                        Join as Farmer
+                    </a>
+                    <div class="text-center">
+                        <p class="text-sm text-gray-600">
+                            Already a member?
+                            <button onclick="openLoginModal(); closeSignupModal();" class="text-cluster-green hover:text-green-700 font-medium">
+                                Login here
+                            </button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openLoginModal() {
+            document.getElementById('loginModal').classList.remove('hidden');
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.add('hidden');
+        }
+
+        function openSignupModal() {
+            document.getElementById('signupModal').classList.remove('hidden');
+        }
+
+        function closeSignupModal() {
+            document.getElementById('signupModal').classList.add('hidden');
+        }
+
+        // Close modals when clicking outside
+        document.getElementById('loginModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLoginModal();
+            }
+        });
+
+        document.getElementById('signupModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeSignupModal();
+            }
+        });
+
+        // Close modals with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLoginModal();
+                closeSignupModal();
+            }
+        });
+    </script>
+</body>
+</html>

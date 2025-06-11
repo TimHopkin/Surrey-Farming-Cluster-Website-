@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surrey Farming Cluster - Admin Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'cluster-green': '#2E7D32',
+                        'cluster-brown': '#5D4037',
+                        'cluster-gold': '#FBC02D',
+                        'cluster-blue': '#0288D1',
+                    },
+                    fontFamily: {
+                        'primary': ['Roboto', 'sans-serif'],
+                        'secondary': ['Lora', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 font-primary">
+    <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-md w-full space-y-8">
+            <div>
+                <div class="mx-auto h-16 w-16 flex items-center justify-center rounded-full bg-cluster-green">
+                    <i class="fas fa-seedling text-white text-2xl"></i>
+                </div>
+                <h2 class="mt-6 text-center text-3xl font-bold text-gray-900 font-secondary">
+                    Surrey Farming Cluster
+                </h2>
+                <p class="mt-2 text-center text-sm text-gray-600">
+                    Admin Dashboard Login
+                </p>
+            </div>
+            <form class="mt-8 space-y-6" onsubmit="return handleLogin(event)">
+                <div class="rounded-md shadow-sm -space-y-px">
+                    <div>
+                        <label for="email-address" class="sr-only">Email address</label>
+                        <input id="email-address" name="email" type="email" autocomplete="email" required 
+                               class="relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-cluster-green focus:border-cluster-green focus:z-10 sm:text-sm" 
+                               placeholder="Email address">
+                    </div>
+                    <div>
+                        <label for="password" class="sr-only">Password</label>
+                        <input id="password" name="password" type="password" autocomplete="current-password" required 
+                               class="relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-cluster-green focus:border-cluster-green focus:z-10 sm:text-sm" 
+                               placeholder="Password">
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 text-cluster-green focus:ring-cluster-green border-gray-300 rounded">
+                        <label for="remember-me" class="ml-2 block text-sm text-gray-900">
+                            Remember me
+                        </label>
+                    </div>
+
+                    <div class="text-sm">
+                        <a href="#" class="font-medium text-cluster-green hover:text-green-700">
+                            Forgot your password?
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <button type="submit" class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-cluster-green hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cluster-green transition duration-150 ease-in-out">
+                        <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                            <i class="fas fa-lock text-green-500 group-hover:text-green-400"></i>
+                        </span>
+                        Sign in to Dashboard
+                    </button>
+                </div>
+            </form>
+
+            <div class="mt-6">
+                <div class="relative">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-gray-300"></div>
+                    </div>
+                    <div class="relative flex justify-center text-sm">
+                        <span class="px-2 bg-gray-50 text-gray-500">Demo Access</span>
+                    </div>
+                </div>
+
+                <div class="mt-4 grid grid-cols-1 gap-3">
+                    <button onclick="quickLogin('admin')" class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                        <i class="fas fa-user-shield mr-2"></i>
+                        Demo Admin Access
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function handleLogin(event) {
+            event.preventDefault();
+            // Simulate login
+            localStorage.setItem('adminAuth', 'true');
+            localStorage.setItem('adminUser', JSON.stringify({
+                name: 'Sarah Johnson',
+                email: 'sarah@surreyfarmingcluster.co.uk',
+                role: 'Platform Administrator'
+            }));
+            window.location.href = 'dashboard.html';
+            return false;
+        }
+
+        function quickLogin(type) {
+            if (type === 'admin') {
+                localStorage.setItem('adminAuth', 'true');
+                localStorage.setItem('adminUser', JSON.stringify({
+                    name: 'Sarah Johnson',
+                    email: 'sarah@surreyfarmingcluster.co.uk',
+                    role: 'Platform Administrator'
+                }));
+                window.location.href = 'dashboard.html';
+            }
+        }
+
+        // Check if already logged in
+        if (localStorage.getItem('adminAuth') === 'true') {
+            window.location.href = 'dashboard.html';
+        }
+    </script>
+</body>
+</html>

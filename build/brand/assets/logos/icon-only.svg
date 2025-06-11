@@ -1,0 +1,24 @@
+<!-- Surrey Farming Cluster - Icon Only SVG -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" width="60" height="60">
+  <!-- Seedling Icon -->
+  <g transform="translate(10, 10)">
+    <!-- Stem -->
+    <path d="M20 25 L20 35" stroke="#2E7D32" stroke-width="3" stroke-linecap="round"/>
+    
+    <!-- Left leaf -->
+    <path d="M10 20 Q15 10, 20 15 Q15 25, 10 20" fill="#4CAF50"/>
+    
+    <!-- Right leaf -->
+    <path d="M30 20 Q25 10, 20 15 Q25 25, 30 20" fill="#2E7D32"/>
+    
+    <!-- Small sprouting leaf -->
+    <path d="M16 17 Q14 13, 20 15 Q18 20, 16 17" fill="#81C784"/>
+    
+    <!-- Root system -->
+    <g stroke="#5D4037" stroke-width="2" fill="none">
+      <path d="M20 35 Q16 38, 12 40"/>
+      <path d="M20 35 Q24 38, 28 40"/>
+      <path d="M20 35 L20 40"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,28 @@
+<!-- Surrey Farming Cluster - Compact Logo SVG -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100" width="200" height="100">
+  <!-- Seedling Icon -->
+  <g transform="translate(20, 20)">
+    <!-- Stem -->
+    <path d="M30 45 L30 55" stroke="#2E7D32" stroke-width="3" stroke-linecap="round"/>
+    
+    <!-- Left leaf -->
+    <path d="M15 35 Q20 25, 30 30 Q25 40, 15 35" fill="#4CAF50"/>
+    
+    <!-- Right leaf -->
+    <path d="M45 35 Q40 25, 30 30 Q35 40, 45 35" fill="#2E7D32"/>
+    
+    <!-- Small sprouting leaf -->
+    <path d="M25 32 Q22 28, 30 30 Q28 35, 25 32" fill="#81C784"/>
+    
+    <!-- Root system -->
+    <g stroke="#5D4037" stroke-width="2" fill="none">
+      <path d="M30 55 Q25 58, 20 60"/>
+      <path d="M30 55 Q35 58, 40 60"/>
+      <path d="M30 55 L30 60"/>
+    </g>
+  </g>
+  
+  <!-- Compact Text -->
+  <text x="90" y="45" font-family="Lora, serif" font-size="28" font-weight="700" fill="#2E7D32">SFC</text>
+  <text x="90" y="65" font-family="Roboto, sans-serif" font-size="12" font-weight="500" fill="#5D4037">Surrey Farming Cluster</text>
+</svg>
