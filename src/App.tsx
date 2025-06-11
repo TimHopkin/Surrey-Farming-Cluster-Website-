@@ -15,9 +15,10 @@ import Blog from './pages/Blog';
 import BlogDetail from './pages/BlogDetail';
 import Join from './pages/Join';
 import FarmProfile from './pages/FarmProfile';
-import Dashboard from './pages/Dashboard';
+import SimpleDashboard from './pages/SimpleDashboard';
 import Test from './pages/Test';
 import SystemTest from './pages/SystemTest';
+import SimpleLogin from './pages/SimpleLogin';
 import ProtectedRoute from './components/ProtectedRoute';
 import ErrorBoundary from './components/ErrorBoundary';
 
@@ -48,11 +49,12 @@ function App() {
                 } />
                 <Route path="/dashboard" element={
                   <ProtectedRoute>
-                    <Dashboard />
+                    <SimpleDashboard />
                   </ProtectedRoute>
                 } />
                 <Route path="/test" element={<Test />} />
                 <Route path="/system-test" element={<SystemTest />} />
+                <Route path="/login" element={<SimpleLogin />} />
               </Routes>
             </main>
             <Footer />

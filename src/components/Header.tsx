@@ -2,12 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import Logo from './Logo';
-import LoginModal from './auth/LoginModal';
-import SignupModal from './auth/SignupModal';
 
 const Header: React.FC = () => {
-  const [showLoginModal, setShowLoginModal] = useState(false);
-  const [showSignupModal, setShowSignupModal] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { currentUser, userProfile, logout, loading } = useAuth();
 
@@ -19,15 +15,6 @@ const Header: React.FC = () => {
     }
   };
 
-  const handleSwitchToSignup = () => {
-    setShowLoginModal(false);
-    setShowSignupModal(true);
-  };
-
-  const handleSwitchToLogin = () => {
-    setShowSignupModal(false);
-    setShowLoginModal(true);
-  };
 
   return (
     <header className="bg-white shadow-md">
@@ -120,18 +107,18 @@ const Header: React.FC = () => {
               </div>
             ) : (
               <div className="flex items-center space-x-2">
-                <button
-                  onClick={() => setShowLoginModal(true)}
+                <Link
+                  to="/login"
                   className="text-cluster-blue hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Sign In
-                </button>
-                <button
-                  onClick={() => setShowSignupModal(true)}
+                </Link>
+                <Link
+                  to="/login"
                   className="bg-cluster-green text-white px-4 py-2 rounded-md hover:bg-green-700 text-sm"
                 >
                   Join Us
-                </button>
+                </Link>
               </div>
             )}
           </div>
@@ -238,24 +225,20 @@ const Header: React.FC = () => {
                 </div>
               ) : (
                 <div className="border-t pt-4 mt-4 space-y-2">
-                  <button
-                    onClick={() => {
-                      setShowLoginModal(true);
-                      setMobileMenuOpen(false);
-                    }}
-                    className="w-full text-left text-cluster-blue hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium"
+                  <Link
+                    to="/login"
+                    className="w-full text-left text-cluster-blue hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium block"
+                    onClick={() => setMobileMenuOpen(false)}
                   >
                     Sign In
-                  </button>
-                  <button
-                    onClick={() => {
-                      setShowSignupModal(true);
-                      setMobileMenuOpen(false);
-                    }}
-                    className="w-full text-left bg-cluster-green text-white px-3 py-2 rounded-md hover:bg-green-700 text-sm"
+                  </Link>
+                  <Link
+                    to="/login"
+                    className="w-full text-left bg-cluster-green text-white px-3 py-2 rounded-md hover:bg-green-700 text-sm block"
+                    onClick={() => setMobileMenuOpen(false)}
                   >
                     Join Us
-                  </button>
+                  </Link>
                 </div>
               )}
             </div>
@@ -263,17 +246,6 @@ const Header: React.FC = () => {
         )}
       </nav>
 
-      <LoginModal 
-        isOpen={showLoginModal} 
-        onClose={() => setShowLoginModal(false)}
-        onSwitchToSignup={handleSwitchToSignup}
-      />
-      
-      <SignupModal 
-        isOpen={showSignupModal} 
-        onClose={() => setShowSignupModal(false)}
-        onSwitchToLogin={handleSwitchToLogin}
-      />
     </header>
   );
 };

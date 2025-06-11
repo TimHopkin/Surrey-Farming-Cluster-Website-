@@ -194,18 +194,18 @@ const Home: React.FC = () => {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <a 
-                    href="/prototype/farmer/login.html" 
-                    className="w-full bg-cluster-green text-white px-6 py-3 rounded-md font-medium hover:bg-green-700 transition-colors inline-block"
+                  <Link 
+                    to="/login" 
+                    className="w-full bg-cluster-green text-white px-6 py-3 rounded-md font-medium hover:bg-green-700 transition-colors inline-block text-center"
                   >
-                    <i className="fas fa-sign-in-alt mr-2"></i>Farmer Login
-                  </a>
-                  <a 
-                    href="/prototype/farmer/register.html" 
-                    className="w-full border-2 border-cluster-green text-cluster-green px-6 py-3 rounded-md font-medium hover:bg-green-50 transition-colors inline-block"
+                    🌾 Farmer Login
+                  </Link>
+                  <Link 
+                    to="/login" 
+                    className="w-full border-2 border-cluster-green text-cluster-green px-6 py-3 rounded-md font-medium hover:bg-green-50 transition-colors inline-block text-center"
                   >
-                    <i className="fas fa-user-plus mr-2"></i>Join as Farmer
-                  </a>
+                    🚀 Join as Farmer
+                  </Link>
                 </div>
               </div>
             </div>
@@ -238,12 +238,12 @@ const Home: React.FC = () => {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <a 
-                    href="/prototype/admin/login.html" 
-                    className="w-full bg-cluster-brown text-white px-6 py-3 rounded-md font-medium hover:bg-amber-800 transition-colors inline-block"
+                  <Link 
+                    to="/login" 
+                    className="w-full bg-cluster-brown text-white px-6 py-3 rounded-md font-medium hover:bg-amber-800 transition-colors inline-block text-center"
                   >
-                    <i className="fas fa-shield-alt mr-2"></i>Admin Login
-                  </a>
+                    👨‍💼 Admin Login
+                  </Link>
                 </div>
               </div>
             </div>
