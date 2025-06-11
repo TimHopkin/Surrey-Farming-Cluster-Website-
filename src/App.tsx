@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { AuthProvider } from './contexts/OptimizedAuthContext';
+import { AuthProvider } from './contexts/HybridAuthContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -15,11 +15,11 @@ import Blog from './pages/Blog';
 import BlogDetail from './pages/BlogDetail';
 import Join from './pages/Join';
 import FarmProfile from './pages/FarmProfile';
-import FastDashboard from './pages/FastDashboard';
+import ReliableDashboard from './pages/ReliableDashboard';
 import Test from './pages/Test';
 import SystemTest from './pages/SystemTest';
-import FastLogin from './pages/FastLogin';
-import SimpleProtectedRoute from './components/SimpleProtectedRoute';
+import InstantLogin from './pages/InstantLogin';
+import SimpleProtectedRoute2 from './components/SimpleProtectedRoute2';
 import ErrorBoundary from './components/ErrorBoundary';
 
 function App() {
@@ -43,18 +43,18 @@ function App() {
                 <Route path="/blog/:id" element={<BlogDetail />} />
                 <Route path="/join" element={<Join />} />
                 <Route path="/profile" element={
-                  <SimpleProtectedRoute>
+                  <SimpleProtectedRoute2>
                     <FarmProfile />
-                  </SimpleProtectedRoute>
+                  </SimpleProtectedRoute2>
                 } />
                 <Route path="/dashboard" element={
-                  <SimpleProtectedRoute>
-                    <FastDashboard />
-                  </SimpleProtectedRoute>
+                  <SimpleProtectedRoute2>
+                    <ReliableDashboard />
+                  </SimpleProtectedRoute2>
                 } />
                 <Route path="/test" element={<Test />} />
                 <Route path="/system-test" element={<SystemTest />} />
-                <Route path="/login" element={<FastLogin />} />
+                <Route path="/login" element={<InstantLogin />} />
               </Routes>
             </main>
             <Footer />

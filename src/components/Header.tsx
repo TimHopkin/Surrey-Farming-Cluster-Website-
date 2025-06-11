@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../contexts/OptimizedAuthContext';
+import { useAuth } from '../contexts/HybridAuthContext';
 import Logo from './Logo';
 
 const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { currentUser, userProfile, logout, loading } = useAuth();
+  const { currentUser, logout, loading } = useAuth();
 
   const handleLogout = async () => {
     try {
@@ -85,8 +85,8 @@ const Header: React.FC = () => {
             ) : currentUser ? (
               <div className="flex items-center space-x-4">
                 <span className="text-gray-700">
-                  Welcome, {userProfile?.displayName || currentUser.displayName || 'User'}
-                  {userProfile?.role === 'admin' && (
+                  Welcome, {currentUser.displayName || 'User'}
+                  {currentUser.role === 'admin' && (
                     <span className="ml-2 bg-cluster-blue text-white px-2 py-1 rounded text-xs">
                       Admin
                     </span>
@@ -202,8 +202,8 @@ const Header: React.FC = () => {
               ) : currentUser ? (
                 <div className="border-t pt-4 mt-4">
                   <div className="px-3 py-2 text-gray-700">
-                    Welcome, {userProfile?.displayName || currentUser.displayName || 'User'}
-                    {userProfile?.role === 'admin' && (
+                    Welcome, {currentUser.displayName || 'User'}
+                    {currentUser.role === 'admin' && (
                       <span className="ml-2 bg-cluster-blue text-white px-2 py-1 rounded text-xs">
                         Admin
                       </span>
