@@ -67,13 +67,19 @@ const Footer: React.FC = () => {
                   Contact Us
                 </a>
               </li>
+              <li>
+                <a href="/brand/DEMO.html" className="text-gray-300 hover:text-white transition-colors flex items-center">
+                  <i className="fas fa-palette mr-2"></i>
+                  Brand Components
+                </a>
+              </li>
             </ul>
           </div>
         </div>
         
         <div className="border-t border-gray-600 mt-8 pt-8 text-center">
           <p className="text-gray-300 text-sm">
-            © 2024 Surrey Farming Cluster. All rights reserved.
+            © 2025 Surrey Farming Cluster. All rights reserved.
           </p>
         </div>
       </div>

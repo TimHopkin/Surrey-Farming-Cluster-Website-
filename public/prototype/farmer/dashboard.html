@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farm Portal - Surrey Farming Cluster</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'cluster-green': '#2E7D32',
+                        'cluster-brown': '#5D4037',
+                        'cluster-gold': '#FBC02D',
+                        'cluster-blue': '#0288D1',
+                    },
+                    fontFamily: {
+                        'primary': ['Roboto', 'sans-serif'],
+                        'secondary': ['Lora', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 font-primary">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-tractor text-cluster-green text-2xl mr-3"></i>
+                        <span class="font-secondary font-bold text-xl text-gray-900">Surrey Farming Cluster</span>
+                        <span class="ml-3 px-2 py-1 text-xs bg-cluster-blue text-white rounded-full">FARMER</span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 relative">
+                        <i class="fas fa-bell text-lg"></i>
+                        <span class="absolute -top-1 -right-1 h-4 w-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">2</span>
+                    </button>
+                    <div class="flex items-center space-x-3">
+                        <div id="landAppStatus" class="hidden bg-cluster-blue text-white px-2 py-1 rounded-full text-xs">
+                            <i class="fas fa-link mr-1"></i>Land App Connected
+                        </div>
+                        <img class="h-8 w-8 rounded-full bg-cluster-green flex items-center justify-center" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ctext x='16' y='20' text-anchor='middle' fill='white' font-family='Arial' font-size='12' font-weight='bold'%3EJD%3C/text%3E%3C/svg%3E" alt="Farmer">
+                        <div class="text-sm">
+                            <p class="font-medium text-gray-700" id="farmerName">John Davies</p>
+                            <p class="text-gray-500" id="farmName">Green Acres Farm</p>
+                        </div>
+                        <button onclick="logout()" class="text-gray-400 hover:text-gray-500">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex h-screen bg-gray-100">
+        <!-- Sidebar -->
+        <div class="w-64 bg-white shadow-md">
+            <div class="p-4">
+                <nav class="space-y-2">
+                    <a href="#" onclick="showSection('dashboard')" class="nav-item active flex items-center px-4 py-3 text-sm font-medium rounded-md">
+                        <i class="fas fa-home mr-3"></i>
+                        Dashboard
+                    </a>
+                    <a href="#" onclick="showSection('profile')" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-md">
+                        <i class="fas fa-user mr-3"></i>
+                        Farm Profile
+                    </a>
+                    <a href="#" onclick="showSection('grants')" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-md">
+                        <i class="fas fa-money-bill-wave mr-3"></i>
+                        Grants & Funding
+                    </a>
+                    <a href="#" onclick="showSection('community')" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-md">
+                        <i class="fas fa-users mr-3"></i>
+                        Community
+                    </a>
+                    <a href="#" onclick="showSection('events')" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-md">
+                        <i class="fas fa-calendar mr-3"></i>
+                        Events
+                    </a>
+                    <a href="#" onclick="showSection('support')" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-md">
+                        <i class="fas fa-life-ring mr-3"></i>
+                        Support
+                    </a>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 overflow-auto">
+            <div class="p-6">
+                <!-- Dashboard Section -->
+                <div id="dashboard-section" class="section active">
+                    <div class="mb-6">
+                        <h1 class="text-2xl font-bold text-gray-900 font-secondary">Welcome Back, <span id="welcomeName">John</span>!</h1>
+                        <p class="text-gray-600">Here's what's happening at Green Acres Farm and across the cluster.</p>
+                    </div>
+
+                    <!-- Land App Integration Status -->
+                    <div id="landAppBanner" class="hidden mb-6 bg-gradient-to-r from-cluster-blue to-blue-600 text-white p-6 rounded-lg">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <i class="fas fa-map-marked-alt text-2xl mr-4"></i>
+                                <div>
+                                    <h3 class="text-lg font-semibold">Land App Connected</h3>
+                                    <p class="text-blue-100">Your farm data is automatically synced and up to date</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm text-blue-100">Last sync: 2 hours ago</p>
+                                <button onclick="viewLandAppData()" class="mt-2 bg-white text-cluster-blue px-4 py-2 rounded-md hover:bg-gray-100">
+                                    View Synced Data
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Stats -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-cluster-green bg-opacity-10">
+                                    <i class="fas fa-seedling text-cluster-green text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-600">Farm Size</p>
+                                    <p class="text-2xl font-bold text-gray-900">45 ha</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-cluster-gold bg-opacity-10">
+                                    <i class="fas fa-pound-sign text-cluster-brown text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-600">Grants Applied</p>
+                                    <p class="text-2xl font-bold text-gray-900">£23k</p>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <span class="text-green-500 text-sm font-medium">2 pending applications</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-cluster-blue bg-opacity-10">
+                                    <i class="fas fa-users text-cluster-blue text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-600">Connections</p>
+                                    <p class="text-2xl font-bold text-gray-900">12</p>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <span class="text-blue-500 text-sm font-medium">3 new messages</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-green-100">
+                                    <i class="fas fa-calendar-check text-green-600 text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-600">Events Booked</p>
+                                    <p class="text-2xl font-bold text-gray-900">3</p>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <span class="text-green-500 text-sm font-medium">Next: Sustainability Workshop</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main Dashboard Content -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <!-- Recent Activity -->
+                        <div class="lg:col-span-2">
+                            <div class="bg-white p-6 rounded-lg shadow mb-6">
+                                <h3 class="text-lg font-semibold text-gray-900 mb-4">Recommended Grants for You</h3>
+                                <div class="space-y-4">
+                                    <div class="border border-green-200 bg-green-50 p-4 rounded-lg">
+                                        <div class="flex justify-between items-start mb-2">
+                                            <div>
+                                                <h4 class="font-semibold text-gray-900">FiPL Biodiversity Enhancement</h4>
+                                                <p class="text-sm text-gray-600">Up to £25,000 • Deadline: March 30, 2025</p>
+                                            </div>
+                                            <span class="px-2 py-1 text-xs bg-green-100 text-green-800 rounded-full">98% Match</span>
+                                        </div>
+                                        <p class="text-sm text-gray-700 mb-3">Perfect for your arable farm to establish wildflower margins and enhance biodiversity.</p>
+                                        <button onclick="startGrantApplication('fipl-biodiversity')" class="bg-cluster-green text-white px-4 py-2 rounded-md text-sm hover:bg-green-700">
+                                            <i class="fas fa-robot mr-2"></i>Apply with AI Assistant
+                                        </button>
+                                    </div>
+                                    
+                                    <div class="border border-blue-200 bg-blue-50 p-4 rounded-lg">
+                                        <div class="flex justify-between items-start mb-2">
+                                            <div>
+                                                <h4 class="font-semibold text-gray-900">Countryside Stewardship Mid Tier</h4>
+                                                <p class="text-sm text-gray-600">Variable funding • Deadline: April 15, 2025</p>
+                                            </div>
+                                            <span class="px-2 py-1 text-xs bg-blue-100 text-blue-800 rounded-full">85% Match</span>
+                                        </div>
+                                        <p class="text-sm text-gray-700 mb-3">Environmental land management scheme for your farm size and location.</p>
+                                        <button onclick="showSection('grants')" class="bg-cluster-blue text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700">
+                                            Learn More
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-white p-6 rounded-lg shadow">
+                                <h3 class="text-lg font-semibold text-gray-900 mb-4">Recent Community Activity</h3>
+                                <div class="space-y-4">
+                                    <div class="flex items-start space-x-3">
+                                        <div class="h-8 w-8 rounded-full bg-cluster-blue flex items-center justify-center text-white text-sm font-medium">SW</div>
+                                        <div class="flex-1">
+                                            <p class="text-sm"><strong>Sarah Wilson</strong> shared a resource in <strong>Regenerative Agriculture</strong></p>
+                                            <p class="text-xs text-gray-500">2 hours ago</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start space-x-3">
+                                        <div class="h-8 w-8 rounded-full bg-cluster-green flex items-center justify-center text-white text-sm font-medium">MT</div>
+                                        <div class="flex-1">
+                                            <p class="text-sm"><strong>Mike Thompson</strong> posted in <strong>Livestock Management</strong></p>
+                                            <p class="text-xs text-gray-500">4 hours ago</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start space-x-3">
+                                        <div class="h-8 w-8 rounded-full bg-cluster-gold flex items-center justify-center text-gray-800 text-sm font-medium">AL</div>
+                                        <div class="flex-1">
+                                            <p class="text-sm"><strong>Admin Team</strong> posted a new funding opportunity</p>
+                                            <p class="text-xs text-gray-500">6 hours ago</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <button onclick="showSection('community')" class="text-cluster-green hover:text-green-700 text-sm font-medium">
+                                        Join the conversation →
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sidebar Content -->
+                        <div class="space-y-6">
+                            <div class="bg-white p-6 rounded-lg shadow">
+                                <h3 class="text-lg font-semibold text-gray-900 mb-4">Upcoming Events</h3>
+                                <div class="space-y-3">
+                                    <div class="border-l-4 border-cluster-green pl-4">
+                                        <h4 class="font-medium text-gray-900">Sustainability Workshop</h4>
+                                        <p class="text-sm text-gray-600">March 15, 2025 • 10:00 AM</p>
+                                        <p class="text-xs text-gray-500">23 attendees registered</p>
+                                    </div>
+                                    <div class="border-l-4 border-cluster-blue pl-4">
+                                        <h4 class="font-medium text-gray-900">Soil Health Seminar</h4>
+                                        <p class="text-sm text-gray-600">March 22, 2025 • 2:00 PM</p>
+                                        <p class="text-xs text-gray-500">Virtual event</p>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <button onclick="showSection('events')" class="w-full bg-cluster-green text-white px-4 py-2 rounded-md text-sm hover:bg-green-700">
+                                        View All Events
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="bg-white p-6 rounded-lg shadow">
+                                <h3 class="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
+                                <div class="space-y-3">
+                                    <button onclick="showSection('profile')" class="w-full text-left p-3 bg-gray-50 hover:bg-gray-100 rounded border">
+                                        <i class="fas fa-edit text-cluster-green mr-3"></i>
+                                        <span class="text-gray-900">Update Farm Profile</span>
+                                    </button>
+                                    <button onclick="startGrantApplication()" class="w-full text-left p-3 bg-gray-50 hover:bg-gray-100 rounded border">
+                                        <i class="fas fa-money-bill-wave text-cluster-blue mr-3"></i>
+                                        <span class="text-gray-900">Apply for Grants</span>
+                                    </button>
+                                    <button onclick="showSection('community')" class="w-full text-left p-3 bg-gray-50 hover:bg-gray-100 rounded border">
+                                        <i class="fas fa-comments text-cluster-gold mr-3"></i>
+                                        <span class="text-gray-900">Message Farmers</span>
+                                    </button>
+                                    <button onclick="showSection('support')" class="w-full text-left p-3 bg-gray-50 hover:bg-gray-100 rounded border">
+                                        <i class="fas fa-life-ring text-gray-600 mr-3"></i>
+                                        <span class="text-gray-900">Contact Support</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Farm Profile Section -->
+                <div id="profile-section" class="section hidden">
+                    <div class="mb-6">
+                        <h1 class="text-2xl font-bold text-gray-900 font-secondary">Farm Profile</h1>
+                        <p class="text-gray-600">Manage your farm details, boundaries, and connect external data sources.</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div class="lg:col-span-2">
+                            <div class="bg-white rounded-lg shadow p-6 mb-6">
+                                <h3 class="text-lg font-semibold text-gray-900 mb-4">Basic Information</h3>
+                                <form class="space-y-4">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Farm Name</label>
+                                            <input type="text" value="Green Acres Farm" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Farm Size (hectares)</label>
+                                            <input type="number" value="45" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Location</label>
+                                        <input type="text" value="Guildford, Surrey GU1 1AA" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Farm Description</label>
+                                        <textarea rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md">Mixed arable and livestock farm focused on sustainable practices and biodiversity enhancement. Specializing in wheat, barley, and sheep farming with a commitment to environmental stewardship.</textarea>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="bg-white rounded-lg shadow p-6">
+                                <h3 class="text-lg font-semibold text-gray-900 mb-4">Farm Boundaries & Data</h3>
+                                <div class="space-y-4">
+                                    <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                                        <i class="fas fa-map text-4xl text-gray-400 mb-4"></i>
+                                        <h4 class="text-lg font-medium text-gray-900 mb-2">Farm Boundary Map</h4>
+                                        <p class="text-gray-600 mb-4">Upload your farm boundaries or connect via SBI to import from RPA database</p>
+                                        <div class="space-y-2">
+                                            <button onclick="uploadBoundaries()" class="bg-cluster-green text-white px-4 py-2 rounded-md hover:bg-green-700 mr-2">
+                                                Upload Boundaries
+                                            </button>
+                                            <button onclick="connectSBI()" class="bg-cluster-blue text-white px-4 py-2 rounded-md hover:bg-blue-700">
+                                                Connect via SBI
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="bg-white rounded-lg shadow p-6 mb-6">
+                                <h3 class="text-lg font-semibold text-gray-900 mb-4">External Integrations</h3>
+                                <div class="space-y-4">
+                                    <div id="landAppConnection" class="p-4 border-2 border-cluster-blue rounded-lg bg-blue-50">
+                                        <div class="flex items-center justify-between mb-3">
+                                            <div class="flex items-center">
+                                                <i class="fas fa-map-marked-alt text-cluster-blue text-xl mr-3"></i>
+                                                <div>
+                                                    <h4 class="font-semibold text-gray-900">Land App</h4>
+                                                    <p class="text-sm text-gray-600">Connected</p>
+                                                </div>
+                                            </div>
+                                            <span class="text-green-500">
+                                                <i class="fas fa-check-circle"></i>
+                                            </span>
+                                        </div>
+                                        <div class="text-sm text-gray-700 space-y-1">
+                                            <div class="flex justify-between">
+                                                <span>Farm Boundaries:</span>
+                                                <span class="text-green-600">✓ Synced</span>
+                                            </div>
+                                            <div class="flex justify-between">
+                                                <span>Field Plans:</span>
+                                                <span class="text-green-600">✓ Synced</span>
+                                            </div>
+                                            <div class="flex justify-between">
+                                                <span>Crop Data:</span>
+                                                <span class="text-green-600">✓ Synced</span>
+                                            </div>
+                                        </div>
+                                        <button onclick="manageLandAppConnection()" class="w-full mt-3 bg-cluster-blue text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700">
+                                            Manage Connection
+                                        </button>
+                                    </div>
+
+                                    <div class="p-4 border border-gray-300 rounded-lg">
+                                        <div class="flex items-center justify-between mb-3">
+                                            <div class="flex items-center">
+                                                <i class="fas fa-database text-gray-400 text-xl mr-3"></i>
+                                                <div>
+                                                    <h4 class="font-semibold text-gray-900">RPA Database</h4>
+                                                    <p class="text-sm text-gray-600">Not connected</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="text-sm text-gray-600 mb-3">Connect your SBI to import official farm boundaries and scheme data.</p>
+                                        <button onclick="connectRPA()" class="w-full bg-gray-600 text-white px-4 py-2 rounded-md text-sm hover:bg-gray-700">
+                                            Connect SBI
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-white rounded-lg shadow p-6">
+                                <h3 class="text-lg font-semibold text-gray-900 mb-4">Farming Activities</h3>
+                                <div class="space-y-3">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" checked class="rounded border-gray-300 text-cluster-green">
+                                        <span class="ml-2 text-sm">Arable</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" checked class="rounded border-gray-300 text-cluster-green">
+                                        <span class="ml-2 text-sm">Livestock</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" class="rounded border-gray-300 text-cluster-green">
+                                        <span class="ml-2 text-sm">Dairy</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" checked class="rounded border-gray-300 text-cluster-green">
+                                        <span class="ml-2 text-sm">Organic Practices</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-6">
+                                    <button class="w-full bg-cluster-green text-white px-4 py-2 rounded-md hover:bg-green-700">
+                                        Save Changes
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grants Section -->
+                <div id="grants-section" class="section hidden">
+                    <div class="mb-6">
+                        <h1 class="text-2xl font-bold text-gray-900 font-secondary">Grants & Funding</h1>
+                        <p class="text-gray-600">Discover funding opportunities tailored to your farm and apply with AI assistance.</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                        <div class="lg:col-span-3">
+                            <!-- AI Grant Assistant -->
+                            <div class="bg-gradient-to-r from-purple-500 to-purple-600 text-white p-6 rounded-lg mb-6">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h3 class="text-xl font-semibold mb-2">
+                                            <i class="fas fa-robot mr-2"></i>AI Grant Assistant
+                                        </h3>
+                                        <p class="text-purple-100">Get personalized funding recommendations and application guidance</p>
+                                    </div>
+                                    <button onclick="openAIAssistant()" class="bg-white text-purple-600 px-6 py-2 rounded-md hover:bg-gray-100 font-medium">
+                                        Start Chat
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Grant Opportunities -->
+                            <div class="bg-white rounded-lg shadow">
+                                <div class="p-6 border-b border-gray-200">
+                                    <div class="flex justify-between items-center">
+                                        <h3 class="text-lg font-semibold text-gray-900">Available Opportunities</h3>
+                                        <div class="flex space-x-2">
+                                            <select class="border border-gray-300 rounded-md px-3 py-1 text-sm">
+                                                <option>All Types</option>
+                                                <option>Environmental</option>
+                                                <option>Innovation</option>
+                                                <option>Infrastructure</option>
+                                            </select>
+                                            <button class="bg-cluster-green text-white px-4 py-1 rounded-md text-sm hover:bg-green-700">
+                                                <i class="fas fa-filter mr-1"></i>Filter
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="p-6 space-y-6">
+                                    <div class="border border-green-200 bg-green-50 p-6 rounded-lg">
+                                        <div class="flex justify-between items-start mb-4">
+                                            <div>
+                                                <h4 class="text-xl font-semibold text-gray-900">FiPL Biodiversity Enhancement</h4>
+                                                <p class="text-gray-600">Farming Investment in Land and Productivity</p>
+                                            </div>
+                                            <span class="px-3 py-1 text-sm bg-green-100 text-green-800 rounded-full font-medium">98% Match</span>
+                                        </div>
+                                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4 text-sm">
+                                            <div><strong>Funding:</strong> Up to £25,000</div>
+                                            <div><strong>Deadline:</strong> March 30, 2025</div>
+                                            <div><strong>Match Rate:</strong> 40%</div>
+                                            <div><strong>Duration:</strong> 3 years</div>
+                                        </div>
+                                        <p class="text-gray-700 mb-4">
+                                            Support for establishing wildflower margins, hedgerow planting, and biodiversity enhancements. 
+                                            Perfect for arable farms looking to improve environmental outcomes while maintaining productivity.
+                                        </p>
+                                        <div class="flex space-x-3">
+                                            <button onclick="startAIApplication('fipl-biodiversity')" class="bg-cluster-green text-white px-6 py-2 rounded-md hover:bg-green-700">
+                                                <i class="fas fa-robot mr-2"></i>Apply with AI Assistant
+                                            </button>
+                                            <button onclick="viewGrantDetails('fipl-biodiversity')" class="border border-gray-300 text-gray-700 px-6 py-2 rounded-md hover:bg-gray-50">
+                                                View Details
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="border border-blue-200 bg-blue-50 p-6 rounded-lg">
+                                        <div class="flex justify-between items-start mb-4">
+                                            <div>
+                                                <h4 class="text-xl font-semibold text-gray-900">Countryside Stewardship Mid Tier</h4>
+                                                <p class="text-gray-600">Environmental Land Management</p>
+                                            </div>
+                                            <span class="px-3 py-1 text-sm bg-blue-100 text-blue-800 rounded-full font-medium">85% Match</span>
+                                        </div>
+                                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4 text-sm">
+                                            <div><strong>Funding:</strong> Variable</div>
+                                            <div><strong>Deadline:</strong> April 15, 2025</div>
+                                            <div><strong>Agreement:</strong> 5 years</div>
+                                            <div><strong>Payment:</strong> Annual</div>
+                                        </div>
+                                        <p class="text-gray-700 mb-4">
+                                            Environmental land management scheme offering payments for environmental management on farmland. 
+                                            Includes options for wildlife habitat creation, water quality improvement, and heritage conservation.
+                                        </p>
+                                        <div class="flex space-x-3">
+                                            <button onclick="startAIApplication('countryside-stewardship')" class="bg-cluster-blue text-white px-6 py-2 rounded-md hover:bg-blue-700">
+                                                <i class="fas fa-robot mr-2"></i>Apply with AI Assistant
+                                            </button>
+                                            <button onclick="viewGrantDetails('countryside-stewardship')" class="border border-gray-300 text-gray-700 px-6 py-2 rounded-md hover:bg-gray-50">
+                                                View Details
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="border border-orange-200 bg-orange-50 p-6 rounded-lg">
+                                        <div class="flex justify-between items-start mb-4">
+                                            <div>
+                                                <h4 class="text-xl font-semibold text-gray-900">Sustainable Farming Incentive</h4>
+                                                <p class="text-gray-600">SFI Annual Payment Scheme</p>
+                                            </div>
+                                            <span class="px-3 py-1 text-sm bg-orange-100 text-orange-800 rounded-full font-medium">72% Match</span>
+                                        </div>
+                                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4 text-sm">
+                                            <div><strong>Payment:</strong> £/ha annually</div>
+                                            <div><strong>Rolling:</strong> Applications open</div>
+                                            <div><strong>Agreement:</strong> 3 years</div>
+                                            <div><strong>Actions:</strong> 23 available</div>
+                                        </div>
+                                        <p class="text-gray-700 mb-4">
+                                            Annual payments for sustainable farming practices including soil health, integrated pest management, 
+                                            and nutrient management. Compatible with other schemes.
+                                        </p>
+                                        <div class="flex space-x-3">
+                                            <button onclick="startAIApplication('sfi')" class="bg-orange-500 text-white px-6 py-2 rounded-md hover:bg-orange-600">
+                                                <i class="fas fa-robot mr-2"></i>Apply with AI Assistant
+                                            </button>
+                                            <button onclick="viewGrantDetails('sfi')" class="border border-gray-300 text-gray-700 px-6 py-2 rounded-md hover:bg-gray-50">
+                                                View Details
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sidebar -->
+                        <div class="space-y-6">
+                            <div class="bg-white rounded-lg shadow p-6">
+                                <h3 class="text-lg font-semibold text-gray-900 mb-4">Your Applications</h3>
+                                <div class="space-y-3">
+                                    <div class="p-3 bg-orange-50 border border-orange-200 rounded">
+                                        <h4 class="font-medium text-gray-900">FiPL Infrastructure</h4>
+                                        <p class="text-sm text-gray-600">Submitted 2 weeks ago</p>
+                                        <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded-full">Under Review</span>
+                                    </div>
+                                    <div class="p-3 bg-blue-50 border border-blue-200 rounded">
+                                        <h4 class="font-medium text-gray-900">SFI Soil Health</h4>
+                                        <p class="text-sm text-gray-600">Submitted 1 month ago</p>
+                                        <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Approved</span>
+                                    </div>
+                                </div>
+                                <button class="w-full mt-4 text-cluster-green hover:text-green-700 text-sm font-medium">
+                                    View All Applications →
+                                </button>
+                            </div>
+
+                            <div class="bg-white rounded-lg shadow p-6">
+                                <h3 class="text-lg font-semibold text-gray-900 mb-4">Grant Calendar</h3>
+                                <div class="space-y-3">
+                                    <div class="border-l-4 border-red-400 pl-3">
+                                        <p class="font-medium text-gray-900">FiPL Biodiversity</p>
+                                        <p class="text-sm text-gray-600">Deadline: March 30</p>
+                                        <p class="text-xs text-red-600">15 days left</p>
+                                    </div>
+                                    <div class="border-l-4 border-yellow-400 pl-3">
+                                        <p class="font-medium text-gray-900">Countryside Stewardship</p>
+                                        <p class="text-sm text-gray-600">Deadline: April 15</p>
+                                        <p class="text-xs text-yellow-600">31 days left</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-white rounded-lg shadow p-6">
+                                <h3 class="text-lg font-semibold text-gray-900 mb-4">Success Stories</h3>
+                                <div class="space-y-3">
+                                    <div class="text-sm">
+                                        <p class="font-medium text-gray-900">Sarah Wilson secured £18k</p>
+                                        <p class="text-gray-600">FiPL Biodiversity Enhancement for wildflower meadows</p>
+                                    </div>
+                                    <div class="text-sm">
+                                        <p class="font-medium text-gray-900">Mike Thompson got £12k</p>
+                                        <p class="text-gray-600">SFI payments for soil health improvements</p>
+                                    </div>
+                                </div>
+                                <button class="w-full mt-4 text-cluster-green hover:text-green-700 text-sm font-medium">
+                                    Read More Stories →
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Community Section -->
+                <div id="community-section" class="section hidden">
+                    <div class="mb-6">
+                        <h1 class="text-2xl font-bold text-gray-900 font-secondary">Farmer Community</h1>
+                        <p class="text-gray-600">Connect, share knowledge, and collaborate with fellow farmers in Surrey.</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                        <div class="lg:col-span-3">
+                            <!-- Discussion Groups -->
+                            <div class="bg-white rounded-lg shadow mb-6">
+                                <div class="border-b border-gray-200 p-6">
+                                    <h3 class="text-lg font-semibold text-gray-900">Discussion Groups</h3>
+                                </div>
+                                <div class="p-6">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div onclick="openGroup('regenerative')" class="p-4 border border-gray-200 rounded-lg hover:border-cluster-green cursor-pointer">
+                                            <div class="flex items-center justify-between mb-2">
+                                                <h4 class="font-semibold text-gray-900">Regenerative Agriculture</h4>
+                                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">23 members</span>
+                                            </div>
+                                            <p class="text-sm text-gray-600 mb-2">Share experiences on soil health, cover crops, and regenerative practices.</p>
+                                            <p class="text-xs text-gray-500">Last post: 2 hours ago</p>
+                                        </div>
+                                        
+                                        <div onclick="openGroup('livestock')" class="p-4 border border-gray-200 rounded-lg hover:border-cluster-green cursor-pointer">
+                                            <div class="flex items-center justify-between mb-2">
+                                                <h4 class="font-semibold text-gray-900">Livestock Management</h4>
+                                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">18 members</span>
+                                            </div>
+                                            <p class="text-sm text-gray-600 mb-2">Discuss animal welfare, grazing systems, and livestock health.</p>
+                                            <p class="text-xs text-gray-500">Last post: 4 hours ago</p>
+                                        </div>
+                                        
+                                        <div onclick="openGroup('organic')" class="p-4 border border-gray-200 rounded-lg hover:border-cluster-green cursor-pointer">
+                                            <div class="flex items-center justify-between mb-2">
+                                                <h4 class="font-semibold text-gray-900">Organic Practices</h4>
+                                                <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">15 members</span>
+                                            </div>
+                                            <p class="text-sm text-gray-600 mb-2">Organic certification, pest management, and natural farming methods.</p>
+                                            <p class="text-xs text-gray-500">Last post: 1 day ago</p>
+                                        </div>
+                                        
+                                        <div onclick="openGroup('technology')" class="p-4 border border-gray-200 rounded-lg hover:border-cluster-green cursor-pointer">
+                                            <div class="flex items-center justify-between mb-2">
+                                                <h4 class="font-semibold text-gray-900">Farm Technology</h4>
+                                                <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded-full">12 members</span>
+                                            </div>
+                                            <p class="text-sm text-gray-600 mb-2">Precision agriculture, drones, sensors, and digital farming tools.</p>
+                                            <p class="text-xs text-gray-500">Last post: 2 days ago</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Recent Posts -->
+                            <div class="bg-white rounded-lg shadow">
+                                <div class="border-b border-gray-200 p-6">
+                                    <h3 class="text-lg font-semibold text-gray-900">Recent Posts</h3>
+                                </div>
+                                <div class="divide-y divide-gray-200">
+                                    <div class="p-6">
+                                        <div class="flex items-start space-x-3">
+                                            <div class="h-10 w-10 rounded-full bg-cluster-blue flex items-center justify-center text-white font-medium">SW</div>
+                                            <div class="flex-1">
+                                                <div class="flex items-center space-x-2 mb-2">
+                                                    <h4 class="font-semibold text-gray-900">Sarah Wilson</h4>
+                                                    <span class="text-sm text-gray-500">• Meadowbrook Organics</span>
+                                                    <span class="text-sm text-gray-500">• 2 hours ago</span>
+                                                </div>
+                                                <p class="text-gray-700 mb-3">
+                                                    Just finished implementing cover crops on 15 hectares. Seeing amazing results with soil structure improvements! 
+                                                    Has anyone tried crimson clover and winter rye mix? Would love to hear your experiences.
+                                                </p>
+                                                <div class="flex items-center space-x-4 text-sm text-gray-500">
+                                                    <button onclick="likePost()" class="hover:text-cluster-green">
+                                                        <i class="fas fa-thumbs-up mr-1"></i>5 likes
+                                                    </button>
+                                                    <button onclick="commentPost()" class="hover:text-cluster-green">
+                                                        <i class="fas fa-comment mr-1"></i>3 comments
+                                                    </button>
+                                                    <button onclick="sharePost()" class="hover:text-cluster-green">
+                                                        <i class="fas fa-share mr-1"></i>Share
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="p-6">
+                                        <div class="flex items-start space-x-3">
+                                            <div class="h-10 w-10 rounded-full bg-cluster-green flex items-center justify-center text-white font-medium">MT</div>
+                                            <div class="flex-1">
+                                                <div class="flex items-center space-x-2 mb-2">
+                                                    <h4 class="font-semibold text-gray-900">Mike Thompson</h4>
+                                                    <span class="text-sm text-gray-500">• Heritage Sheep Farm</span>
+                                                    <span class="text-sm text-gray-500">• 4 hours ago</span>
+                                                </div>
+                                                <p class="text-gray-700 mb-3">
+                                                    Looking for advice on rotational grazing systems. Planning to divide our 20 hectares into smaller paddocks. 
+                                                    What's worked best for other livestock farmers in terms of paddock size and rotation frequency?
+                                                </p>
+                                                <div class="flex items-center space-x-4 text-sm text-gray-500">
+                                                    <button onclick="likePost()" class="hover:text-cluster-green">
+                                                        <i class="fas fa-thumbs-up mr-1"></i>8 likes
+                                                    </button>
+                                                    <button onclick="commentPost()" class="hover:text-cluster-green">
+                                                        <i class="fas fa-comment mr-1"></i>7 comments
+                                                    </button>
+                                                    <button onclick="sharePost()" class="hover:text-cluster-green">
+                                                        <i class="fas fa-share mr-1"></i>Share
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Community Sidebar -->
+                        <div class="space-y-6">
+                            <div class="bg-white rounded-lg shadow p-6">
+                                <h3 class="text-lg font-semibold text-gray-900 mb-4">Your Connections</h3>
+                                <div class="space-y-3">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="h-8 w-8 rounded-full bg-cluster-blue flex items-center justify-center text-white text-sm font-medium">SW</div>
+                                        <div class="flex-1">
+                                            <p class="font-medium text-gray-900 text-sm">Sarah Wilson</p>
+                                            <p class="text-xs text-gray-500">Meadowbrook Organics</p>
+                                        </div>
+                                        <button onclick="messageUser('sarah')" class="text-cluster-green hover:text-green-700">
+                                            <i class="fas fa-comment"></i>
+                                        </button>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <div class="h-8 w-8 rounded-full bg-cluster-green flex items-center justify-center text-white text-sm font-medium">MT</div>
+                                        <div class="flex-1">
+                                            <p class="font-medium text-gray-900 text-sm">Mike Thompson</p>
+                                            <p class="text-xs text-gray-500">Heritage Sheep Farm</p>
+                                        </div>
+                                        <button onclick="messageUser('mike')" class="text-cluster-green hover:text-green-700">
+                                            <i class="fas fa-comment"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <button onclick="findMoreFarmers()" class="w-full mt-4 text-cluster-green hover:text-green-700 text-sm font-medium">
+                                    Find More Farmers →
+                                </button>
+                            </div>
+
+                            <div class="bg-white rounded-lg shadow p-6">
+                                <h3 class="text-lg font-semibold text-gray-900 mb-4">New Post</h3>
+                                <textarea class="w-full p-3 border border-gray-300 rounded-md" rows="4" placeholder="Share something with the community..."></textarea>
+                                <div class="mt-3 flex space-x-2">
+                                    <button class="bg-cluster-green text-white px-4 py-2 rounded-md text-sm hover:bg-green-700">
+                                        Post
+                                    </button>
+                                    <button class="border border-gray-300 text-gray-700 px-4 py-2 rounded-md text-sm hover:bg-gray-50">
+                                        <i class="fas fa-image mr-1"></i>Photo
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="bg-white rounded-lg shadow p-6">
+                                <h3 class="text-lg font-semibold text-gray-900 mb-4">Suggested Connections</h3>
+                                <div class="space-y-3">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center space-x-3">
+                                            <div class="h-8 w-8 rounded-full bg-cluster-gold flex items-center justify-center text-gray-800 text-sm font-medium">AL</div>
+                                            <div>
+                                                <p class="font-medium text-gray-900 text-sm">Alex Lewis</p>
+                                                <p class="text-xs text-gray-500">Organic Vegetables</p>
+                                            </div>
+                                        </div>
+                                        <button onclick="connectFarmer('alex')" class="text-cluster-green hover:text-green-700 text-sm">
+                                            Connect
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Events Section -->
+                <div id="events-section" class="section hidden">
+                    <div class="mb-6">
+                        <h1 class="text-2xl font-bold text-gray-900 font-secondary">Events & Learning</h1>
+                        <p class="text-gray-600">Join workshops, seminars, and networking events to grow your knowledge and connections.</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                        <div class="lg:col-span-3">
+                            <div class="bg-white rounded-lg shadow">
+                                <div class="border-b border-gray-200 p-6">
+                                    <div class="flex justify-between items-center">
+                                        <h3 class="text-lg font-semibold text-gray-900">Upcoming Events</h3>
+                                        <div class="flex space-x-2">
+                                            <select class="border border-gray-300 rounded-md px-3 py-1 text-sm">
+                                                <option>All Events</option>
+                                                <option>Workshops</option>
+                                                <option>Seminars</option>
+                                                <option>Field Trips</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="p-6 space-y-6">
+                                    <div class="border border-green-200 bg-green-50 p-6 rounded-lg">
+                                        <div class="flex justify-between items-start mb-4">
+                                            <div>
+                                                <h4 class="text-xl font-semibold text-gray-900">Sustainability Workshop</h4>
+                                                <p class="text-gray-600">Practical approaches to sustainable farming</p>
+                                            </div>
+                                            <span class="px-3 py-1 text-sm bg-green-100 text-green-800 rounded-full font-medium">Registered</span>
+                                        </div>
+                                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4 text-sm">
+                                            <div><strong>Date:</strong> March 15, 2025</div>
+                                            <div><strong>Time:</strong> 10:00 AM - 4:00 PM</div>
+                                            <div><strong>Location:</strong> Guildford Farm Centre</div>
+                                            <div><strong>Attendees:</strong> 23 registered</div>
+                                        </div>
+                                        <p class="text-gray-700 mb-4">
+                                            Hands-on workshop covering regenerative agriculture, biodiversity enhancement, and carbon sequestration. 
+                                            Includes field demonstrations and networking lunch.
+                                        </p>
+                                        <div class="flex space-x-3">
+                                            <button class="bg-gray-500 text-white px-6 py-2 rounded-md">
+                                                <i class="fas fa-check mr-2"></i>Registered
+                                            </button>
+                                            <button onclick="viewEventDetails('sustainability-workshop')" class="border border-gray-300 text-gray-700 px-6 py-2 rounded-md hover:bg-gray-50">
+                                                View Details
+                                            </button>
+                                            <button onclick="addToCalendar('sustainability-workshop')" class="border border-gray-300 text-gray-700 px-6 py-2 rounded-md hover:bg-gray-50">
+                                                <i class="fas fa-calendar-plus mr-2"></i>Add to Calendar
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="border border-blue-200 bg-blue-50 p-6 rounded-lg">
+                                        <div class="flex justify-between items-start mb-4">
+                                            <div>
+                                                <h4 class="text-xl font-semibold text-gray-900">Soil Health Seminar</h4>
+                                                <p class="text-gray-600">Understanding and improving soil biology</p>
+                                            </div>
+                                        </div>
+                                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4 text-sm">
+                                            <div><strong>Date:</strong> March 22, 2025</div>
+                                            <div><strong>Time:</strong> 2:00 PM - 5:00 PM</div>
+                                            <div><strong>Format:</strong> Virtual Event</div>
+                                            <div><strong>Available:</strong> 15 spaces left</div>
+                                        </div>
+                                        <p class="text-gray-700 mb-4">
+                                            Expert-led seminar on soil testing, microbial communities, and practical soil improvement strategies. 
+                                            Includes Q&A session and downloadable resources.
+                                        </p>
+                                        <div class="flex space-x-3">
+                                            <button onclick="registerEvent('soil-health')" class="bg-cluster-blue text-white px-6 py-2 rounded-md hover:bg-blue-700">
+                                                <i class="fas fa-user-plus mr-2"></i>Register
+                                            </button>
+                                            <button onclick="viewEventDetails('soil-health')" class="border border-gray-300 text-gray-700 px-6 py-2 rounded-md hover:bg-gray-50">
+                                                View Details
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="border border-purple-200 bg-purple-50 p-6 rounded-lg">
+                                        <div class="flex justify-between items-start mb-4">
+                                            <div>
+                                                <h4 class="text-xl font-semibold text-gray-900">Cluster AGM & Networking</h4>
+                                                <p class="text-gray-600">Annual General Meeting and social event</p>
+                                            </div>
+                                        </div>
+                                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4 text-sm">
+                                            <div><strong>Date:</strong> April 5, 2025</div>
+                                            <div><strong>Time:</strong> 6:00 PM - 9:00 PM</div>
+                                            <div><strong>Location:</strong> Surrey Agricultural College</div>
+                                            <div><strong>Type:</strong> Members Only</div>
+                                        </div>
+                                        <p class="text-gray-700 mb-4">
+                                            Annual review of cluster activities, financial report, and plans for the coming year. 
+                                            Followed by networking dinner and guest speaker presentation.
+                                        </p>
+                                        <div class="flex space-x-3">
+                                            <button onclick="registerEvent('agm')" class="bg-purple-600 text-white px-6 py-2 rounded-md hover:bg-purple-700">
+                                                <i class="fas fa-user-plus mr-2"></i>Register
+                                            </button>
+                                            <button onclick="viewEventDetails('agm')" class="border border-gray-300 text-gray-700 px-6 py-2 rounded-md hover:bg-gray-50">
+                                                View Details
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Events Sidebar -->
+                        <div class="space-y-6">
+                            <div class="bg-white rounded-lg shadow p-6">
+                                <h3 class="text-lg font-semibold text-gray-900 mb-4">Your Registrations</h3>
+                                <div class="space-y-3">
+                                    <div class="p-3 bg-green-50 border border-green-200 rounded">
+                                        <h4 class="font-medium text-gray-900 text-sm">Sustainability Workshop</h4>
+                                        <p class="text-xs text-gray-600">March 15 • 10:00 AM</p>
+                                        <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Registered</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-white rounded-lg shadow p-6">
+                                <h3 class="text-lg font-semibold text-gray-900 mb-4">Event Categories</h3>
+                                <div class="space-y-2">
+                                    <button class="w-full text-left p-2 hover:bg-gray-50 rounded text-sm">
+                                        <i class="fas fa-tools text-cluster-green mr-2"></i>Workshops (3)
+                                    </button>
+                                    <button class="w-full text-left p-2 hover:bg-gray-50 rounded text-sm">
+                                        <i class="fas fa-chalkboard-teacher text-cluster-blue mr-2"></i>Seminars (2)
+                                    </button>
+                                    <button class="w-full text-left p-2 hover:bg-gray-50 rounded text-sm">
+                                        <i class="fas fa-route text-cluster-gold mr-2"></i>Field Trips (1)
+                                    </button>
+                                    <button class="w-full text-left p-2 hover:bg-gray-50 rounded text-sm">
+                                        <i class="fas fa-users text-purple-600 mr-2"></i>Networking (1)
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="bg-white rounded-lg shadow p-6">
+                                <h3 class="text-lg font-semibold text-gray-900 mb-4">Learning Resources</h3>
+                                <div class="space-y-3">
+                                    <div class="text-sm">
+                                        <p class="font-medium text-gray-900">Past Event Recordings</p>
+                                        <p class="text-gray-600">Access previous workshop videos</p>
+                                    </div>
+                                    <div class="text-sm">
+                                        <p class="font-medium text-gray-900">Resource Library</p>
+                                        <p class="text-gray-600">Downloadable guides and templates</p>
+                                    </div>
+                                </div>
+                                <button class="w-full mt-4 text-cluster-green hover:text-green-700 text-sm font-medium">
+                                    Browse Resources →
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Support Section -->
+                <div id="support-section" class="section hidden">
+                    <div class="mb-6">
+                        <h1 class="text-2xl font-bold text-gray-900 font-secondary">Support Centre</h1>
+                        <p class="text-gray-600">Get help from our team, access resources, and connect with experts.</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div class="lg:col-span-2">
+                            <div class="bg-white rounded-lg shadow p-6 mb-6">
+                                <h3 class="text-lg font-semibold text-gray-900 mb-4">Contact Support Team</h3>
+                                <form class="space-y-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+                                        <select class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                                            <option>General Enquiry</option>
+                                            <option>Grant Application Help</option>
+                                            <option>Technical Support</option>
+                                            <option>Membership Question</option>
+                                            <option>Event Registration</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Priority</label>
+                                        <select class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                                            <option>Normal</option>
+                                            <option>High</option>
+                                            <option>Urgent</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                                        <textarea rows="6" class="w-full px-3 py-2 border border-gray-300 rounded-md" placeholder="Describe your question or issue..."></textarea>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Attachments (optional)</label>
+                                        <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
+                                            <i class="fas fa-cloud-upload-alt text-gray-400 text-2xl mb-2"></i>
+                                            <p class="text-gray-600">Drag files here or <button class="text-cluster-green underline">browse</button></p>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="bg-cluster-green text-white px-6 py-2 rounded-md hover:bg-green-700">
+                                        <i class="fas fa-paper-plane mr-2"></i>Send Message
+                                    </button>
+                                </form>
+                            </div>
+
+                            <div class="bg-white rounded-lg shadow p-6">
+                                <h3 class="text-lg font-semibold text-gray-900 mb-4">Previous Support Tickets</h3>
+                                <div class="space-y-4">
+                                    <div class="border border-gray-200 rounded-lg p-4">
+                                        <div class="flex justify-between items-start mb-2">
+                                            <h4 class="font-medium text-gray-900">Grant application assistance</h4>
+                                            <span class="px-2 py-1 text-xs bg-green-100 text-green-800 rounded-full">Resolved</span>
+                                        </div>
+                                        <p class="text-sm text-gray-600 mb-2">Needed help with FiPL biodiversity application form.</p>
+                                        <p class="text-xs text-gray-500">Submitted 1 week ago • Resolved by Sarah Johnson</p>
+                                    </div>
+                                    <div class="border border-gray-200 rounded-lg p-4">
+                                        <div class="flex justify-between items-start mb-2">
+                                            <h4 class="font-medium text-gray-900">Event registration issue</h4>
+                                            <span class="px-2 py-1 text-xs bg-blue-100 text-blue-800 rounded-full">In Progress</span>
+                                        </div>
+                                        <p class="text-sm text-gray-600 mb-2">Unable to register for sustainability workshop.</p>
+                                        <p class="text-xs text-gray-500">Submitted 2 days ago</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-6">
+                            <div class="bg-white rounded-lg shadow p-6">
+                                <h3 class="text-lg font-semibold text-gray-900 mb-4">Quick Help</h3>
+                                <div class="space-y-3">
+                                    <button onclick="openHelpArticle('getting-started')" class="w-full text-left p-3 bg-gray-50 hover:bg-gray-100 rounded border">
+                                        <i class="fas fa-play-circle text-cluster-green mr-3"></i>
+                                        <span class="text-gray-900">Getting Started Guide</span>
+                                    </button>
+                                    <button onclick="openHelpArticle('grant-applications')" class="w-full text-left p-3 bg-gray-50 hover:bg-gray-100 rounded border">
+                                        <i class="fas fa-file-alt text-cluster-blue mr-3"></i>
+                                        <span class="text-gray-900">Grant Application Help</span>
+                                    </button>
+                                    <button onclick="openHelpArticle('profile-setup')" class="w-full text-left p-3 bg-gray-50 hover:bg-gray-100 rounded border">
+                                        <i class="fas fa-user-cog text-cluster-gold mr-3"></i>
+                                        <span class="text-gray-900">Profile Setup</span>
+                                    </button>
+                                    <button onclick="openHelpArticle('community-features')" class="w-full text-left p-3 bg-gray-50 hover:bg-gray-100 rounded border">
+                                        <i class="fas fa-users text-purple-600 mr-3"></i>
+                                        <span class="text-gray-900">Community Features</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="bg-white rounded-lg shadow p-6">
+                                <h3 class="text-lg font-semibold text-gray-900 mb-4">Expert Consultation</h3>
+                                <p class="text-gray-600 text-sm mb-4">Book a one-on-one consultation with our agricultural experts.</p>
+                                <div class="space-y-3">
+                                    <button onclick="bookConsultation('sustainability')" class="w-full bg-cluster-green text-white px-4 py-2 rounded-md hover:bg-green-700 text-sm">
+                                        <i class="fas fa-leaf mr-2"></i>Sustainability Expert
+                                    </button>
+                                    <button onclick="bookConsultation('grants')" class="w-full bg-cluster-blue text-white px-4 py-2 rounded-md hover:bg-blue-700 text-sm">
+                                        <i class="fas fa-money-bill-wave mr-2"></i>Grant Specialist
+                                    </button>
+                                    <button onclick="bookConsultation('technology')" class="w-full bg-cluster-gold text-white px-4 py-2 rounded-md hover:bg-yellow-600 text-sm">
+                                        <i class="fas fa-laptop mr-2"></i>Technology Advisor
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="bg-white rounded-lg shadow p-6">
+                                <h3 class="text-lg font-semibold text-gray-900 mb-4">Emergency Contact</h3>
+                                <div class="space-y-3">
+                                    <div class="text-sm">
+                                        <p class="font-medium text-gray-900">Phone Support</p>
+                                        <p class="text-cluster-green font-medium">01483 123 456</p>
+                                        <p class="text-gray-600">Mon-Fri 9:00-17:00</p>
+                                    </div>
+                                    <div class="text-sm">
+                                        <p class="font-medium text-gray-900">Email Support</p>
+                                        <p class="text-cluster-green font-medium">support@surreyfarmingcluster.co.uk</p>
+                                        <p class="text-gray-600">24-48 hour response</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check authentication
+            if (localStorage.getItem('farmerAuth') !== 'true') {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Load user info
+            const user = JSON.parse(localStorage.getItem('farmerUser') || '{}');
+            if (user.name) {
+                document.getElementById('farmerName').textContent = user.name;
+                document.getElementById('welcomeName').textContent = user.name.split(' ')[0];
+            }
+            if (user.farm) {
+                document.getElementById('farmName').textContent = user.farm;
+            }
+            
+            // Show Land App connection status
+            if (user.landAppConnected) {
+                document.getElementById('landAppStatus').classList.remove('hidden');
+                document.getElementById('landAppBanner').classList.remove('hidden');
+                document.getElementById('landAppConnection').classList.remove('hidden');
+            }
+        });
+
+        // Navigation functions
+        function showSection(sectionName) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.add('hidden');
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionName + '-section').classList.remove('hidden');
+            document.getElementById(sectionName + '-section').classList.add('active');
+            
+            // Update navigation
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+                item.classList.add('text-gray-600', 'hover:text-gray-900');
+                item.classList.remove('text-cluster-green', 'bg-green-50');
+            });
+            
+            event.target.classList.add('active');
+            event.target.classList.add('text-cluster-green', 'bg-green-50');
+            event.target.classList.remove('text-gray-600', 'hover:text-gray-900');
+        }
+
+        // Action functions
+        function logout() {
+            localStorage.removeItem('farmerAuth');
+            localStorage.removeItem('farmerUser');
+            window.location.href = 'login.html';
+        }
+
+        function viewLandAppData() {
+            alert('🔗 Land App Integration Status\n\n✅ Farm Boundaries: Synced\n✅ Field Plans: Current\n✅ Crop Data: Updated\n✅ Sustainability Metrics: Linked\n\nLast sync: 2 hours ago\nNext sync: Automatic daily updates');
+        }
+
+        function startGrantApplication(grantType) {
+            alert('🤖 AI Grant Assistant\n\nStarting application for: ' + (grantType || 'Grant') + '\n\nThe AI assistant will guide you through:\n• Eligibility check\n• Required documents\n• Application form completion\n• Submission review\n\nThis feature would open an interactive chat interface.');
+        }
+
+        function openAIAssistant() {
+            alert('🤖 AI Grant Assistant\n\nHello! I can help you:\n\n• Find suitable grants for your farm\n• Check eligibility requirements\n• Complete applications step-by-step\n• Review submissions before sending\n\nWhat would you like to explore today?');
+        }
+
+        function startAIApplication(grantType) {
+            alert('🤖 Starting AI-Guided Application\n\nGrant: ' + grantType + '\n\n✅ Farm profile analyzed\n✅ Eligibility confirmed (98% match)\n✅ Required documents identified\n\nThe AI assistant will now guide you through each section of the application form with personalized recommendations.');
+        }
+
+        function uploadBoundaries() {
+            alert('📁 Upload Farm Boundaries\n\nSupported formats:\n• KML files\n• GPX files\n• Shapefile (.shp)\n• GeoJSON\n\nDrag and drop files or browse to select.');
+        }
+
+        function connectSBI() {
+            alert('🔗 Connect via SBI\n\nEnter your Single Business Identifier to automatically import:\n• Official farm boundaries\n• Land parcel information\n• Current scheme registrations\n• Environmental designations\n\nThis will connect to the RPA database securely.');
+        }
+
+        function connectRPA() {
+            alert('🔗 Connecting to RPA Database\n\n✅ SBI verified\n✅ Farm boundaries imported\n✅ Scheme data synchronized\n\nYour official farm information is now available in your profile.');
+        }
+
+        function manageLandAppConnection() {
+            alert('🔧 Manage Land App Connection\n\nConnection Status: Active\nLast Sync: 2 hours ago\n\nOptions:\n• Sync Now\n• Manage Data Permissions\n• View Sync History\n• Disconnect Account');
+        }
+
+        function registerEvent(eventId) {
+            alert('✅ Event Registration\n\nSuccessfully registered for: ' + eventId + '\n\nYou will receive:\n• Calendar invitation\n• Event details email\n• Reminder notifications\n• Access to event materials');
+        }
+
+        function viewGrantDetails(grantId) {
+            alert('📋 Grant Details: ' + grantId + '\n\nThis would open a detailed view including:\n• Full eligibility criteria\n• Application requirements\n• Deadline information\n• Success stories\n• Application tips');
+        }
+
+        function viewEventDetails(eventId) {
+            alert('📅 Event Details: ' + eventId + '\n\nThis would show:\n• Full agenda\n• Speaker information\n• Location details\n• What to bring\n• Parking information');
+        }
+
+        function openGroup(groupName) {
+            alert('💬 Opening Discussion Group: ' + groupName + '\n\nThis would navigate to the group discussion area with:\n• Recent posts\n• Member list\n• Group resources\n• Post creation tools');
+        }
+
+        function messageUser(userId) {
+            alert('💬 Starting conversation with: ' + userId + '\n\nThis would open a direct message interface.');
+        }
+
+        function likePost() {
+            alert('👍 Post liked!');
+        }
+
+        function commentPost() {
+            alert('💬 This would open the comment interface for this post.');
+        }
+
+        function sharePost() {
+            alert('📤 Share options:\n• Share to group\n• Send to connection\n• Copy link');
+        }
+
+        function findMoreFarmers() {
+            alert('🔍 Find Farmers\n\nDiscover farmers based on:\n• Location proximity\n• Farming activities\n• Interests\n• Experience level');
+        }
+
+        function connectFarmer(farmerId) {
+            alert('🤝 Connection request sent to: ' + farmerId);
+        }
+
+        function addToCalendar(eventId) {
+            alert('📅 Event added to your calendar: ' + eventId);
+        }
+
+        function openHelpArticle(article) {
+            alert('📖 Opening help article: ' + article + '\n\nThis would display step-by-step guidance and tutorials.');
+        }
+
+        function bookConsultation(type) {
+            alert('📞 Book ' + type + ' consultation\n\nAvailable slots:\n• Tomorrow 2:00 PM\n• Friday 10:00 AM\n• Monday 3:00 PM\n\nWould you like to book a 30-minute session?');
+        }
+
+        // Add active styles for navigation
+        const style = document.createElement('style');
+        style.textContent = `
+            .nav-item {
+                transition: all 0.2s ease-in-out;
+            }
+            .nav-item:hover {
+                background-color: #f3f4f6;
+            }
+            .nav-item.active {
+                background-color: #f0f9f0;
+                border-color: #2E7D32;
+                color: #2E7D32;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

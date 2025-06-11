@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Surrey Farming Cluster</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'cluster-green': '#2E7D32',
+                        'cluster-brown': '#5D4037',
+                        'cluster-gold': '#FBC02D',
+                        'cluster-blue': '#0288D1',
+                    },
+                    fontFamily: {
+                        'primary': ['Roboto', 'sans-serif'],
+                        'secondary': ['Lora', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-br from-green-50 to-blue-50 font-primary">
+    <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl mx-auto">
+            <div class="text-center mb-8">
+                <div class="mx-auto h-16 w-16 flex items-center justify-center rounded-full bg-cluster-green">
+                    <i class="fas fa-tractor text-white text-2xl"></i>
+                </div>
+                <h2 class="mt-6 text-3xl font-bold text-gray-900 font-secondary">
+                    Join Surrey Farming Cluster
+                </h2>
+                <p class="mt-2 text-gray-600">
+                    Connect with fellow farmers, access funding, and grow sustainably together
+                </p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-8">
+                <!-- Step indicator -->
+                <div class="mb-8">
+                    <div class="flex items-center justify-between">
+                        <div class="step-indicator active">
+                            <div class="step-circle">1</div>
+                            <div class="step-label">Account</div>
+                        </div>
+                        <div class="step-line"></div>
+                        <div class="step-indicator">
+                            <div class="step-circle">2</div>
+                            <div class="step-label">Farm Details</div>
+                        </div>
+                        <div class="step-line"></div>
+                        <div class="step-indicator">
+                            <div class="step-circle">3</div>
+                            <div class="step-label">Integration</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 1: Account Setup -->
+                <div id="step1" class="step-content active">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-6">Create Your Account</h3>
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                                <input type="text" required class="w-full px-3 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-cluster-green">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                                <input type="text" required class="w-full px-3 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-cluster-green">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                            <input type="email" required class="w-full px-3 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-cluster-green">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                            <input type="tel" class="w-full px-3 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-cluster-green">
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                                <input type="password" required class="w-full px-3 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-cluster-green">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Confirm Password</label>
+                                <input type="password" required class="w-full px-3 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-cluster-green">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Step 2: Farm Details -->
+                <div id="step2" class="step-content hidden">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-6">Tell Us About Your Farm</h3>
+                    <form class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Farm Name</label>
+                            <input type="text" required class="w-full px-3 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-cluster-green" placeholder="e.g. Green Acres Farm">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Single Business Identifier (SBI)</label>
+                            <input type="text" class="w-full px-3 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-cluster-green" placeholder="SBI123456789">
+                            <p class="text-sm text-gray-500 mt-1">Optional: Used to connect with RPA database for automatic farm boundary import</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Farm Size (hectares)</label>
+                                <input type="number" class="w-full px-3 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-cluster-green">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Location (Postcode)</label>
+                                <input type="text" class="w-full px-3 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-cluster-green" placeholder="GU1 1AA">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Primary Farming Activities</label>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded border-gray-300 text-cluster-green focus:ring-cluster-green">
+                                    <span class="ml-2 text-sm">Arable</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded border-gray-300 text-cluster-green focus:ring-cluster-green">
+                                    <span class="ml-2 text-sm">Livestock</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded border-gray-300 text-cluster-green focus:ring-cluster-green">
+                                    <span class="ml-2 text-sm">Dairy</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded border-gray-300 text-cluster-green focus:ring-cluster-green">
+                                    <span class="ml-2 text-sm">Horticulture</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded border-gray-300 text-cluster-green focus:ring-cluster-green">
+                                    <span class="ml-2 text-sm">Organic</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded border-gray-300 text-cluster-green focus:ring-cluster-green">
+                                    <span class="ml-2 text-sm">Forestry</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded border-gray-300 text-cluster-green focus:ring-cluster-green">
+                                    <span class="ml-2 text-sm">Mixed</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="rounded border-gray-300 text-cluster-green focus:ring-cluster-green">
+                                    <span class="ml-2 text-sm">Other</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Brief Farm Description</label>
+                            <textarea rows="4" class="w-full px-3 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-cluster-green" placeholder="Tell us about your farm, your practices, and what you're interested in..."></textarea>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Step 3: Integration Options -->
+                <div id="step3" class="step-content hidden">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-6">Connect Your Data</h3>
+                    <div class="space-y-6">
+                        <div class="border-2 border-cluster-blue rounded-lg p-6 bg-blue-50">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center">
+                                    <i class="fas fa-map-marked-alt text-cluster-blue text-2xl mr-4"></i>
+                                    <div>
+                                        <h4 class="text-lg font-semibold text-gray-900">Connect Land App Account</h4>
+                                        <p class="text-sm text-gray-600">Automatically sync your farm boundaries, field plans, and sustainability data</p>
+                                    </div>
+                                </div>
+                                <button onclick="connectLandApp()" class="bg-cluster-blue text-white px-6 py-2 rounded-md hover:bg-blue-700">
+                                    Connect
+                                </button>
+                            </div>
+                            <div class="text-sm text-gray-700">
+                                <p class="font-medium mb-2">Benefits of connecting:</p>
+                                <ul class="list-disc list-inside space-y-1">
+                                    <li>Automatic farm boundary mapping</li>
+                                    <li>Seamless data sync between platforms</li>
+                                    <li>Enhanced grant application accuracy</li>
+                                    <li>Real-time sustainability tracking</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="border border-gray-300 rounded-lg p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center">
+                                    <i class="fas fa-database text-gray-600 text-2xl mr-4"></i>
+                                    <div>
+                                        <h4 class="text-lg font-semibold text-gray-900">RPA Database Connection</h4>
+                                        <p class="text-sm text-gray-600">Link your SBI to import official farm boundaries and scheme data</p>
+                                    </div>
+                                </div>
+                                <button onclick="connectRPA()" class="bg-gray-600 text-white px-6 py-2 rounded-md hover:bg-gray-700">
+                                    Connect
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-50 rounded-lg p-6">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-4">Privacy & Data Usage</h4>
+                            <div class="space-y-3">
+                                <label class="flex items-start">
+                                    <input type="checkbox" required class="mt-1 rounded border-gray-300 text-cluster-green focus:ring-cluster-green">
+                                    <span class="ml-3 text-sm text-gray-700">
+                                        I agree to the <a href="#" class="text-cluster-green underline">Terms of Service</a> and <a href="#" class="text-cluster-green underline">Privacy Policy</a>
+                                    </span>
+                                </label>
+                                <label class="flex items-start">
+                                    <input type="checkbox" class="mt-1 rounded border-gray-300 text-cluster-green focus:ring-cluster-green">
+                                    <span class="ml-3 text-sm text-gray-700">
+                                        I consent to sharing anonymised farm data for research and cluster insights
+                                    </span>
+                                </label>
+                                <label class="flex items-start">
+                                    <input type="checkbox" class="mt-1 rounded border-gray-300 text-cluster-green focus:ring-cluster-green">
+                                    <span class="ml-3 text-sm text-gray-700">
+                                        I would like to receive email updates about grants, events, and opportunities
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="mt-8 flex justify-between">
+                    <button id="prevBtn" onclick="previousStep()" class="px-6 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50" style="display: none;">
+                        <i class="fas fa-arrow-left mr-2"></i>Previous
+                    </button>
+                    <div></div>
+                    <button id="nextBtn" onclick="nextStep()" class="px-6 py-2 bg-cluster-green text-white rounded-md hover:bg-green-700">
+                        Next<i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                    <button id="submitBtn" onclick="completeRegistration()" class="px-6 py-2 bg-cluster-green text-white rounded-md hover:bg-green-700" style="display: none;">
+                        <i class="fas fa-check mr-2"></i>Complete Registration
+                    </button>
+                </div>
+
+                <div class="mt-6 text-center">
+                    <p class="text-sm text-gray-600">
+                        Already have an account?
+                        <a href="login.html" class="font-medium text-cluster-green hover:text-green-700">
+                            Sign in here
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .step-indicator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+        }
+        .step-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #e5e7eb;
+            color: #6b7280;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .step-indicator.active .step-circle {
+            background-color: #2E7D32;
+            color: white;
+        }
+        .step-label {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+        .step-indicator.active .step-label {
+            color: #2E7D32;
+            font-weight: 600;
+        }
+        .step-line {
+            height: 2px;
+            background-color: #e5e7eb;
+            flex: 1;
+            margin: 0 16px;
+            margin-top: 20px;
+        }
+        .step-content {
+            display: none;
+        }
+        .step-content.active {
+            display: block;
+        }
+    </style>
+
+    <script>
+        let currentStep = 1;
+
+        function showStep(step) {
+            // Hide all steps
+            document.querySelectorAll('.step-content').forEach(content => {
+                content.classList.remove('active');
+                content.classList.add('hidden');
+            });
+            
+            // Show current step
+            document.getElementById('step' + step).classList.remove('hidden');
+            document.getElementById('step' + step).classList.add('active');
+            
+            // Update step indicators
+            document.querySelectorAll('.step-indicator').forEach((indicator, index) => {
+                if (index + 1 <= step) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+            
+            // Update navigation buttons
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const submitBtn = document.getElementById('submitBtn');
+            
+            if (step === 1) {
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'block';
+                submitBtn.style.display = 'none';
+            } else if (step === 3) {
+                prevBtn.style.display = 'block';
+                nextBtn.style.display = 'none';
+                submitBtn.style.display = 'block';
+            } else {
+                prevBtn.style.display = 'block';
+                nextBtn.style.display = 'block';
+                submitBtn.style.display = 'none';
+            }
+        }
+
+        function nextStep() {
+            if (currentStep < 3) {
+                currentStep++;
+                showStep(currentStep);
+            }
+        }
+
+        function previousStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        }
+
+        function connectLandApp() {
+            alert('🔗 Connecting to Land App...\n\n✅ Successfully connected!\n\nYour farm boundaries and field data will be automatically imported when you complete registration.');
+        }
+
+        function connectRPA() {
+            alert('🔗 Connecting to RPA Database...\n\n✅ SBI verified!\n\nYour official farm boundaries and scheme information will be imported.');
+        }
+
+        function completeRegistration() {
+            // Simulate registration
+            const farmerData = {
+                name: 'John Davies',
+                email: 'john@greenacresfarm.co.uk',
+                farm: 'Green Acres Farm',
+                sbi: 'SBI123456789',
+                landAppConnected: true,
+                registrationComplete: true
+            };
+            
+            localStorage.setItem('farmerAuth', 'true');
+            localStorage.setItem('farmerUser', JSON.stringify(farmerData));
+            
+            alert('🎉 Welcome to Surrey Farming Cluster!\n\nYour account has been created successfully. You can now access your farmer portal.');
+            window.location.href = 'dashboard.html';
+        }
+
+        // Initialize
+        showStep(1);
+    </script>
+</body>
+</html>

@@ -1,0 +1,610 @@
+/**
+ * Surrey Farming Cluster - Brand System
+ * Centralised design tokens and variables
+ * Version: 1.0
+ */
+
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&family=Lora:wght@400;500;600;700&display=swap');
+
+/* ========================================
+   CSS CUSTOM PROPERTIES (CSS Variables)
+======================================== */
+
+:root {
+  /* === PRIMARY BRAND COLOURS === */
+  --cluster-green: #2E7D32;
+  --cluster-brown: #5D4037;
+  --cluster-gold: #FBC02D;
+  --cluster-blue: #0288D1;
+
+  /* === SECONDARY BRAND COLOURS === */
+  --cluster-green-light: #4CAF50;
+  --cluster-green-dark: #1B5E20;
+  --cluster-brown-light: #8D6E63;
+  --cluster-brown-dark: #3E2723;
+  --cluster-gold-light: #FFF176;
+  --cluster-gold-dark: #F57F17;
+  --cluster-blue-light: #29B6F6;
+  --cluster-blue-dark: #01579B;
+
+  /* === NEUTRAL PALETTE === */
+  --gray-50: #F9FAFB;
+  --gray-100: #F3F4F6;
+  --gray-200: #E5E7EB;
+  --gray-300: #D1D5DB;
+  --gray-400: #9CA3AF;
+  --gray-500: #6B7280;
+  --gray-600: #4B5563;
+  --gray-700: #374151;
+  --gray-800: #1F2937;
+  --gray-900: #111827;
+  --white: #FFFFFF;
+  --black: #000000;
+
+  /* === STATUS COLOURS === */
+  --success-bg: #DCFCE7;
+  --success-text: #166534;
+  --warning-bg: #FEF3C7;
+  --warning-text: #92400E;
+  --info-bg: #DBEAFE;
+  --info-text: #1E40AF;
+  --error-bg: #FEE2E2;
+  --error-text: #991B1B;
+
+  /* === TYPOGRAPHY === */
+  --font-primary: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-secondary: 'Lora', Georgia, serif;
+
+  /* === FONT SIZES === */
+  --text-xs: 0.75rem;     /* 12px */
+  --text-sm: 0.875rem;    /* 14px */
+  --text-base: 1rem;      /* 16px */
+  --text-lg: 1.125rem;    /* 18px */
+  --text-xl: 1.25rem;     /* 20px */
+  --text-2xl: 1.5rem;     /* 24px */
+  --text-3xl: 1.875rem;   /* 30px */
+  --text-4xl: 2.25rem;    /* 36px */
+  --text-5xl: 3rem;       /* 48px */
+  --text-6xl: 3.75rem;    /* 60px */
+
+  /* === FONT WEIGHTS === */
+  --font-light: 300;
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+  /* === SPACING SCALE === */
+  --space-1: 0.25rem;     /* 4px */
+  --space-2: 0.5rem;      /* 8px */
+  --space-3: 0.75rem;     /* 12px */
+  --space-4: 1rem;        /* 16px */
+  --space-5: 1.25rem;     /* 20px */
+  --space-6: 1.5rem;      /* 24px */
+  --space-8: 2rem;        /* 32px */
+  --space-10: 2.5rem;     /* 40px */
+  --space-12: 3rem;       /* 48px */
+  --space-16: 4rem;       /* 64px */
+  --space-20: 5rem;       /* 80px */
+  --space-24: 6rem;       /* 96px */
+
+  /* === BORDER RADIUS === */
+  --radius-sm: 0.125rem;   /* 2px */
+  --radius: 0.25rem;       /* 4px */
+  --radius-md: 0.375rem;   /* 6px */
+  --radius-lg: 0.5rem;     /* 8px */
+  --radius-xl: 0.75rem;    /* 12px */
+  --radius-2xl: 1rem;      /* 16px */
+  --radius-full: 9999px;   /* Full circle */
+
+  /* === SHADOWS === */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+  /* === TRANSITIONS === */
+  --transition-fast: 0.15s ease-in-out;
+  --transition-normal: 0.3s ease-in-out;
+  --transition-slow: 0.5s ease-in-out;
+
+  /* === LAYOUT === */
+  --container-max-width: 80rem; /* 1280px */
+  --section-padding-y: var(--space-16);
+  --card-padding: var(--space-6);
+  --button-padding-x: var(--space-6);
+  --button-padding-y: var(--space-3);
+
+  /* === BREAKPOINTS === */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+}
+
+/* ========================================
+   BASE STYLES
+======================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--gray-800);
+  background-color: var(--gray-50);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========================================
+   TYPOGRAPHY UTILITIES
+======================================== */
+
+.font-primary {
+  font-family: var(--font-primary);
+}
+
+.font-secondary {
+  font-family: var(--font-secondary);
+}
+
+.text-xs { font-size: var(--text-xs); }
+.text-sm { font-size: var(--text-sm); }
+.text-base { font-size: var(--text-base); }
+.text-lg { font-size: var(--text-lg); }
+.text-xl { font-size: var(--text-xl); }
+.text-2xl { font-size: var(--text-2xl); }
+.text-3xl { font-size: var(--text-3xl); }
+.text-4xl { font-size: var(--text-4xl); }
+.text-5xl { font-size: var(--text-5xl); }
+.text-6xl { font-size: var(--text-6xl); }
+
+.font-light { font-weight: var(--font-light); }
+.font-normal { font-weight: var(--font-normal); }
+.font-medium { font-weight: var(--font-medium); }
+.font-semibold { font-weight: var(--font-semibold); }
+.font-bold { font-weight: var(--font-bold); }
+
+/* ========================================
+   BRAND COLOUR UTILITIES
+======================================== */
+
+/* Text colours */
+.text-cluster-green { color: var(--cluster-green); }
+.text-cluster-brown { color: var(--cluster-brown); }
+.text-cluster-gold { color: var(--cluster-gold); }
+.text-cluster-blue { color: var(--cluster-blue); }
+
+/* Background colours */
+.bg-cluster-green { background-color: var(--cluster-green); }
+.bg-cluster-brown { background-color: var(--cluster-brown); }
+.bg-cluster-gold { background-color: var(--cluster-gold); }
+.bg-cluster-blue { background-color: var(--cluster-blue); }
+
+/* Border colours */
+.border-cluster-green { border-color: var(--cluster-green); }
+.border-cluster-brown { border-color: var(--cluster-brown); }
+.border-cluster-gold { border-color: var(--cluster-gold); }
+.border-cluster-blue { border-color: var(--cluster-blue); }
+
+/* ========================================
+   COMPONENT BASE STYLES
+======================================== */
+
+/* Container */
+.container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: var(--space-8);
+    padding-right: var(--space-8);
+  }
+}
+
+/* Section */
+.section {
+  padding-top: var(--section-padding-y);
+  padding-bottom: var(--section-padding-y);
+}
+
+/* Card */
+.card {
+  background-color: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  padding: var(--card-padding);
+}
+
+.card-elevated {
+  box-shadow: var(--shadow-lg);
+}
+
+/* ========================================
+   BUTTON COMPONENTS
+======================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--button-padding-y) var(--button-padding-x);
+  border-radius: var(--radius-lg);
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  text-decoration: none;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-family: var(--font-primary);
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.3);
+}
+
+/* Primary Button */
+.btn-primary {
+  background-color: var(--cluster-green);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background-color: var(--cluster-green-dark);
+  color: var(--white);
+}
+
+/* Secondary Button */
+.btn-secondary {
+  background-color: transparent;
+  color: var(--cluster-green);
+  border-color: var(--cluster-green);
+}
+
+.btn-secondary:hover {
+  background-color: var(--cluster-green);
+  color: var(--white);
+}
+
+/* Accent Button (Gold) */
+.btn-accent {
+  background-color: var(--cluster-gold);
+  color: var(--cluster-brown);
+}
+
+.btn-accent:hover {
+  background-color: var(--cluster-gold-dark);
+  color: var(--cluster-brown);
+}
+
+/* Info Button (Blue) */
+.btn-info {
+  background-color: var(--cluster-blue);
+  color: var(--white);
+}
+
+.btn-info:hover {
+  background-color: var(--cluster-blue-dark);
+  color: var(--white);
+}
+
+/* Admin Button (Brown) */
+.btn-admin {
+  background-color: var(--cluster-brown);
+  color: var(--white);
+}
+
+.btn-admin:hover {
+  background-color: var(--cluster-brown-dark);
+  color: var(--white);
+}
+
+/* Button Sizes */
+.btn-sm {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+}
+
+.btn-lg {
+  padding: var(--space-4) var(--space-8);
+  font-size: var(--text-lg);
+}
+
+/* ========================================
+   STATUS COMPONENTS
+======================================== */
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: var(--font-medium);
+}
+
+.status-success {
+  background-color: var(--success-bg);
+  color: var(--success-text);
+}
+
+.status-warning {
+  background-color: var(--warning-bg);
+  color: var(--warning-text);
+}
+
+.status-info {
+  background-color: var(--info-bg);
+  color: var(--info-text);
+}
+
+.status-error {
+  background-color: var(--error-bg);
+  color: var(--error-text);
+}
+
+/* ========================================
+   PORTAL-SPECIFIC STYLES
+======================================== */
+
+/* Farmer Portal */
+.portal-farmer {
+  --portal-primary: var(--cluster-green);
+  --portal-secondary: var(--cluster-blue);
+  --portal-accent: var(--cluster-gold);
+}
+
+.portal-farmer .portal-badge {
+  background-color: var(--cluster-blue);
+  color: var(--white);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: var(--font-medium);
+}
+
+/* Admin Portal */
+.portal-admin {
+  --portal-primary: var(--cluster-brown);
+  --portal-secondary: var(--cluster-gold);
+  --portal-accent: var(--cluster-green);
+}
+
+.portal-admin .portal-badge {
+  background-color: var(--cluster-gold);
+  color: var(--cluster-brown);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: var(--font-medium);
+}
+
+/* ========================================
+   NAVIGATION STYLES
+======================================== */
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  color: var(--gray-600);
+  text-decoration: none;
+  font-weight: var(--font-medium);
+  transition: all var(--transition-fast);
+}
+
+.nav-item:hover {
+  background-color: var(--gray-100);
+  color: var(--gray-900);
+}
+
+.nav-item.active {
+  background-color: rgba(46, 125, 50, 0.1);
+  color: var(--cluster-green);
+}
+
+.nav-item i {
+  margin-right: var(--space-3);
+}
+
+/* ========================================
+   FORM STYLES
+======================================== */
+
+.form-input {
+  width: 100%;
+  padding: var(--space-3) var(--space-3);
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius-lg);
+  font-size: var(--text-base);
+  font-family: var(--font-primary);
+  transition: border-color var(--transition-fast);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--cluster-green);
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+}
+
+.form-label {
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--gray-700);
+  margin-bottom: var(--space-2);
+}
+
+/* ========================================
+   UTILITY CLASSES
+======================================== */
+
+/* Spacing */
+.p-1 { padding: var(--space-1); }
+.p-2 { padding: var(--space-2); }
+.p-3 { padding: var(--space-3); }
+.p-4 { padding: var(--space-4); }
+.p-6 { padding: var(--space-6); }
+.p-8 { padding: var(--space-8); }
+
+.px-1 { padding-left: var(--space-1); padding-right: var(--space-1); }
+.px-2 { padding-left: var(--space-2); padding-right: var(--space-2); }
+.px-3 { padding-left: var(--space-3); padding-right: var(--space-3); }
+.px-4 { padding-left: var(--space-4); padding-right: var(--space-4); }
+.px-6 { padding-left: var(--space-6); padding-right: var(--space-6); }
+.px-8 { padding-left: var(--space-8); padding-right: var(--space-8); }
+
+.py-1 { padding-top: var(--space-1); padding-bottom: var(--space-1); }
+.py-2 { padding-top: var(--space-2); padding-bottom: var(--space-2); }
+.py-3 { padding-top: var(--space-3); padding-bottom: var(--space-3); }
+.py-4 { padding-top: var(--space-4); padding-bottom: var(--space-4); }
+.py-6 { padding-top: var(--space-6); padding-bottom: var(--space-6); }
+.py-8 { padding-top: var(--space-8); padding-bottom: var(--space-8); }
+.py-16 { padding-top: var(--space-16); padding-bottom: var(--space-16); }
+
+.m-1 { margin: var(--space-1); }
+.m-2 { margin: var(--space-2); }
+.m-3 { margin: var(--space-3); }
+.m-4 { margin: var(--space-4); }
+.m-6 { margin: var(--space-6); }
+.m-8 { margin: var(--space-8); }
+
+.mb-1 { margin-bottom: var(--space-1); }
+.mb-2 { margin-bottom: var(--space-2); }
+.mb-3 { margin-bottom: var(--space-3); }
+.mb-4 { margin-bottom: var(--space-4); }
+.mb-6 { margin-bottom: var(--space-6); }
+.mb-8 { margin-bottom: var(--space-8); }
+
+/* Display */
+.hidden { display: none; }
+.block { display: block; }
+.inline-block { display: inline-block; }
+.flex { display: flex; }
+.inline-flex { display: inline-flex; }
+.grid { display: grid; }
+
+/* Flex utilities */
+.items-center { align-items: center; }
+.items-start { align-items: flex-start; }
+.items-end { align-items: flex-end; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.justify-end { justify-content: flex-end; }
+.flex-1 { flex: 1; }
+
+/* Text alignment */
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+/* Border radius */
+.rounded { border-radius: var(--radius); }
+.rounded-md { border-radius: var(--radius-md); }
+.rounded-lg { border-radius: var(--radius-lg); }
+.rounded-xl { border-radius: var(--radius-xl); }
+.rounded-full { border-radius: var(--radius-full); }
+
+/* Shadows */
+.shadow { box-shadow: var(--shadow); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+
+/* Background utilities */
+.bg-white { background-color: var(--white); }
+.bg-gray-50 { background-color: var(--gray-50); }
+.bg-gray-100 { background-color: var(--gray-100); }
+
+/* Border utilities */
+.border { border: 1px solid var(--gray-300); }
+.border-2 { border: 2px solid var(--gray-300); }
+
+/* ========================================
+   RESPONSIVE UTILITIES
+======================================== */
+
+@media (min-width: 640px) {
+  .sm\:text-lg { font-size: var(--text-lg); }
+  .sm\:px-6 { padding-left: var(--space-6); padding-right: var(--space-6); }
+}
+
+@media (min-width: 768px) {
+  .md\:text-xl { font-size: var(--text-xl); }
+  .md\:text-2xl { font-size: var(--text-2xl); }
+  .md\:text-6xl { font-size: var(--text-6xl); }
+  .md\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .md\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .md\:grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .lg\:text-2xl { font-size: var(--text-2xl); }
+  .lg\:px-8 { padding-left: var(--space-8); padding-right: var(--space-8); }
+  .lg\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .lg\:grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ========================================
+   ANIMATION & TRANSITIONS
+======================================== */
+
+.transition-colors {
+  transition: color var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.transition-all {
+  transition: all var(--transition-fast);
+}
+
+.hover\:bg-green-700:hover { background-color: var(--cluster-green-dark); }
+.hover\:bg-blue-700:hover { background-color: var(--cluster-blue-dark); }
+.hover\:bg-yellow-600:hover { background-color: var(--cluster-gold-dark); }
+.hover\:bg-amber-800:hover { background-color: var(--cluster-brown-dark); }
+
+.hover\:text-cluster-green:hover { color: var(--cluster-green); }
+.hover\:text-green-700:hover { color: var(--cluster-green-dark); }
+.hover\:text-blue-700:hover { color: var(--cluster-blue-dark); }
+
+.hover\:bg-gray-50:hover { background-color: var(--gray-50); }
+.hover\:bg-gray-100:hover { background-color: var(--gray-100); }
+
+/* ========================================
+   PRINT STYLES
+======================================== */
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    color: var(--black);
+    background: var(--white);
+  }
+  
+  .btn {
+    border: 1px solid var(--gray-400);
+  }
+}

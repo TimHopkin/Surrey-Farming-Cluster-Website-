@@ -154,6 +154,103 @@ const Home: React.FC = () => {
         </div>
       </section>
 
+      <section className="py-16 bg-gradient-to-r from-cluster-blue to-blue-600">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-secondary font-bold text-white mb-4">
+              Access Your Digital Platform
+            </h2>
+            <p className="text-lg text-blue-100 max-w-3xl mx-auto">
+              Connect with our comprehensive digital ecosystem: manage your farm, access grants, and collaborate with fellow farmers.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="bg-white p-8 rounded-xl shadow-lg">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-cluster-green rounded-full flex items-center justify-center mx-auto mb-6">
+                  <i className="fas fa-tractor text-white text-2xl"></i>
+                </div>
+                <h3 className="text-2xl font-semibold text-gray-900 mb-4">Farmer Portal</h3>
+                <p className="text-gray-600 mb-6">
+                  Access grants, connect with other farmers, manage your farm profile, and join our community.
+                </p>
+                <div className="space-y-3 mb-6">
+                  <div className="flex items-center text-gray-700">
+                    <i className="fas fa-check text-cluster-green mr-3"></i>
+                    <span>AI-guided grant applications</span>
+                  </div>
+                  <div className="flex items-center text-gray-700">
+                    <i className="fas fa-check text-cluster-green mr-3"></i>
+                    <span>Farm boundary mapping</span>
+                  </div>
+                  <div className="flex items-center text-gray-700">
+                    <i className="fas fa-check text-cluster-green mr-3"></i>
+                    <span>Community networking</span>
+                  </div>
+                  <div className="flex items-center text-gray-700">
+                    <i className="fas fa-check text-cluster-green mr-3"></i>
+                    <span>Land App integration</span>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <a 
+                    href="/prototype/farmer/login.html" 
+                    className="w-full bg-cluster-green text-white px-6 py-3 rounded-md font-medium hover:bg-green-700 transition-colors inline-block"
+                  >
+                    <i className="fas fa-sign-in-alt mr-2"></i>Farmer Login
+                  </a>
+                  <a 
+                    href="/prototype/farmer/register.html" 
+                    className="w-full border-2 border-cluster-green text-cluster-green px-6 py-3 rounded-md font-medium hover:bg-green-50 transition-colors inline-block"
+                  >
+                    <i className="fas fa-user-plus mr-2"></i>Join as Farmer
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white p-8 rounded-xl shadow-lg">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-cluster-brown rounded-full flex items-center justify-center mx-auto mb-6">
+                  <i className="fas fa-cogs text-white text-2xl"></i>
+                </div>
+                <h3 className="text-2xl font-semibold text-gray-900 mb-4">Admin Portal</h3>
+                <p className="text-gray-600 mb-6">
+                  Manage the cluster, review applications, track analytics, and communicate with members.
+                </p>
+                <div className="space-y-3 mb-6">
+                  <div className="flex items-center text-gray-700">
+                    <i className="fas fa-check text-cluster-brown mr-3"></i>
+                    <span>Member management</span>
+                  </div>
+                  <div className="flex items-center text-gray-700">
+                    <i className="fas fa-check text-cluster-brown mr-3"></i>
+                    <span>Application review</span>
+                  </div>
+                  <div className="flex items-center text-gray-700">
+                    <i className="fas fa-check text-cluster-brown mr-3"></i>
+                    <span>Analytics dashboard</span>
+                  </div>
+                  <div className="flex items-center text-gray-700">
+                    <i className="fas fa-check text-cluster-brown mr-3"></i>
+                    <span>Content management</span>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <a 
+                    href="/prototype/admin/login.html" 
+                    className="w-full bg-cluster-brown text-white px-6 py-3 rounded-md font-medium hover:bg-amber-800 transition-colors inline-block"
+                  >
+                    <i className="fas fa-shield-alt mr-2"></i>Admin Login
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
