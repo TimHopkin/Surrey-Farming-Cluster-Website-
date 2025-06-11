@@ -16,34 +16,46 @@ import BlogDetail from './pages/BlogDetail';
 import Join from './pages/Join';
 import FarmProfile from './pages/FarmProfile';
 import Dashboard from './pages/Dashboard';
+import ProtectedRoute from './components/ProtectedRoute';
+import ErrorBoundary from './components/ErrorBoundary';
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <div className="App min-h-screen flex flex-col">
-          <Header />
-          <main className="flex-grow">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/farms" element={<Farms />} />
-              <Route path="/farms/:id" element={<FarmDetail />} />
-              <Route path="/funding" element={<Funding />} />
-              <Route path="/map" element={<Map />} />
-              <Route path="/news" element={<News />} />
-              <Route path="/news/:id" element={<NewsDetail />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/blog/:id" element={<BlogDetail />} />
-              <Route path="/join" element={<Join />} />
-              <Route path="/profile" element={<FarmProfile />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
-      </Router>
-    </AuthProvider>
+    <ErrorBoundary>
+      <AuthProvider>
+        <Router>
+          <div className="App min-h-screen flex flex-col">
+            <Header />
+            <main className="flex-grow">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/farms" element={<Farms />} />
+                <Route path="/farms/:id" element={<FarmDetail />} />
+                <Route path="/funding" element={<Funding />} />
+                <Route path="/map" element={<Map />} />
+                <Route path="/news" element={<News />} />
+                <Route path="/news/:id" element={<NewsDetail />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/:id" element={<BlogDetail />} />
+                <Route path="/join" element={<Join />} />
+                <Route path="/profile" element={
+                  <ProtectedRoute>
+                    <FarmProfile />
+                  </ProtectedRoute>
+                } />
+                <Route path="/dashboard" element={
+                  <ProtectedRoute>
+                    <Dashboard />
+                  </ProtectedRoute>
+                } />
+              </Routes>
+            </main>
+            <Footer />
+          </div>
+        </Router>
+      </AuthProvider>
+    </ErrorBoundary>
   );
 }
 

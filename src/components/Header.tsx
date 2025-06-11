@@ -9,7 +9,7 @@ const Header: React.FC = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { currentUser, userProfile, logout } = useAuth();
+  const { currentUser, userProfile, logout, loading } = useAuth();
 
   const handleLogout = async () => {
     try {
@@ -93,10 +93,12 @@ const Header: React.FC = () => {
           </div>
 
           <div className="hidden md:flex items-center space-x-4">
-            {currentUser ? (
+            {loading ? (
+              <div className="text-gray-500 text-sm">Loading...</div>
+            ) : currentUser ? (
               <div className="flex items-center space-x-4">
                 <span className="text-gray-700">
-                  Welcome, {userProfile?.displayName || currentUser.displayName}
+                  Welcome, {userProfile?.displayName || currentUser.displayName || 'User'}
                   {userProfile?.role === 'admin' && (
                     <span className="ml-2 bg-cluster-blue text-white px-2 py-1 rounded text-xs">
                       Admin
@@ -206,10 +208,14 @@ const Header: React.FC = () => {
                 Join
               </Link>
               
-              {currentUser ? (
+              {loading ? (
+                <div className="border-t pt-4 mt-4">
+                  <div className="px-3 py-2 text-gray-500">Loading...</div>
+                </div>
+              ) : currentUser ? (
                 <div className="border-t pt-4 mt-4">
                   <div className="px-3 py-2 text-gray-700">
-                    Welcome, {userProfile?.displayName || currentUser.displayName}
+                    Welcome, {userProfile?.displayName || currentUser.displayName || 'User'}
                     {userProfile?.role === 'admin' && (
                       <span className="ml-2 bg-cluster-blue text-white px-2 py-1 rounded text-xs">
                         Admin

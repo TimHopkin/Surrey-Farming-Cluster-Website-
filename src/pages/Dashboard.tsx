@@ -5,31 +5,67 @@ import { getUserFarm } from '../services/farmService';
 import { Farm } from '../types/farm';
 
 const Dashboard: React.FC = () => {
-  const { currentUser, userProfile } = useAuth();
+  const { currentUser, userProfile, loading: authLoading } = useAuth();
   const [farm, setFarm] = useState<Farm | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [farmLoading, setFarmLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const loadUserData = async () => {
-      if (!currentUser) return;
+      if (!currentUser) {
+        setFarmLoading(false);
+        return;
+      }
       
       try {
         const userFarm = await getUserFarm(currentUser.uid);
         setFarm(userFarm);
+        setError(null);
       } catch (error) {
         console.error('Error loading user farm:', error);
+        setError('Failed to load farm data');
       } finally {
-        setLoading(false);
+        setFarmLoading(false);
       }
     };
 
-    loadUserData();
-  }, [currentUser]);
+    if (!authLoading) {
+      loadUserData();
+    }
+  }, [currentUser, authLoading]);
 
-  if (loading) {
+  if (authLoading || farmLoading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-xl">Loading your dashboard...</div>
+      </div>
+    );
+  }
+
+  if (!currentUser) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Please log in to access your dashboard</h2>
+          <Link to="/" className="text-cluster-blue hover:underline">Go to homepage</Link>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Error loading dashboard</h2>
+          <p className="text-gray-600 mb-4">{error}</p>
+          <button 
+            onClick={() => window.location.reload()} 
+            className="bg-cluster-blue text-white px-4 py-2 rounded hover:bg-blue-700"
+          >
+            Retry
+          </button>
+        </div>
       </div>
     );
   }
