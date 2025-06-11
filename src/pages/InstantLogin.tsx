@@ -78,6 +78,24 @@ const InstantLogin: React.FC = () => {
     }
   };
 
+  const handleAdminDemoLogin = async () => {
+    setLoading(true);
+    try {
+      await login('admin@surreycluster.com', 'admin123');
+      navigate('/dashboard');
+    } catch (error) {
+      // Create demo admin user if doesn't exist
+      try {
+        await signup('admin@surreycluster.com', 'admin123', 'Sarah Johnson', 'admin');
+        navigate('/dashboard');
+      } catch (signupError: any) {
+        setError(signupError.message);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4">
       <div className="max-w-md w-full">
@@ -92,14 +110,21 @@ const InstantLogin: React.FC = () => {
           </p>
         </div>
 
-        {/* Demo Button */}
-        <div className="mb-6">
+        {/* Demo Buttons */}
+        <div className="mb-6 space-y-3">
           <button
             onClick={handleDemoLogin}
             disabled={loading}
             className="w-full bg-gradient-to-r from-cluster-green to-green-600 text-white py-3 px-4 rounded-lg font-medium hover:from-green-600 hover:to-green-700 transition-all duration-200 disabled:opacity-50"
           >
-            🚀 Try Demo Account (Instant Access)
+            🌾 Try Farmer Demo (Instant Access)
+          </button>
+          <button
+            onClick={handleAdminDemoLogin}
+            disabled={loading}
+            className="w-full bg-gradient-to-r from-cluster-blue to-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:from-blue-600 hover:to-blue-700 transition-all duration-200 disabled:opacity-50"
+          >
+            👨‍💼 Try Admin Demo (Platform Management)
           </button>
           <p className="text-xs text-gray-500 text-center mt-2">
             No setup required - works immediately offline
