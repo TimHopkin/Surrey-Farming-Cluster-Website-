@@ -1,6 +1,8 @@
 # Surrey Farming Cluster - Brand Assets
 
-This folder contains all the official brand assets for the Surrey Farming Cluster platform.
+## 🎯 **CENTRALIZED LOGO SYSTEM**
+
+**This folder is the SINGLE SOURCE OF TRUTH for all Surrey Farming Cluster logos and brand assets.**
 
 ## 📁 **Directory Structure**
 
@@ -9,8 +11,8 @@ This folder contains all the official brand assets for the Surrey Farming Cluste
 ├── logos/
 │   ├── logo.svg              # Primary logo with text
 │   ├── logo-compact.svg      # Compact version with "SFC"
-│   ├── icon-only.svg         # Icon only for favicons
-│   ├── logo-white.svg        # White version for dark backgrounds
+│   ├── icon-only.svg         # Icon only for components
+│   ├── favicon.svg           # ⭐ MASTER FAVICON SOURCE
 │   └── logo-variations/      # Additional color variations
 ├── icons/
 │   ├── farmer-portal.svg     # Tractor icon for farmer portal
@@ -21,6 +23,33 @@ This folder contains all the official brand assets for the Surrey Farming Cluste
     ├── illustrations/        # Custom illustrations
     └── hero-images/          # Hero section backgrounds
 ```
+
+## 🔧 **CENTRALIZED REFERENCE SYSTEM**
+
+### **React Components Use:**
+```typescript
+// Import centralized logo system
+import { LogoSVG, BRAND_TEXT, LOGO_ASSETS } from '../utils/logoAssets';
+
+// Recommended: Inline SVG for components
+{LogoSVG.SEEDLING}
+
+// Alternative: File references
+<img src={LOGO_ASSETS.FULL_LOGO} alt={BRAND_TEXT.FULL_NAME} />
+```
+
+### **HTML/Static Files Use:**
+```html
+<!-- Always reference centralized logos -->
+<img src="/brand/assets/logos/logo.svg" alt="Surrey Farming Cluster">
+<link rel="icon" href="/brand/assets/logos/favicon.svg" type="image/svg+xml">
+```
+
+### **Current Centralized References:**
+- `/public/favicon.svg` → **mirrors** `/brand/assets/logos/favicon.svg`
+- `/public/index.html` → **references** `/brand/assets/logos/favicon.svg`
+- `/src/components/Logo.tsx` → **uses** `logoAssets.ts` system
+- All React components → **use** centralized `logoAssets.ts`
 
 ## 🎨 **Logo Usage Guidelines**
 

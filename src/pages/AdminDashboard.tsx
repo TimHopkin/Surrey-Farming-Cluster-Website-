@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../contexts/HybridAuthContext';
+import Logo from '../components/Logo';
 
 const AdminDashboard: React.FC = () => {
   const { currentUser, logout } = useAuth();
@@ -47,8 +48,6 @@ const AdminDashboard: React.FC = () => {
   const renderOverview = () => (
     <div className="space-y-6">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900 font-secondary">Dashboard Overview</h1>
-        <p className="text-gray-600">Welcome back, {currentUser?.displayName?.split(' ')[0] || 'Admin'}. Here's what's happening with your farming cluster.</p>
       </div>
 
       {/* Key Metrics */}
@@ -438,30 +437,49 @@ const AdminDashboard: React.FC = () => {
     <div className="min-h-screen bg-gray-100">
       {/* Navigation */}
       <nav className="bg-white shadow-lg border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <div className="flex-shrink-0 flex items-center">
-                <i className="fas fa-seedling text-cluster-green text-2xl mr-3"></i>
-                <span className="font-secondary font-bold text-xl text-gray-900">Surrey Farming Cluster</span>
-                <span className="ml-3 px-2 py-1 text-xs bg-yellow-100 text-yellow-800 rounded-full">ADMIN</span>
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex justify-between items-center h-20">
+            {/* Left: Single Clean Logo */}
+            <div className="flex-shrink-0">
+              <Logo className="h-14" showText={true} />
+            </div>
+            
+            {/* Center: Portal Badge & Stats */}
+            <div className="hidden md:flex items-center space-x-6">
+              <span className="px-4 py-2 text-sm bg-cluster-brown text-white rounded-full font-medium shadow-sm">
+                <i className="fas fa-shield-alt mr-2"></i>Admin Portal
+              </span>
+              <div className="flex items-center space-x-4 text-sm text-gray-600">
+                <div className="flex items-center">
+                  <i className="fas fa-users mr-2 text-cluster-green"></i>
+                  <span className="font-medium">47 Members</span>
+                </div>
+                <div className="flex items-center">
+                  <i className="fas fa-file-alt mr-2 text-orange-500"></i>
+                  <span className="font-medium">8 Pending</span>
+                </div>
               </div>
             </div>
+            
+            {/* Right: User Area */}
             <div className="flex items-center space-x-4">
-              <button className="p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 relative">
-                <i className="fas fa-bell text-lg"></i>
-                <span className="absolute -top-1 -right-1 h-4 w-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">3</span>
+              {/* Notifications */}
+              <button className="relative p-2 rounded-full text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-all">
+                <i className="fas fa-bell text-xl"></i>
+                <span className="absolute -top-1 -right-1 h-5 w-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center font-bold">3</span>
               </button>
-              <div className="flex items-center space-x-3">
-                <div className="h-8 w-8 rounded-full bg-cluster-green flex items-center justify-center text-white text-sm font-medium">
+              
+              {/* User Profile Area */}
+              <div className="flex items-center space-x-3 pl-4 border-l border-gray-200">
+                <div className="h-12 w-12 rounded-full bg-cluster-brown flex items-center justify-center text-white font-bold text-lg shadow-lg">
                   {currentUser?.displayName?.split(' ').map(n => n[0]).join('') || 'A'}
                 </div>
-                <div className="text-sm">
-                  <p className="font-medium text-gray-700">{currentUser?.displayName || 'Admin'}</p>
-                  <p className="text-gray-500">Platform Admin</p>
-                </div>
-                <button onClick={handleLogout} className="text-gray-400 hover:text-gray-500">
-                  <i className="fas fa-sign-out-alt"></i>
+                <button 
+                  onClick={handleLogout} 
+                  className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-full transition-all"
+                  title="Logout"
+                >
+                  <i className="fas fa-sign-out-alt text-xl"></i>
                 </button>
               </div>
             </div>

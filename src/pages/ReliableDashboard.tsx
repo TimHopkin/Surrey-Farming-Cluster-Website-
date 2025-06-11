@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/HybridAuthContext';
+import Logo from '../components/Logo';
 import AdminDashboard from './AdminDashboard';
 
 // Default farmer profile structure matching MVP
@@ -123,12 +124,6 @@ const ReliableDashboard: React.FC = () => {
 
   const renderDashboard = () => (
     <div className="space-y-6">
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900 font-secondary">
-          Welcome Back, {currentUser.displayName?.split(' ')[0] || 'Farmer'}! 👋
-        </h1>
-        <p className="text-gray-600">Here's what's happening at {farmProfile.farmName} and across the cluster.</p>
-      </div>
 
       {/* Land App Integration Banner */}
       {farmProfile.landAppConnected && (
@@ -768,35 +763,46 @@ const ReliableDashboard: React.FC = () => {
     <div className="min-h-screen bg-gray-100">
       {/* Navigation */}
       <nav className="bg-white shadow-lg border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <div className="flex-shrink-0 flex items-center">
-                <i className="fas fa-tractor text-cluster-green text-2xl mr-3"></i>
-                <span className="font-secondary font-bold text-xl text-gray-900">Surrey Farming Cluster</span>
-                <span className="ml-3 px-2 py-1 text-xs bg-cluster-blue text-white rounded-full">FARMER</span>
-              </div>
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex justify-between items-center h-20">
+            {/* Left: Single Clean Logo */}
+            <div className="flex-shrink-0">
+              <Logo className="h-14" showText={true} />
             </div>
+            
+            {/* Center: Portal Badge */}
+            <div className="hidden md:flex items-center">
+              <span className="px-4 py-2 text-sm bg-cluster-green text-white rounded-full font-medium shadow-sm">
+                <i className="fas fa-user-circle mr-2"></i>Farmer Portal
+              </span>
+            </div>
+            
+            {/* Right: User Area */}
             <div className="flex items-center space-x-4">
-              <button className="p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 relative">
-                <i className="fas fa-bell text-lg"></i>
-                <span className="absolute -top-1 -right-1 h-4 w-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">2</span>
+              {/* Status Badges */}
+              {farmProfile.landAppConnected && (
+                <div className="hidden sm:flex items-center bg-cluster-blue bg-opacity-10 text-cluster-blue px-3 py-1 rounded-full text-sm font-medium">
+                  <i className="fas fa-link mr-1"></i>Connected
+                </div>
+              )}
+              
+              {/* Notifications */}
+              <button className="relative p-2 rounded-full text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-all">
+                <i className="fas fa-bell text-xl"></i>
+                <span className="absolute -top-1 -right-1 h-5 w-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center font-bold">2</span>
               </button>
-              <div className="flex items-center space-x-3">
-                {farmProfile.landAppConnected && (
-                  <div className="bg-cluster-blue text-white px-2 py-1 rounded-full text-xs">
-                    <i className="fas fa-link mr-1"></i>Land App Connected
-                  </div>
-                )}
-                <div className="h-8 w-8 rounded-full bg-cluster-green flex items-center justify-center text-white text-sm font-medium">
-                  {currentUser.displayName?.split(' ').map(n => n[0]).join('') || 'U'}
+              
+              {/* User Profile Area */}
+              <div className="flex items-center space-x-3 pl-4 border-l border-gray-200">
+                <div className="h-12 w-12 rounded-full bg-cluster-green flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                  {currentUser.displayName?.split(' ').map(n => n[0]).join('') || 'F'}
                 </div>
-                <div className="text-sm">
-                  <p className="font-medium text-gray-700">{currentUser.displayName || 'Farmer'}</p>
-                  <p className="text-gray-500">{farmProfile.farmName}</p>
-                </div>
-                <button onClick={handleLogout} className="text-gray-400 hover:text-gray-500">
-                  <i className="fas fa-sign-out-alt"></i>
+                <button 
+                  onClick={handleLogout} 
+                  className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-full transition-all"
+                  title="Logout"
+                >
+                  <i className="fas fa-sign-out-alt text-xl"></i>
                 </button>
               </div>
             </div>

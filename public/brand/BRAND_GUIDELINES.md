@@ -35,11 +35,29 @@ The Surrey Farming Cluster brand represents **collaboration, sustainability, and
 ## 🎨 **Colour Palette**
 
 ### **Primary Colours**
+
+**Cluster Green** `#2E7D32`  
+🟢 Primary brand colour - growth, sustainability  
 ```css
---cluster-green: #2E7D32    /* Primary brand colour - growth, sustainability */
---cluster-brown: #5D4037    /* Secondary - earth, tradition, stability */
---cluster-gold: #FBC02D     /* Accent - harvest, prosperity, warmth */
---cluster-blue: #0288D1     /* Digital - technology, innovation, trust */
+--cluster-green: #2E7D32
+```
+
+**Cluster Brown** `#5D4037`  
+🟤 Secondary - earth, tradition, stability  
+```css
+--cluster-brown: #5D4037
+```
+
+**Cluster Gold** `#FBC02D`  
+🟡 Accent - harvest, prosperity, warmth  
+```css
+--cluster-gold: #FBC02D
+```
+
+**Cluster Blue** `#0288D1`  
+🔵 Digital - technology, innovation, trust  
+```css
+--cluster-blue: #0288D1
 ```
 
 ### **Secondary Colours**
