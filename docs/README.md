@@ -19,11 +19,11 @@
 - [`templates/`](./templates/) - Standard templates for components, tests, and documentation
 
 ### **Analysis & Planning**
-- [`../STRATEGIC_ROADMAP.md`](../STRATEGIC_ROADMAP.md) - Strategic development roadmap
-- [`../architecture.mmd`](../architecture.mmd) - System architecture diagram
-- [`../components-inventory.md`](../components-inventory.md) - Component analysis and inventory
-- [`../dependencies-audit.md`](../dependencies-audit.md) - Security and performance audit
-- [`../testing-strategy.md`](../testing-strategy.md) - Comprehensive testing strategy
+- [`./analysis/components-inventory.md`](./analysis/components-inventory.md) - Component analysis and inventory
+- [`./analysis/dependencies-audit.md`](./analysis/dependencies-audit.md) - Security and performance audit
+- [`./testing/testing-strategy.md`](./testing/testing-strategy.md) - Comprehensive testing strategy
+- [`./architecture/strategic-roadmap.md`](./architecture/strategic-roadmap.md) - Strategic development roadmap
+- [`./architecture/architecture.mmd`](./architecture/architecture.mmd) - System architecture diagram
 
 ---
 
@@ -42,7 +42,7 @@
 4. [Expansion Strategy](./architecture/expansion-strategy.md) - National platform design
 
 ### **Design System**
-1. [Brand Guidelines](./design/brand-guidelines.md) - Complete brand system reference
+1. [Brand System](./design/brand-system/) - Complete brand system with guidelines and components
 2. [Component Library](./design/component-library.md) - UI component documentation
 3. [Style Guide](./design/style-guide.md) - CSS and styling standards
 4. [Accessibility Guide](./design/accessibility-guide.md) - WCAG compliance guidelines
