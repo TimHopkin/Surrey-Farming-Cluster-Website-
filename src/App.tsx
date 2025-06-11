@@ -17,6 +17,7 @@ import Join from './pages/Join';
 import FarmProfile from './pages/FarmProfile';
 import Dashboard from './pages/Dashboard';
 import Test from './pages/Test';
+import SystemTest from './pages/SystemTest';
 import ProtectedRoute from './components/ProtectedRoute';
 import ErrorBoundary from './components/ErrorBoundary';
 
@@ -51,6 +52,7 @@ function App() {
                   </ProtectedRoute>
                 } />
                 <Route path="/test" element={<Test />} />
+                <Route path="/system-test" element={<SystemTest />} />
               </Routes>
             </main>
             <Footer />
