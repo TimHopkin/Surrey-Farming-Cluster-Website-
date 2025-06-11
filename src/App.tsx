@@ -16,6 +16,7 @@ import BlogDetail from './pages/BlogDetail';
 import Join from './pages/Join';
 import FarmProfile from './pages/FarmProfile';
 import Dashboard from './pages/Dashboard';
+import Test from './pages/Test';
 import ProtectedRoute from './components/ProtectedRoute';
 import ErrorBoundary from './components/ErrorBoundary';
 
@@ -49,6 +50,7 @@ function App() {
                     <Dashboard />
                   </ProtectedRoute>
                 } />
+                <Route path="/test" element={<Test />} />
               </Routes>
             </main>
             <Footer />
