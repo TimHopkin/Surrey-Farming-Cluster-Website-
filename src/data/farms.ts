@@ -1,22 +1,4 @@
-export interface Farm {
-  id: string;
-  name: string;
-  description: string;
-  type: string;
-  location: {
-    address: string;
-    lat: number;
-    lng: number;
-  };
-  products: string[];
-  image: string;
-  contact?: {
-    email?: string;
-    phone?: string;
-    website?: string;
-  };
-  isPublic: boolean;
-}
+import { Farm } from '../types/farm';
 
 export const sampleFarms: Farm[] = [
   {
@@ -35,7 +17,10 @@ export const sampleFarms: Farm[] = [
       email: 'info@greenfieldorganic.co.uk',
       website: 'www.greenfieldorganic.co.uk'
     },
-    isPublic: true
+    isPublic: true,
+    ownerId: 'sample-1',
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
   {
     id: '2',
@@ -53,7 +38,10 @@ export const sampleFarms: Farm[] = [
       email: 'hello@surreydairy.com',
       phone: '01306 123456'
     },
-    isPublic: true
+    isPublic: true,
+    ownerId: 'sample-2',
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
   {
     id: '3',
@@ -67,7 +55,10 @@ export const sampleFarms: Farm[] = [
     },
     products: ['Wheat', 'Barley', 'Rapeseed', 'Field Beans'],
     image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=400&h=300&fit=crop&auto=format',
-    isPublic: true
+    isPublic: true,
+    ownerId: 'sample-3',
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   },
   {
     id: '4',
@@ -84,6 +75,9 @@ export const sampleFarms: Farm[] = [
     contact: {
       email: 'orders@woodlandedge.farm'
     },
-    isPublic: true
+    isPublic: true,
+    ownerId: 'sample-4',
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date('2024-01-01')
   }
 ];

@@ -1,13 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { sampleFarms, Farm } from '../data/farms';
+import { sampleFarms } from '../data/farms';
+import { Farm } from '../types/farm';
+import { getAllFarms } from '../services/farmService';
 
 const Farms: React.FC = () => {
-  const [filteredFarms, setFilteredFarms] = useState<Farm[]>(sampleFarms);
+  const [allFarms, setAllFarms] = useState<Farm[]>([]);
+  const [filteredFarms, setFilteredFarms] = useState<Farm[]>([]);
   const [selectedType, setSelectedType] = useState<string>('all');
   const [searchTerm, setSearchTerm] = useState<string>('');
+  const [loading, setLoading] = useState(true);
 
-  const farmTypes = ['all', ...Array.from(new Set(sampleFarms.map(farm => farm.type)))];
+  useEffect(() => {
+    // Combine sample farms with real Firebase farms
+    const unsubscribe = getAllFarms((firebaseFarms) => {
+      const combinedFarms = [...sampleFarms, ...firebaseFarms];
+      setAllFarms(combinedFarms);
+      setFilteredFarms(combinedFarms);
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  const farmTypes = ['all', ...Array.from(new Set(allFarms.map(farm => farm.type)))];
 
   const handleFilterChange = (type: string) => {
     setSelectedType(type);
@@ -20,7 +36,7 @@ const Farms: React.FC = () => {
   };
 
   const filterFarms = (type: string, search: string) => {
-    let filtered = sampleFarms;
+    let filtered = allFarms;
     
     if (type !== 'all') {
       filtered = filtered.filter(farm => farm.type === type);
@@ -36,6 +52,14 @@ const Farms: React.FC = () => {
     
     setFilteredFarms(filtered);
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-xl">Loading farms...</div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -87,7 +111,7 @@ const Farms: React.FC = () => {
           </div>
           
           <div className="mb-4 text-gray-600">
-            Showing {filteredFarms.length} of {sampleFarms.length} farms
+            Showing {filteredFarms.length} of {allFarms.length} farms
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
