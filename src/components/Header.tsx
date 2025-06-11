@@ -103,14 +103,12 @@ const Header: React.FC = () => {
                     </span>
                   )}
                 </span>
-                {userProfile?.role === 'farmer' && (
-                  <Link
-                    to="/profile"
-                    className="bg-cluster-green text-white px-4 py-2 rounded-md hover:bg-green-700 text-sm"
-                  >
-                    My Farm
-                  </Link>
-                )}
+                <Link
+                  to="/dashboard"
+                  className="bg-cluster-blue text-white px-4 py-2 rounded-md hover:bg-blue-700 text-sm"
+                >
+                  Dashboard
+                </Link>
                 <button
                   onClick={handleLogout}
                   className="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 text-sm"
@@ -218,15 +216,13 @@ const Header: React.FC = () => {
                       </span>
                     )}
                   </div>
-                  {userProfile?.role === 'farmer' && (
-                    <Link
-                      to="/profile"
-                      className="w-full text-left bg-cluster-green text-white px-3 py-2 rounded-md hover:bg-green-700 text-sm block mt-2"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      My Farm
-                    </Link>
-                  )}
+                  <Link
+                    to="/dashboard"
+                    className="w-full text-left bg-cluster-blue text-white px-3 py-2 rounded-md hover:bg-blue-700 text-sm block mt-2"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Dashboard
+                  </Link>
                   <button
                     onClick={handleLogout}
                     className="w-full text-left bg-gray-500 text-white px-3 py-2 rounded-md hover:bg-gray-600 text-sm mt-2"

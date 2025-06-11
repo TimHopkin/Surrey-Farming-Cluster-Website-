@@ -15,6 +15,7 @@ import Blog from './pages/Blog';
 import BlogDetail from './pages/BlogDetail';
 import Join from './pages/Join';
 import FarmProfile from './pages/FarmProfile';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
               <Route path="/blog/:id" element={<BlogDetail />} />
               <Route path="/join" element={<Join />} />
               <Route path="/profile" element={<FarmProfile />} />
+              <Route path="/dashboard" element={<Dashboard />} />
             </Routes>
           </main>
           <Footer />
