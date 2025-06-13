@@ -30,7 +30,8 @@ const InstantLogin: React.FC = () => {
   // Redirect if already logged in
   useEffect(() => {
     if (currentUser) {
-      const from = (location.state as any)?.from?.pathname || '/dashboard';
+      const targetUrl = currentUser.role === 'admin' ? '/admin' : '/farmerdashboard';
+      const from = (location.state as any)?.from?.pathname || targetUrl;
       navigate(from, { replace: true });
     }
   }, [currentUser, navigate, location]);
@@ -46,11 +47,15 @@ const InstantLogin: React.FC = () => {
       if (isLogin) {
         await login(email, password);
         setMessage('✅ Login successful! Redirecting...');
-        setTimeout(() => navigate('/dashboard'), 500);
+        // Navigate based on current user after login
+        setTimeout(() => {
+          const targetUrl = currentUser?.role === 'admin' ? '/admin' : '/farmerdashboard';
+          navigate(targetUrl);
+        }, 500);
       } else {
         await signup(email, password, name, 'farmer');
         setMessage('✅ Account created! Redirecting to dashboard...');
-        setTimeout(() => navigate('/dashboard'), 500);
+        setTimeout(() => navigate('/farmerdashboard'), 500);
       }
       
     } catch (error: any) {
@@ -64,12 +69,12 @@ const InstantLogin: React.FC = () => {
     setLoading(true);
     try {
       await login('demo@farmer.com', 'demo123');
-      navigate('/dashboard');
+      navigate('/farmerdashboard');
     } catch (error) {
       // Create demo user if doesn't exist
       try {
         await signup('demo@farmer.com', 'demo123', 'Demo Farmer', 'farmer');
-        navigate('/dashboard');
+        navigate('/farmerdashboard');
       } catch (signupError: any) {
         setError(signupError.message);
       }
@@ -82,12 +87,12 @@ const InstantLogin: React.FC = () => {
     setLoading(true);
     try {
       await login('admin@surreycluster.com', 'admin123');
-      navigate('/dashboard');
+      navigate('/admin');
     } catch (error) {
       // Create demo admin user if doesn't exist
       try {
         await signup('admin@surreycluster.com', 'admin123', 'Sarah Johnson', 'admin');
-        navigate('/dashboard');
+        navigate('/admin');
       } catch (signupError: any) {
         setError(signupError.message);
       }

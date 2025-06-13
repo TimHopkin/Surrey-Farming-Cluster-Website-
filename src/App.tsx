@@ -16,6 +16,7 @@ import BlogDetail from './pages/BlogDetail';
 import Join from './pages/Join';
 import FarmProfile from './pages/FarmProfile';
 import ReliableDashboard from './pages/ReliableDashboard';
+import AdminDashboard from './pages/AdminDashboard';
 import Test from './pages/Test';
 import SystemTest from './pages/SystemTest';
 import InstantLogin from './pages/InstantLogin';
@@ -47,9 +48,14 @@ function App() {
                     <FarmProfile />
                   </SimpleProtectedRoute2>
                 } />
-                <Route path="/dashboard" element={
+                <Route path="/farmerdashboard" element={
                   <SimpleProtectedRoute2>
                     <ReliableDashboard />
+                  </SimpleProtectedRoute2>
+                } />
+                <Route path="/admin" element={
+                  <SimpleProtectedRoute2>
+                    <AdminDashboard />
                   </SimpleProtectedRoute2>
                 } />
                 <Route path="/test" element={<Test />} />

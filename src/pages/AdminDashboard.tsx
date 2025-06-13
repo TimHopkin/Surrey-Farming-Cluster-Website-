@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useAuth } from '../contexts/HybridAuthContext';
-import Logo from '../components/Logo';
 
 const AdminDashboard: React.FC = () => {
   const { currentUser, logout } = useAuth();
@@ -439,9 +438,9 @@ const AdminDashboard: React.FC = () => {
       <nav className="bg-white shadow-lg border-b">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex justify-between items-center h-20">
-            {/* Left: Single Clean Logo */}
+            {/* Left: Admin Welcome */}
             <div className="flex-shrink-0">
-              <Logo className="h-14" showText={true} />
+              <span className="text-gray-700">Welcome, Sarah Johnson<span className="ml-2 bg-cluster-blue text-white px-2 py-1 rounded text-xs">Admin</span></span>
             </div>
             
             {/* Center: Portal Badge & Stats */}

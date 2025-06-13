@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { LogoSVG } from '../utils/logoAssets';
 
 const Footer: React.FC = () => {
   return (
@@ -8,8 +9,8 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center mb-4">
-              <div className="w-10 h-10 bg-cluster-green rounded-full flex items-center justify-center mr-3">
-                <span className="text-white font-bold text-lg">SFC</span>
+              <div className="w-10 h-10 mr-3">
+                {LogoSVG.SEEDLING}
               </div>
               <span className="font-secondary font-semibold text-xl">
                 Surrey Farming Cluster
@@ -44,6 +45,11 @@ const Footer: React.FC = () => {
               <li>
                 <Link to="/map" className="text-gray-300 hover:text-white transition-colors">
                   Interactive Map
+                </Link>
+              </li>
+              <li>
+                <Link to="/login" className="text-cluster-blue hover:text-blue-700 transition-colors">
+                  Sign In
                 </Link>
               </li>
             </ul>

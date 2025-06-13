@@ -70,12 +70,6 @@ const Header: React.FC = () => {
               >
                 Blog
               </Link>
-              <Link 
-                to="/join" 
-                className="text-gray-700 hover:text-cluster-green px-3 py-2 rounded-md text-sm font-medium"
-              >
-                Join
-              </Link>
             </div>
           </div>
 
@@ -84,16 +78,8 @@ const Header: React.FC = () => {
               <div className="text-gray-500 text-sm">Loading...</div>
             ) : currentUser ? (
               <div className="flex items-center space-x-4">
-                <span className="text-gray-700">
-                  Welcome, {currentUser.displayName || 'User'}
-                  {currentUser.role === 'admin' && (
-                    <span className="ml-2 bg-cluster-blue text-white px-2 py-1 rounded text-xs">
-                      Admin
-                    </span>
-                  )}
-                </span>
                 <Link
-                  to="/dashboard"
+                  to="/farmerdashboard"
                   className="bg-cluster-blue text-white px-4 py-2 rounded-md hover:bg-blue-700 text-sm"
                 >
                   Dashboard
@@ -106,20 +92,12 @@ const Header: React.FC = () => {
                 </button>
               </div>
             ) : (
-              <div className="flex items-center space-x-2">
-                <Link
-                  to="/login"
-                  className="text-cluster-blue hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Sign In
-                </Link>
-                <Link
-                  to="/login"
-                  className="bg-cluster-green text-white px-4 py-2 rounded-md hover:bg-green-700 text-sm"
-                >
-                  Join Us
-                </Link>
-              </div>
+              <Link
+                to="/join"
+                className="bg-cluster-green text-white px-4 py-2 rounded-md hover:bg-green-700 text-sm"
+              >
+                Join Us
+              </Link>
             )}
           </div>
 
@@ -187,13 +165,6 @@ const Header: React.FC = () => {
               >
                 Blog
               </Link>
-              <Link 
-                to="/join" 
-                className="text-gray-700 hover:text-cluster-green block px-3 py-2 rounded-md text-base font-medium"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Join
-              </Link>
               
               {loading ? (
                 <div className="border-t pt-4 mt-4">
@@ -226,14 +197,7 @@ const Header: React.FC = () => {
               ) : (
                 <div className="border-t pt-4 mt-4 space-y-2">
                   <Link
-                    to="/login"
-                    className="w-full text-left text-cluster-blue hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium block"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Sign In
-                  </Link>
-                  <Link
-                    to="/login"
+                    to="/join"
                     className="w-full text-left bg-cluster-green text-white px-3 py-2 rounded-md hover:bg-green-700 text-sm block"
                     onClick={() => setMobileMenuOpen(false)}
                   >

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { useAuth } from '../contexts/HybridAuthContext';
-import Logo from '../components/Logo';
-import AdminDashboard from './AdminDashboard';
 
 // Default farmer profile structure matching MVP
 const defaultFarmProfile = {
@@ -59,9 +57,9 @@ const ReliableDashboard: React.FC = () => {
     );
   }
 
-  // If user is admin, render AdminDashboard
+  // If user is admin, redirect to admin dashboard
   if (currentUser.role === 'admin') {
-    return <AdminDashboard />;
+    return <Navigate to="/admin" replace />;
   }
 
   const handleLogout = async () => {
@@ -765,9 +763,9 @@ const ReliableDashboard: React.FC = () => {
       <nav className="bg-white shadow-lg border-b">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex justify-between items-center h-20">
-            {/* Left: Single Clean Logo */}
+            {/* Left: Farmer Welcome */}
             <div className="flex-shrink-0">
-              <Logo className="h-14" showText={true} />
+              <span className="text-gray-700">Welcome, John Davies<span className="ml-2 bg-cluster-green text-white px-2 py-1 rounded text-xs">Farmer</span></span>
             </div>
             
             {/* Center: Portal Badge */}
